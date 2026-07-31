@@ -13,11 +13,19 @@ import {
   publications,
 } from "@/data/career";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { siteConfig } from "@/data/site";
+import {
+  PageShell,
+  PageContainer,
+  PageHero,
+} from "@/components/layout/page-shell";
+import { Download } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Career",
   description:
-    "Education, certifications, and research publications of a Food Technology graduate from Universitas Ahmad Dahlan.",
+    "Education, certifications, and research publications of Gnothi Sea Fauziah — Food Technology student at Ahmad Dahlan University.",
 };
 
 const certCategoryIcons = {
@@ -35,112 +43,114 @@ const statusColors = {
 
 export default function CareerPage() {
   return (
-    <div className="pt-24">
-      <section className="py-16 bg-gradient-to-br from-cream-50 via-white to-fresh-50 relative">
-        <div className="absolute inset-0 bg-molecule-pattern opacity-40" aria-hidden="true" />
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-8 text-center">
-          <p className="text-sm font-medium text-fresh-600 tracking-widest uppercase mb-3">
-            Career
-          </p>
-          <h1 className="font-display text-4xl sm:text-5xl font-bold text-earth-700 mb-4">
-            Education & Credentials
-          </h1>
-          <p className="text-earth-600/80 max-w-2xl mx-auto leading-relaxed">
-            Academic achievements, professional certifications, and research
-            contributions in food science and technology.
-          </p>
-        </div>
-      </section>
+    <PageShell>
+      <PageHero
+        label="Career"
+        title="Education & Credentials"
+        description="Academic achievements, professional certifications, and patent publications in food science and technology."
+      />
 
-      <section className="py-16 bg-white">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="h-12 w-12 rounded-xl bg-fresh-100 flex items-center justify-center">
-              <GraduationCap className="h-6 w-6 text-fresh-600" />
+      <section className="bg-white py-12 sm:py-16">
+        <PageContainer size="narrow">
+          <div className="mb-6 flex items-center gap-3 sm:mb-8">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-fresh-100 sm:h-12 sm:w-12">
+              <GraduationCap className="h-5 w-5 text-fresh-600 sm:h-6 sm:w-6" />
             </div>
-            <h2 className="font-display text-2xl font-semibold text-earth-700">
+            <h2 className="font-display text-xl font-semibold text-earth-700 sm:text-2xl">
               Education
             </h2>
           </div>
 
-          <div className="bg-gradient-to-br from-fresh-50 to-cream-50 rounded-2xl p-8 border border-fresh-100 shadow-soft">
-            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
-              <div>
-                <h3 className="font-display text-xl font-semibold text-earth-700">
+          <div className="rounded-2xl border border-fresh-100 bg-gradient-to-br from-fresh-50 to-cream-50 p-5 shadow-soft sm:p-8">
+            <div className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
+              <div className="min-w-0">
+                <h3 className="font-display text-lg font-semibold text-earth-700 sm:text-xl break-anywhere">
                   {education.degree}
                 </h3>
-                <p className="text-fresh-600 font-medium mt-1">
+                <p className="mt-1 font-medium text-fresh-600">
                   {education.university}
                 </p>
               </div>
-              <div className="text-right">
+              <div className="shrink-0 sm:text-right">
                 <Badge>{education.years}</Badge>
-                <p className="text-sm text-earth-600 mt-2">
-                  GPA: <span className="font-semibold">{education.gpa}</span>
+                <p className="mt-2 text-sm text-earth-600">
+                  Cohort:{" "}
+                  <span className="font-semibold">{education.gpa}</span>
                 </p>
               </div>
             </div>
 
-            <div className="bg-white/80 rounded-xl p-5 mb-6">
-              <p className="text-xs font-semibold text-earth-500 uppercase tracking-wide mb-2">
-                Thesis
+            <div className="mb-6 rounded-xl bg-white/80 p-4 sm:p-5">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-earth-500">
+                Patent Invention
               </p>
-              <p className="text-sm text-earth-700 leading-relaxed italic">
+              <p className="text-sm italic leading-relaxed text-earth-700">
                 &ldquo;{education.thesis}&rdquo;
               </p>
             </div>
 
             <div>
-              <p className="text-xs font-semibold text-earth-500 uppercase tracking-wide mb-3">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-earth-500">
                 Highlights
               </p>
               <ul className="space-y-2">
                 {education.highlights.map((item) => (
                   <li
                     key={item}
-                    className="flex items-center gap-2 text-sm text-earth-600"
+                    className="flex items-start gap-2 text-sm text-earth-600"
                   >
-                    <Award className="h-4 w-4 text-wheat-500 shrink-0" />
+                    <Award className="mt-0.5 h-4 w-4 shrink-0 text-wheat-500" />
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
+
+            <div className="mt-6 border-t border-fresh-100 pt-6">
+              <a
+                href={siteConfig.cvUrl}
+                download={siteConfig.cvFileName}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button variant="heroPrimary" size="lg" className="w-full sm:w-auto">
+                  <Download className="h-4 w-4" />
+                  Download CV
+                </Button>
+              </a>
+            </div>
           </div>
-        </div>
+        </PageContainer>
       </section>
 
-      <section className="py-16 bg-cream-50">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="h-12 w-12 rounded-xl bg-wheat-100 flex items-center justify-center">
-              <Award className="h-6 w-6 text-wheat-600" />
+      <section className="bg-cream-50 py-12 sm:py-16">
+        <PageContainer size="narrow">
+          <div className="mb-6 flex items-center gap-3 sm:mb-8">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-wheat-100 sm:h-12 sm:w-12">
+              <Award className="h-5 w-5 text-wheat-600 sm:h-6 sm:w-6" />
             </div>
-            <h2 className="font-display text-2xl font-semibold text-earth-700">
+            <h2 className="font-display text-xl font-semibold text-earth-700 sm:text-2xl">
               Professional Certifications
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {certifications.map((cert) => {
-              const Icon =
-                certCategoryIcons[cert.category] || Award;
+              const Icon = certCategoryIcons[cert.category] || Award;
               return (
                 <div
                   key={cert.id}
-                  className="bg-white rounded-2xl p-5 border border-cream-200 hover:shadow-card transition-shadow duration-300"
+                  className="rounded-2xl border border-cream-200 bg-white p-4 transition-shadow duration-300 hover:shadow-card sm:p-5"
                 >
                   <div className="flex items-start gap-3">
-                    <div className="h-10 w-10 rounded-lg bg-fresh-50 flex items-center justify-center shrink-0">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-fresh-50">
                       <Icon className="h-5 w-5 text-fresh-600" />
                     </div>
-                    <div>
-                      <h3 className="font-semibold text-earth-700 text-sm">
+                    <div className="min-w-0">
+                      <h3 className="text-sm font-semibold text-earth-700 break-anywhere">
                         {cert.name}
                       </h3>
-                      <p className="text-xs text-earth-500 mt-1">
-                        {cert.issuer}
-                      </p>
+                      <p className="mt-1 text-xs text-earth-500">{cert.issuer}</p>
                       <Badge variant="outline" className="mt-2 text-[10px]">
                         {cert.year}
                       </Badge>
@@ -150,45 +160,45 @@ export default function CareerPage() {
               );
             })}
           </div>
-        </div>
+        </PageContainer>
       </section>
 
-      <section className="py-16 bg-white">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="h-12 w-12 rounded-xl bg-olive-100 flex items-center justify-center">
-              <BookOpen className="h-6 w-6 text-olive-600" />
+      <section className="bg-white py-12 sm:py-16 safe-pb">
+        <PageContainer size="narrow">
+          <div className="mb-6 flex items-center gap-3 sm:mb-8">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-olive-100 sm:h-12 sm:w-12">
+              <BookOpen className="h-5 w-5 text-olive-600 sm:h-6 sm:w-6" />
             </div>
-            <h2 className="font-display text-2xl font-semibold text-earth-700">
+            <h2 className="font-display text-xl font-semibold text-earth-700 sm:text-2xl">
               Research & Publications
             </h2>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {publications.map((pub) => (
               <article
                 key={pub.id}
-                className="bg-cream-50 rounded-2xl p-6 border border-cream-200 hover:shadow-card transition-shadow duration-300"
+                className="rounded-2xl border border-cream-200 bg-cream-50 p-4 transition-shadow duration-300 hover:shadow-card sm:p-6"
               >
-                <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
+                <div className="mb-3 flex flex-wrap items-start justify-between gap-3">
                   <Badge className={statusColors[pub.status]}>
                     {pub.status.replace("-", " ")}
                   </Badge>
                   <span className="text-xs text-earth-500">{pub.year}</span>
                 </div>
 
-                <h3 className="font-display text-lg font-semibold text-earth-700 mb-2 leading-snug">
+                <h3 className="mb-2 font-display text-base font-semibold leading-snug text-earth-700 sm:text-lg break-anywhere">
                   {pub.title}
                 </h3>
 
-                <div className="flex flex-wrap gap-3 text-xs text-earth-500 mb-4">
+                <div className="mb-4 flex flex-wrap gap-x-3 gap-y-1 text-xs text-earth-500">
                   <span>
                     Role:{" "}
                     <span className="font-medium text-earth-600">
                       {pub.role}
                     </span>
                   </span>
-                  <span>•</span>
+                  <span className="hidden sm:inline">•</span>
                   <span>
                     Journal:{" "}
                     <span className="font-medium text-earth-600">
@@ -197,14 +207,14 @@ export default function CareerPage() {
                   </span>
                 </div>
 
-                <p className="text-sm text-earth-600 leading-relaxed mb-4">
+                <p className="mb-4 text-sm leading-relaxed text-earth-600">
                   {pub.abstract}
                 </p>
 
                 {pub.link && (
                   <a
                     href={pub.link}
-                    className="inline-flex items-center gap-1 text-sm font-medium text-fresh-600 hover:text-fresh-700"
+                    className="inline-flex min-h-[var(--touch-min)] items-center gap-1 text-sm font-medium text-fresh-600 hover:text-fresh-700"
                   >
                     View Publication
                     <ExternalLink className="h-3.5 w-3.5" />
@@ -213,8 +223,8 @@ export default function CareerPage() {
               </article>
             ))}
           </div>
-        </div>
+        </PageContainer>
       </section>
-    </div>
+    </PageShell>
   );
 }

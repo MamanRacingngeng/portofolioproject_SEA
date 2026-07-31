@@ -1,186 +1,161 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
-import {
-  Download,
-  Mail,
-  FlaskConical,
-  Microscope,
-  ArrowRight,
-} from "lucide-react";
+import { Download, Mail, ArrowUpRight } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { LabDecorations, MoleculeBackground } from "@/components/decorations/lab-decorations";
+import { PortraitImage } from "@/components/ui/portrait-image";
+import { Marquee } from "@/components/ui/marquee";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 24 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.1, duration: 0.6, ease: "easeOut" as const },
+    transition: {
+      delay: i * 0.08,
+      duration: 0.55,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
   }),
 };
 
 export function HeroSection() {
+  const [firstName, ...rest] = siteConfig.name.split(" ");
+  const lastName = rest.join(" ");
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-cream-50 via-white to-fresh-50">
-      <MoleculeBackground />
-      <GrainBackground />
-      <LabDecorations />
+    <section className="relative flex min-h-[100dvh] flex-col pt-[var(--header-height)]">
+      <div className="container-app mx-auto grid w-full max-w-7xl flex-1 grid-cols-1 items-center gap-10 py-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14 lg:py-20">
+        <div className="order-2 lg:order-1">
+          <motion.p
+            custom={0}
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            className="mb-5 font-mono text-[11px] uppercase tracking-[0.2em] text-fresh-700"
+          >
+            {siteConfig.location} · Class of {siteConfig.cohort}
+          </motion.p>
 
-      <div className="relative mx-auto max-w-7xl px-6 py-32 lg:px-8 lg:py-40">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div className="order-2 lg:order-1">
-            <motion.div
-              custom={0}
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-            >
-              <Badge variant="outline" className="mb-6">
-                <FlaskConical className="h-3 w-3 mr-1" />
-                {siteConfig.degree}
-              </Badge>
-            </motion.div>
+          <motion.h1
+            custom={1}
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            className="mb-5 font-display text-[2.75rem] font-semibold leading-[0.95] text-earth-700 xs:text-5xl sm:text-6xl lg:text-7xl"
+          >
+            {firstName}
+            <br />
+            <span className="text-fresh-700">{lastName}</span>
+          </motion.h1>
 
-            <motion.h1
-              custom={1}
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-earth-700 leading-tight mb-4"
-            >
-              {siteConfig.name}
-            </motion.h1>
+          <motion.div
+            custom={2}
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            className="mb-6 flex flex-wrap items-center gap-4"
+          >
+            <div className="accent-line" />
+            <p className="max-w-md text-sm leading-relaxed text-earth-600 sm:text-base">
+              {siteConfig.title}. Inventor of{" "}
+              <span className="font-semibold text-earth-700">
+                Sacha Inchi Natto
+              </span>{" "}
+              — turning local ingredients into published food science.
+            </p>
+          </motion.div>
 
-            <motion.div
-              custom={2}
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              className="flex flex-wrap gap-2 mb-6"
+          <motion.div
+            custom={3}
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            className="mb-8 flex flex-wrap gap-3"
+          >
+            <a
+              href={siteConfig.cvUrl}
+              download={siteConfig.cvFileName}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              {siteConfig.roles.map((role) => (
-                <span
-                  key={role}
-                  className="text-sm font-medium text-fresh-600 bg-fresh-50 px-3 py-1 rounded-full"
-                >
-                  {role}
-                </span>
-              ))}
-            </motion.div>
-
-            <motion.p
-              custom={3}
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              className="text-lg text-earth-600/80 leading-relaxed mb-8 max-w-xl"
-            >
-              {siteConfig.summary}
-            </motion.p>
-
-            <motion.div
-              custom={4}
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              className="flex flex-wrap gap-4"
-            >
-              <Button size="lg">
+              <Button
+                variant="heroPrimary"
+                size="lg"
+                className="rounded-md shadow-[3px_3px_0_rgba(48,102,64,0.35)]"
+              >
                 <Download className="h-4 w-4" />
                 Download CV
               </Button>
-              <Link href="/contact">
-                <Button variant="outline" size="lg">
-                  <Mail className="h-4 w-4" />
-                  Contact Me
-                </Button>
-              </Link>
-              <Link href="/projects">
-                <Button variant="secondary" size="lg">
-                  View Projects
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
-              </Link>
-            </motion.div>
-
-            <motion.div
-              custom={5}
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              className="mt-12 flex items-center gap-8"
-            >
-              <div>
-                <p className="text-2xl font-display font-bold text-fresh-600">
-                  3.72
-                </p>
-                <p className="text-xs text-earth-500">GPA</p>
-              </div>
-              <div className="h-10 w-px bg-fresh-200" />
-              <div>
-                <p className="text-2xl font-display font-bold text-fresh-600">
-                  6+
-                </p>
-                <p className="text-xs text-earth-500">Research Projects</p>
-              </div>
-              <div className="h-10 w-px bg-fresh-200" />
-              <div>
-                <p className="text-2xl font-display font-bold text-fresh-600">
-                  6
-                </p>
-                <p className="text-xs text-earth-500">Certifications</p>
-              </div>
-            </motion.div>
-          </div>
+            </a>
+            <Link href="/contact">
+              <Button
+                variant="heroOutline"
+                size="lg"
+                className="rounded-md border-earth-300"
+              >
+                <Mail className="h-4 w-4" />
+                Contact
+              </Button>
+            </Link>
+            <Link href="/projects">
+              <Button variant="ghost" size="lg" className="rounded-md">
+                View work
+                <ArrowUpRight className="h-4 w-4" />
+              </Button>
+            </Link>
+          </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="order-1 lg:order-2 flex justify-center"
+            custom={4}
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            className="flex flex-wrap gap-6 border-t border-earth-200/80 pt-6"
           >
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-br from-fresh-200/40 to-wheat-400/20 rounded-3xl blur-2xl" />
-              <div className="relative bg-gradient-to-br from-fresh-100 to-cream-100 rounded-3xl p-3 shadow-elevated">
-                <div className="relative w-72 h-80 sm:w-80 sm:h-96 rounded-2xl overflow-hidden bg-gradient-to-b from-fresh-50 to-white">
-                  <Image
-                    src="/images/portrait.png"
-                    alt={`${siteConfig.name} - Food Technologist`}
-                    fill
-                    className="object-cover object-top"
-                    priority
-                  />
-                </div>
-                <div className="absolute -bottom-4 -right-4 bg-white rounded-2xl shadow-card p-4 flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-xl bg-fresh-100 flex items-center justify-center">
-                    <Microscope className="h-5 w-5 text-fresh-600" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-earth-500">Specialization</p>
-                    <p className="text-sm font-semibold text-earth-700">
-                      Food Science
-                    </p>
-                  </div>
-                </div>
+            {siteConfig.stats.map((stat) => (
+              <div key={stat.label}>
+                <p className="font-display text-2xl font-semibold text-fresh-700 sm:text-3xl">
+                  {stat.value}
+                </p>
+                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-earth-500">
+                  {stat.label}
+                </p>
               </div>
-            </div>
+            ))}
           </motion.div>
         </div>
-      </div>
-    </section>
-  );
-}
 
-function GrainBackground() {
-  return (
-    <div
-      className="pointer-events-none absolute inset-0 bg-grain-pattern opacity-40"
-      aria-hidden="true"
-    />
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="order-1 flex justify-center lg:order-2 lg:justify-end"
+        >
+          <div className="relative w-full max-w-[300px] sm:max-w-[340px] lg:max-w-[380px]">
+            <div className="absolute -right-3 -top-3 z-10 stamp-badge bg-cream-50">
+              Patent · {siteConfig.patent.published.split(" ").pop()}
+            </div>
+            <div className="polaroid-frame rotate-1 transition-transform duration-300 hover:rotate-0">
+              <div className="relative aspect-[4/5] overflow-hidden bg-earth-100">
+                <PortraitImage
+                  src="/images/portrait.png"
+                  alt={`${siteConfig.name} - Food Technology Student`}
+                  priority
+                />
+              </div>
+              <p className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-earth-500">
+                {siteConfig.university}
+              </p>
+            </div>
+            <div className="absolute -bottom-4 -left-4 hidden h-24 w-24 border-l-2 border-b-2 border-fresh-400/40 lg:block" />
+          </div>
+        </motion.div>
+      </div>
+
+      <Marquee items={siteConfig.roles} />
+    </section>
   );
 }

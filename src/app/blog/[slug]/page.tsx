@@ -7,6 +7,7 @@ import { getBlogPostBySlug, blogPosts } from "@/data/blog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { formatDate } from "@/lib/utils";
+import { PageShell, PageContainer } from "@/components/layout/page-shell";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -43,23 +44,24 @@ export default async function BlogPostPage({ params }: Props) {
   const paragraphs = post.content.split("\n\n");
 
   return (
-    <div className="pt-24">
-      <section className="relative h-[40vh] min-h-[320px]">
+    <PageShell>
+      <section className="relative min-h-[35vh] sm:min-h-[40vh]">
         <Image
           src={post.image}
           alt={post.title}
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-earth-700/80 to-transparent" />
       </section>
 
-      <article className="py-12">
-        <div className="mx-auto max-w-3xl px-6 lg:px-8">
+      <article className="py-10 sm:py-12">
+        <PageContainer size="narrow" className="max-w-3xl">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm text-fresh-600 hover:text-fresh-700 mb-6"
+            className="mb-5 inline-flex min-h-[var(--touch-min)] items-center gap-2 text-sm text-fresh-600 hover:text-fresh-700 sm:mb-6"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Blog
@@ -67,7 +69,7 @@ export default async function BlogPostPage({ params }: Props) {
 
           <Badge className="mb-4">{post.category}</Badge>
 
-          <h1 className="font-display text-3xl sm:text-4xl font-bold text-earth-700 mb-6 leading-tight">
+          <h1 className="mb-5 font-display text-2xl font-semibold leading-tight text-earth-700 xs:text-3xl sm:mb-6 sm:text-4xl break-anywhere">
             {post.title}
           </h1>
 
@@ -110,7 +112,7 @@ export default async function BlogPostPage({ params }: Props) {
                             key={line}
                             className="flex items-start gap-3 text-earth-600"
                           >
-                            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-fresh-100 text-fresh-700 text-xs font-bold">
+                            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-fresh-100 text-fresh-700 text-xs font-semibold">
                               •
                             </span>
                             <span>
@@ -161,8 +163,8 @@ export default async function BlogPostPage({ params }: Props) {
               </Button>
             </Link>
           </div>
-        </div>
+        </PageContainer>
       </article>
-    </div>
+    </PageShell>
   );
 }

@@ -11,18 +11,20 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  icons: {
+    icon: siteConfig.ogImage,
+    apple: siteConfig.ogImage,
+  },
   keywords: [
+    "Gnothi Sea Fauziah",
     "Food Technology",
-    "Food Technologist",
-    "Food Science",
-    "Quality Assurance",
-    "HACCP",
-    "Food Safety",
-    "Product Development",
-    "Laboratory Analysis",
-    "Proximate Analysis",
+    "Ahmad Dahlan University",
+    "Natto Sacha Inchi",
+    "Simple Patent",
     "Fermentation",
-    "Universitas Ahmad Dahlan",
+    "Plukenetia volubilis",
+    "Food Innovation",
+    "Product Development",
   ],
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
@@ -38,7 +40,7 @@ export const metadata: Metadata = {
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: `${siteConfig.name} - Food Technologist Portfolio`,
+        alt: `${siteConfig.name} - Food Technology Portfolio`,
       },
     ],
   },
@@ -61,11 +63,22 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#3a7f4e" },
+    { media: "(prefers-color-scheme: dark)", color: "#3a7f4e" },
+  ],
+};
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: siteConfig.name,
-  jobTitle: "Food Technologist",
+  jobTitle: "Food Technology Student & Patent Inventor",
   description: siteConfig.description,
   url: siteConfig.url,
   email: siteConfig.email,
@@ -97,12 +110,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col">
+      <body className="flex min-h-[100dvh] flex-col">
         <Navigation />
         <main className="flex-1">{children}</main>
         <Footer />

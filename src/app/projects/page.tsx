@@ -4,9 +4,15 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, FlaskConical, Filter } from "lucide-react";
+import { ArrowRight, Filter } from "lucide-react";
 import { projects } from "@/data/projects";
 import { Badge } from "@/components/ui/badge";
+import {
+  PageShell,
+  PageContainer,
+  PageHero,
+  StickyBar,
+} from "@/components/layout/page-shell";
 
 const categories = [
   "All",
@@ -22,121 +28,79 @@ export default function ProjectsPage() {
       : projects.filter((p) => p.category === activeCategory);
 
   return (
-    <div className="pt-24">
-      <section className="py-16 bg-gradient-to-br from-cream-50 via-white to-fresh-50 relative">
-        <div className="absolute inset-0 bg-molecule-pattern opacity-40" aria-hidden="true" />
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <p className="text-sm font-medium text-fresh-600 tracking-widest uppercase mb-3">
-              Portfolio
-            </p>
-            <h1 className="font-display text-4xl sm:text-5xl font-bold text-earth-700 mb-4">
-              Research Projects
-            </h1>
-            <p className="text-earth-600/80 max-w-2xl mx-auto leading-relaxed">
-              Detailed case studies showcasing food science research, product
-              development, quality analysis, and food safety projects.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+    <PageShell>
+      <PageHero
+        label="Portfolio"
+        title="Research Projects"
+        description="Detailed case studies showcasing food science research, product development, quality analysis, and food safety projects."
+      />
 
-      <section className="py-12 bg-white sticky top-[72px] z-40 border-b border-cream-200">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
-            <Filter className="h-4 w-4 text-earth-400 shrink-0" />
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                  activeCategory === cat
-                    ? "bg-fresh-600 text-white shadow-soft"
-                    : "bg-cream-100 text-earth-600 hover:bg-fresh-50"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+      <StickyBar>
+        <div className="scrollbar-hide flex items-center gap-2 overflow-x-auto pb-1">
+          <Filter className="h-4 w-4 shrink-0 text-earth-400" />
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              type="button"
+              onClick={() => setActiveCategory(cat)}
+              className={`shrink-0 rounded-full px-3 py-2 text-xs font-medium transition-all tap-target sm:px-4 sm:text-sm ${
+                activeCategory === cat
+                  ? "bg-fresh-600 text-white shadow-soft"
+                  : "bg-cream-100 text-earth-600 hover:bg-fresh-50"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
         </div>
-      </section>
+      </StickyBar>
 
-      <section className="py-16 bg-cream-50">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <section className="bg-cream-50 py-12 sm:py-16">
+        <PageContainer>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
             {filtered.map((project, index) => (
               <motion.article
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="group bg-white rounded-2xl overflow-hidden border border-cream-200 hover:shadow-elevated transition-all duration-500"
+                className="group overflow-hidden rounded-2xl border border-cream-200 bg-white transition-all duration-500 hover:shadow-elevated"
               >
-                <div className="relative h-56 overflow-hidden">
+                <div className="relative h-48 overflow-hidden sm:h-56">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-earth-700/50 to-transparent" />
-                  <Badge className="absolute top-4 left-4 bg-white/90 text-earth-700">
-                    <FlaskConical className="h-3 w-3 mr-1" />
+                  <Badge className="absolute left-3 top-3 bg-white/90 text-earth-700 sm:left-4 sm:top-4">
                     {project.category}
                   </Badge>
                 </div>
 
-                <div className="p-6">
-                  <h2 className="font-display text-xl font-semibold text-earth-700 mb-2 group-hover:text-fresh-600 transition-colors">
+                <div className="p-4 sm:p-6">
+                  <h2 className="mb-2 font-display text-lg font-semibold text-earth-700 transition-colors group-hover:text-fresh-600 sm:text-xl break-anywhere">
                     {project.title}
                   </h2>
-                  <p className="text-sm text-earth-600/80 leading-relaxed mb-4">
+                  <p className="mb-4 text-sm leading-relaxed text-earth-600/80">
                     {project.shortDescription}
                   </p>
 
-                  <div className="mb-4">
-                    <p className="text-xs font-semibold text-earth-500 uppercase mb-2">
-                      Objectives
-                    </p>
-                    <ul className="space-y-1">
-                      {project.objectives.slice(0, 2).map((obj) => (
-                        <li
-                          key={obj}
-                          className="text-xs text-earth-600 flex items-start gap-2"
-                        >
-                          <span className="text-fresh-500">•</span>
-                          {obj}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {project.tags.map((tag) => (
-                      <Badge key={tag} variant="outline" className="text-[10px]">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-
                   <Link
                     href={`/projects/${project.slug}`}
-                    className="inline-flex items-center gap-1 text-sm font-medium text-fresh-600 hover:text-fresh-700"
+                    className="inline-flex min-h-[var(--touch-min)] items-center gap-1 text-sm font-medium text-fresh-600 hover:text-fresh-700"
                   >
                     View Case Study
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>
               </motion.article>
             ))}
           </div>
-        </div>
+        </PageContainer>
       </section>
-    </div>
+    </PageShell>
   );
 }

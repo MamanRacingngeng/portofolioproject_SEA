@@ -1,28 +1,49 @@
 export const siteConfig = {
-  name: "Nadia Rahma Putri",
-  title: "Food Technologist & Researcher",
+  name: "Gnothi Sea Fauziah",
+  title: "Food Technology Student & Patent Inventor",
   description:
-    "Bachelor of Food Technology graduate specializing in food science, laboratory analysis, quality assurance, food safety, and product development. Passionate about food innovation and sustainable processing.",
-  url: "https://nadiarahma.dev",
+    "Food Technology undergraduate at Ahmad Dahlan University (UAD), Yogyakarta. Inventor of a simple patent for the Sacha Inchi Natto Production Process — diversifying local food products through fermentation of sacha inchi seeds (Plukenetia volubilis L.).",
+  url: "https://portofolioproject-sea.vercel.app",
   ogImage: "/images/portrait.png",
-  email: "nadia.rahma@email.com",
-  phone: "+62 812-3456-7890",
+  brand: {
+    wordmark: "GNOTH",
+    tagline: "Food Technology Portfolio",
+  },
+  cvUrl: "/documents/cv-gnothi-sea-fauziah.pdf",
+  cvFileName: "CV-Gnothi-Sea-Fauziah.pdf",
+  email: "gnothisea.fauziah@email.com",
+  phone: "+62 812-0000-0000",
   location: "Yogyakarta, Indonesia",
-  linkedin: "https://linkedin.com/in/nadiarahma",
-  university: "Universitas Ahmad Dahlan",
-  degree: "Bachelor of Food Technology (S1 Teknologi Pangan)",
-  gpa: "3.72 / 4.00",
-  graduationYear: "2025",
-  thesis:
-    "Optimization of Fermentation Parameters for Probiotic-Rich Tempeh Using Indigenous Rhizopus oligosporus Strains",
+  linkedin: "https://linkedin.com/in/gnothisea-fauziah",
+  university: "Ahmad Dahlan University",
+  degree: "Food Technology (Bachelor of Food Technology)",
+  cohort: "2022",
+  graduationYear: "2026",
+  patent: {
+    title: "Sacha Inchi Natto Production Process (Plukenetia volubilis L.)",
+    inventors: [
+      "Gnothi Sea Fauziah",
+      "Sitta Istiqomah Said",
+      "Muhammad Fanni",
+    ],
+    published: "December 20, 2024",
+    publication: "Official Simple Patent Bulletin Series A",
+    description:
+      "Diversification of local food products through natto production using sacha inchi seeds as raw material, encompassing soaking, peeling, and fermentation stages.",
+  },
   roles: [
-    "Food Technologist",
-    "Food Scientist",
+    "Food Technology Student",
+    "Patent Inventor",
     "Food Researcher",
-    "Quality Assurance Enthusiast",
+    "Fermentation Enthusiast",
   ],
   summary:
-    "Dedicated Food Technology graduate with hands-on experience in laboratory analysis, food product development, and quality assurance systems. Skilled in proximate analysis, microbiological testing, HACCP implementation, and research methodology. Committed to advancing food innovation through scientific rigor and sustainable processing practices.",
+    "Food Technology undergraduate at Ahmad Dahlan University (Class of 2022), registered as inventor of the simple patent for Sacha Inchi Natto Production Process. Experienced in fermentation research, local food product diversification, and academic laboratory work. Active in student arts delegation and laboratory assistant selection programs.",
+  stats: [
+    { value: "1", label: "Simple Patent" },
+    { value: "2022", label: "Cohort" },
+    { value: "UAD", label: "University" },
+  ],
 };
 
 export const navLinks = [

@@ -8,31 +8,34 @@ import {
   Dna,
   Leaf,
   Atom,
+  Sparkles,
 } from "lucide-react";
 
 const icons = [
-  { Icon: Microscope, x: "10%", y: "20%", delay: 0, size: 28 },
-  { Icon: FlaskConical, x: "85%", y: "15%", delay: 1, size: 24 },
-  { Icon: Beaker, x: "75%", y: "70%", delay: 2, size: 22 },
-  { Icon: Dna, x: "15%", y: "75%", delay: 0.5, size: 26 },
-  { Icon: Leaf, x: "90%", y: "45%", delay: 1.5, size: 20 },
-  { Icon: Atom, x: "5%", y: "50%", delay: 2.5, size: 24 },
+  { Icon: Microscope, x: "8%", y: "18%", delay: 0, size: 32, color: "text-fresh-400/40" },
+  { Icon: FlaskConical, x: "88%", y: "12%", delay: 1, size: 28, color: "text-wheat-400/45" },
+  { Icon: Beaker, x: "78%", y: "68%", delay: 2, size: 26, color: "text-olive-400/40" },
+  { Icon: Dna, x: "12%", y: "72%", delay: 0.5, size: 30, color: "text-fresh-500/35" },
+  { Icon: Leaf, x: "92%", y: "42%", delay: 1.5, size: 24, color: "text-fresh-400/50" },
+  { Icon: Atom, x: "4%", y: "48%", delay: 2.5, size: 28, color: "text-wheat-500/40" },
+  { Icon: Sparkles, x: "50%", y: "8%", delay: 3, size: 20, color: "text-fresh-300/50" },
 ];
 
 export function LabDecorations() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-      {icons.map(({ Icon, x, y, delay, size }, i) => (
+      {icons.map(({ Icon, x, y, delay, size, color }, i) => (
         <motion.div
           key={i}
-          className="absolute text-fresh-300/20"
+          className={`absolute ${color}`}
           style={{ left: x, top: y }}
           animate={{
-            y: [0, -12, 0],
-            rotate: [0, 5, -5, 0],
+            y: [0, -16, 0],
+            rotate: [0, 8, -8, 0],
+            scale: [1, 1.08, 1],
           }}
           transition={{
-            duration: 6,
+            duration: 5 + i * 0.5,
             delay,
             repeat: Infinity,
             ease: "easeInOut",
@@ -47,8 +50,10 @@ export function LabDecorations() {
 
 export function MoleculeBackground() {
   return (
-    <div
-      className="pointer-events-none absolute inset-0 bg-molecule-pattern opacity-60"
+    <motion.div
+      className="pointer-events-none absolute inset-0 bg-molecule-pattern opacity-70"
+      animate={{ opacity: [0.5, 0.75, 0.5] }}
+      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       aria-hidden="true"
     />
   );
@@ -57,7 +62,7 @@ export function MoleculeBackground() {
 export function GrainBackground() {
   return (
     <div
-      className="pointer-events-none absolute inset-0 bg-grain-pattern"
+      className="pointer-events-none absolute inset-0 bg-grain-pattern opacity-50"
       aria-hidden="true"
     />
   );
@@ -65,10 +70,22 @@ export function GrainBackground() {
 
 export function SectionDivider() {
   return (
-    <div className="flex items-center justify-center py-8" aria-hidden="true">
-      <div className="h-px w-24 bg-gradient-to-r from-transparent via-fresh-300 to-transparent" />
-      <Leaf className="mx-4 h-4 w-4 text-fresh-400" />
-      <div className="h-px w-24 bg-gradient-to-r from-transparent via-fresh-300 to-transparent" />
-    </div>
+    <motion.div
+      className="flex items-center justify-center py-8"
+      initial={{ opacity: 0, scaleX: 0 }}
+      whileInView={{ opacity: 1, scaleX: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      aria-hidden="true"
+    >
+      <div className="h-px w-16 bg-gradient-to-r from-transparent via-fresh-400 to-fresh-300 sm:w-24" />
+      <motion.div
+        animate={{ rotate: [0, 10, -10, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <Leaf className="mx-4 h-5 w-5 text-fresh-500" />
+      </motion.div>
+      <div className="h-px w-16 bg-gradient-to-r from-fresh-300 via-fresh-400 to-transparent sm:w-24" />
+    </motion.div>
   );
 }

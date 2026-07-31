@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import {
   Mail,
   Phone,
@@ -13,6 +12,12 @@ import {
 } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { Button } from "@/components/ui/button";
+import { PortraitImage } from "@/components/ui/portrait-image";
+import {
+  PageShell,
+  PageContainer,
+  PageHero,
+} from "@/components/layout/page-shell";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -35,86 +40,69 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="pt-24">
-      <section className="py-16 bg-gradient-to-br from-cream-50 via-white to-fresh-50 relative">
-        <div className="absolute inset-0 bg-molecule-pattern opacity-40" aria-hidden="true" />
-        <div className="relative mx-auto max-w-7xl px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <p className="text-sm font-medium text-fresh-600 tracking-widest uppercase mb-3">
-              Contact
-            </p>
-            <h1 className="font-display text-4xl sm:text-5xl font-bold text-earth-700 mb-4">
-              Let&apos;s Connect
-            </h1>
-            <p className="text-earth-600/80 max-w-2xl mx-auto leading-relaxed">
-              Interested in collaborating on food research, quality assurance, or
-              product development? I&apos;d love to hear from you.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+    <PageShell>
+      <PageHero
+        label="Contact"
+        title="Let's Connect"
+        description="Interested in collaborating on food research, fermentation innovation, or product development? I'd love to hear from you."
+      />
 
-      <section className="py-16 bg-white">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+      <section className="bg-white py-12 sm:py-16">
+        <PageContainer size="wide">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-5 lg:gap-12">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               className="lg:col-span-2"
             >
-              <div className="relative mb-8">
-                <div className="absolute -inset-3 bg-gradient-to-br from-fresh-100 to-cream-100 rounded-2xl" />
-                <div className="relative w-full aspect-[3/4] max-w-xs mx-auto rounded-2xl overflow-hidden shadow-elevated">
-                  <Image
+              <div className="relative mb-6 sm:mb-8">
+                <div className="absolute -inset-2 rounded-2xl bg-gradient-to-br from-fresh-100 to-cream-100 sm:-inset-3" />
+                <div className="relative mx-auto aspect-[3/4] w-full max-w-[240px] overflow-hidden rounded-2xl shadow-elevated xs:max-w-[260px] sm:max-w-xs">
+                  <PortraitImage
                     src="/images/portrait.png"
                     alt={siteConfig.name}
-                    fill
-                    className="object-cover object-top"
                   />
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="flex items-center gap-3 p-4 rounded-xl bg-cream-50 border border-cream-200 hover:border-fresh-200 hover:shadow-soft transition-all group"
-                >
-                  <div className="h-10 w-10 rounded-lg bg-fresh-100 flex items-center justify-center group-hover:bg-fresh-600 transition-colors">
-                    <Mail className="h-5 w-5 text-fresh-600 group-hover:text-white transition-colors" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-earth-500">Email</p>
-                    <p className="text-sm font-medium text-earth-700">
-                      {siteConfig.email}
-                    </p>
-                  </div>
-                </a>
+              <div className="space-y-3 sm:space-y-4">
+                {[
+                  {
+                    href: `mailto:${siteConfig.email}`,
+                    icon: Mail,
+                    label: "Email",
+                    value: siteConfig.email,
+                  },
+                  {
+                    href: `tel:${siteConfig.phone}`,
+                    icon: Phone,
+                    label: "Phone",
+                    value: siteConfig.phone,
+                  },
+                ].map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="group flex min-h-[var(--touch-min)] items-center gap-3 rounded-xl border border-cream-200 bg-cream-50 p-3 transition-all hover:border-fresh-200 hover:shadow-soft sm:p-4"
+                  >
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-fresh-100 transition-colors group-hover:bg-fresh-600">
+                      <item.icon className="h-5 w-5 text-fresh-600 transition-colors group-hover:text-white" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-xs text-earth-500">{item.label}</p>
+                      <p className="truncate text-sm font-medium text-earth-700">
+                        {item.value}
+                      </p>
+                    </div>
+                  </a>
+                ))}
 
-                <a
-                  href={`tel:${siteConfig.phone}`}
-                  className="flex items-center gap-3 p-4 rounded-xl bg-cream-50 border border-cream-200 hover:border-fresh-200 hover:shadow-soft transition-all group"
-                >
-                  <div className="h-10 w-10 rounded-lg bg-fresh-100 flex items-center justify-center group-hover:bg-fresh-600 transition-colors">
-                    <Phone className="h-5 w-5 text-fresh-600 group-hover:text-white transition-colors" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-earth-500">Phone</p>
-                    <p className="text-sm font-medium text-earth-700">
-                      {siteConfig.phone}
-                    </p>
-                  </div>
-                </a>
-
-                <div className="flex items-center gap-3 p-4 rounded-xl bg-cream-50 border border-cream-200">
-                  <div className="h-10 w-10 rounded-lg bg-fresh-100 flex items-center justify-center">
+                <div className="flex min-h-[var(--touch-min)] items-center gap-3 rounded-xl border border-cream-200 bg-cream-50 p-3 sm:p-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-fresh-100">
                     <MapPin className="h-5 w-5 text-fresh-600" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-xs text-earth-500">Location</p>
                     <p className="text-sm font-medium text-earth-700">
                       {siteConfig.location}
@@ -126,12 +114,12 @@ export default function ContactPage() {
                   href={siteConfig.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-4 rounded-xl bg-cream-50 border border-cream-200 hover:border-fresh-200 hover:shadow-soft transition-all group"
+                  className="group flex min-h-[var(--touch-min)] items-center gap-3 rounded-xl border border-cream-200 bg-cream-50 p-3 transition-all hover:border-fresh-200 hover:shadow-soft sm:p-4"
                 >
-                  <div className="h-10 w-10 rounded-lg bg-fresh-100 flex items-center justify-center group-hover:bg-fresh-600 transition-colors">
-                    <LinkedinIcon className="h-5 w-5 text-fresh-600 group-hover:text-white transition-colors" />
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-fresh-100 transition-colors group-hover:bg-fresh-600">
+                    <LinkedinIcon className="h-5 w-5 text-fresh-600 transition-colors group-hover:text-white" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-xs text-earth-500">LinkedIn</p>
                     <p className="text-sm font-medium text-earth-700">
                       Connect on LinkedIn
@@ -147,33 +135,33 @@ export default function ContactPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-3"
             >
-              <div className="bg-cream-50 rounded-2xl p-8 border border-cream-200 shadow-soft">
-                <h2 className="font-display text-2xl font-semibold text-earth-700 mb-2">
+              <div className="rounded-2xl border border-cream-200 bg-cream-50 p-4 shadow-soft sm:p-6 md:p-8">
+                <h2 className="mb-2 font-display text-xl font-semibold text-earth-700 sm:text-2xl">
                   Send a Message
                 </h2>
-                <p className="text-sm text-earth-500 mb-6">
+                <p className="mb-6 text-sm text-earth-500">
                   Fill out the form below and I&apos;ll get back to you as soon
                   as possible.
                 </p>
 
                 {submitted ? (
-                  <div className="text-center py-12">
-                    <CheckCircle2 className="h-16 w-16 text-fresh-500 mx-auto mb-4" />
-                    <h3 className="font-display text-xl font-semibold text-earth-700 mb-2">
+                  <div className="py-10 text-center sm:py-12">
+                    <CheckCircle2 className="mx-auto mb-4 h-14 w-14 text-fresh-500 sm:h-16 sm:w-16" />
+                    <h3 className="mb-2 font-display text-xl font-semibold text-earth-700">
                       Message Sent!
                     </h3>
-                    <p className="text-earth-600">
-                      Thank you for reaching out. I&apos;ll respond within 24-48
-                      hours.
+                    <p className="text-sm text-earth-600 sm:text-base">
+                      Thank you for reaching out. I&apos;ll respond within
+                      24–48 hours.
                     </p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
                       <div>
                         <label
                           htmlFor="name"
-                          className="block text-sm font-medium text-earth-600 mb-1.5"
+                          className="mb-1.5 block text-sm font-medium text-earth-600"
                         >
                           Full Name
                         </label>
@@ -182,16 +170,17 @@ export default function ContactPage() {
                           id="name"
                           name="name"
                           required
+                          autoComplete="name"
                           value={formData.name}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 rounded-xl border border-cream-300 bg-white text-earth-700 text-sm focus:outline-none focus:ring-2 focus:ring-fresh-500 focus:border-transparent transition-all"
+                          className="w-full rounded-xl border border-cream-300 bg-white px-4 py-3 text-base text-earth-700 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-fresh-500 sm:text-sm"
                           placeholder="Your name"
                         />
                       </div>
                       <div>
                         <label
                           htmlFor="email"
-                          className="block text-sm font-medium text-earth-600 mb-1.5"
+                          className="mb-1.5 block text-sm font-medium text-earth-600"
                         >
                           Email Address
                         </label>
@@ -200,9 +189,11 @@ export default function ContactPage() {
                           id="email"
                           name="email"
                           required
+                          autoComplete="email"
+                          inputMode="email"
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 rounded-xl border border-cream-300 bg-white text-earth-700 text-sm focus:outline-none focus:ring-2 focus:ring-fresh-500 focus:border-transparent transition-all"
+                          className="w-full rounded-xl border border-cream-300 bg-white px-4 py-3 text-base text-earth-700 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-fresh-500 sm:text-sm"
                           placeholder="you@email.com"
                         />
                       </div>
@@ -211,7 +202,7 @@ export default function ContactPage() {
                     <div>
                       <label
                         htmlFor="subject"
-                        className="block text-sm font-medium text-earth-600 mb-1.5"
+                        className="mb-1.5 block text-sm font-medium text-earth-600"
                       >
                         Subject
                       </label>
@@ -222,7 +213,7 @@ export default function ContactPage() {
                         required
                         value={formData.subject}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-cream-300 bg-white text-earth-700 text-sm focus:outline-none focus:ring-2 focus:ring-fresh-500 focus:border-transparent transition-all"
+                        className="w-full rounded-xl border border-cream-300 bg-white px-4 py-3 text-base text-earth-700 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-fresh-500 sm:text-sm"
                         placeholder="Job opportunity, collaboration, etc."
                       />
                     </div>
@@ -230,7 +221,7 @@ export default function ContactPage() {
                     <div>
                       <label
                         htmlFor="message"
-                        className="block text-sm font-medium text-earth-600 mb-1.5"
+                        className="mb-1.5 block text-sm font-medium text-earth-600"
                       >
                         Message
                       </label>
@@ -241,7 +232,7 @@ export default function ContactPage() {
                         rows={5}
                         value={formData.message}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-cream-300 bg-white text-earth-700 text-sm focus:outline-none focus:ring-2 focus:ring-fresh-500 focus:border-transparent transition-all resize-none"
+                        className="w-full resize-none rounded-xl border border-cream-300 bg-white px-4 py-3 text-base text-earth-700 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-fresh-500 sm:text-sm"
                         placeholder="Tell me about your opportunity or inquiry..."
                       />
                     </div>
@@ -255,8 +246,8 @@ export default function ContactPage() {
               </div>
             </motion.div>
           </div>
-        </div>
+        </PageContainer>
       </section>
-    </div>
+    </PageShell>
   );
 }

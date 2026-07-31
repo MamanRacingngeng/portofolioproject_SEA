@@ -13,6 +13,7 @@ import {
 import { getProjectBySlug, projects } from "@/data/projects";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { PageShell, PageContainer } from "@/components/layout/page-shell";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -44,41 +45,42 @@ export default async function ProjectDetailPage({ params }: Props) {
   if (!project) notFound();
 
   return (
-    <div className="pt-24">
-      <section className="relative h-[50vh] min-h-[400px]">
+    <PageShell>
+      <section className="relative min-h-[40vh] sm:min-h-[45vh] lg:min-h-[50vh]">
         <Image
           src={project.image}
           alt={project.title}
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-earth-700/80 via-earth-700/40 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-8">
-          <div className="mx-auto max-w-4xl">
+        <div className="absolute inset-0 bg-gradient-to-t from-earth-700/90 via-earth-700/40 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
+          <PageContainer size="narrow" className="relative">
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 text-sm text-cream-200 hover:text-white mb-4 transition-colors"
+              className="mb-3 inline-flex min-h-[var(--touch-min)] items-center gap-2 text-sm text-cream-200 transition-colors hover:text-white sm:mb-4"
             >
               <ArrowLeft className="h-4 w-4" />
               Back to Projects
             </Link>
-            <Badge className="mb-3 bg-white/20 text-white border-white/30">
-              <FlaskConical className="h-3 w-3 mr-1" />
+            <Badge className="mb-3 border-white/30 bg-white/20 text-white">
+              <FlaskConical className="mr-1 h-3 w-3" />
               {project.category}
             </Badge>
-            <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3">
+            <h1 className="mb-2 font-display text-2xl font-semibold text-white xs:text-3xl sm:mb-3 sm:text-4xl lg:text-5xl break-anywhere">
               {project.title}
             </h1>
-            <p className="text-cream-200 text-lg max-w-2xl">
+            <p className="max-w-2xl text-sm text-cream-200 sm:text-base md:text-lg">
               {project.shortDescription}
             </p>
-          </div>
+          </PageContainer>
         </div>
       </section>
 
-      <article className="py-16">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+      <article className="py-10 sm:py-16">
+        <PageContainer size="narrow">
           <section className="mb-12">
             <h2 className="font-display text-2xl font-semibold text-earth-700 mb-4 flex items-center gap-2">
               <BookOpen className="h-5 w-5 text-fresh-600" />
@@ -94,7 +96,7 @@ export default async function ProjectDetailPage({ params }: Props) {
             <p className="text-earth-600 leading-relaxed">{project.background}</p>
           </section>
 
-          <section className="mb-12 bg-fresh-50 rounded-2xl p-8">
+          <section className="mb-10 rounded-2xl bg-fresh-50 p-5 sm:mb-12 sm:p-8">
             <h2 className="font-display text-2xl font-semibold text-earth-700 mb-6 flex items-center gap-2">
               <Target className="h-5 w-5 text-fresh-600" />
               Objectives
@@ -105,7 +107,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                   key={obj}
                   className="flex items-start gap-3 text-earth-600"
                 >
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-fresh-600 text-white text-xs font-bold">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-fresh-600 text-white text-xs font-semibold">
                     {i + 1}
                   </span>
                   {obj}
@@ -153,7 +155,7 @@ export default async function ProjectDetailPage({ params }: Props) {
             </div>
           </section>
 
-          <section className="mb-12 bg-earth-700 rounded-2xl p-8 text-white">
+          <section className="mb-10 rounded-2xl bg-earth-700 p-5 text-white sm:mb-12 sm:p-8">
             <h2 className="font-display text-2xl font-semibold mb-6 flex items-center gap-2">
               <CheckCircle2 className="h-5 w-5 text-fresh-300" />
               Results
@@ -186,7 +188,8 @@ export default async function ProjectDetailPage({ params }: Props) {
                       src={img}
                       alt={`${project.title} - Image ${i + 1}`}
                       fill
-                      className="object-cover hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-500 hover:scale-105"
                     />
                   </div>
                 ))}
@@ -217,8 +220,8 @@ export default async function ProjectDetailPage({ params }: Props) {
               Back to All Projects
             </Button>
           </Link>
-        </div>
+        </PageContainer>
       </article>
-    </div>
+    </PageShell>
   );
 }

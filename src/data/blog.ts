@@ -15,174 +15,105 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     id: "blog-1",
-    slug: "understanding-haccp-food-industry",
-    title: "Understanding HACCP: A Practical Guide for Food Industry Professionals",
+    slug: "natto-sacha-inchi-innovation",
+    title:
+      "Sacha Inchi Natto: Fermentation Innovation from Local Indonesian Raw Materials",
     excerpt:
-      "Hazard Analysis Critical Control Points (HACCP) is the cornerstone of modern food safety management. Learn how to implement it effectively in food processing facilities.",
-    content: `Hazard Analysis Critical Control Points (HACCP) is a systematic preventive approach to food safety that addresses physical, chemical, and biological hazards through analysis and control.
+      "How the simple patent invention for Sacha Inchi Natto Production Process delivers local food product diversification based on Plukenetia volubilis L. seeds.",
+    content: `Natto is a traditional Japanese fermented product renowned for its health benefits. The "Sacha Inchi Natto Production Process" invention presents an innovative adaptation using sacha inchi seeds (Plukenetia volubilis L.) — a local Indonesian raw material rich in protein and omega-3 fatty acids.
 
-## The Seven Principles of HACCP
+## Invention Background
 
-1. **Conduct a hazard analysis** – Identify potential hazards at each process step
-2. **Determine Critical Control Points (CCPs)** – Points where control is essential
-3. **Establish critical limits** – Maximum/minimum values for each CCP
-4. **Establish monitoring procedures** – Regular checks to ensure CCPs are controlled
-5. **Establish corrective actions** – Steps when monitoring indicates deviation
-6. **Establish verification procedures** – Confirm the HACCP system works
-7. **Establish record-keeping** – Document all monitoring and corrective actions
+As a Food Technology undergraduate at Ahmad Dahlan University, I developed the sacha inchi natto production process alongside Sitta Istiqomah Said and Muhammad Fanni. The primary objective was to diversify local food products through fermentation technology.
 
-## Practical Implementation Tips
+## Production Process Stages
 
-During my internship at Indofood, I learned that successful HACCP implementation requires commitment from all levels of the organization. The most common challenges include inadequate training, poor documentation, and failure to validate critical limits with scientific evidence.
+The patented process includes:
 
-Start with a thorough process flow diagram verified through on-site observation. Engage production staff in hazard identification – they often know where problems occur before they become critical.`,
-    category: "Food Safety",
-    date: "2025-06-15",
-    readTime: "8 min read",
-    image: "https://images.unsplash.com/photo-1574484266355-9c9c4a8b8b8b?w=800&q=80",
-    author: "Nadia Rahma Putri",
-    tags: ["HACCP", "Food Safety", "Quality Assurance", "GMP"],
+1. **Soaking** — Softening sacha inchi seeds to prepare for fermentation
+2. **Peeling** — Preparing an optimal substrate for inoculation
+3. **Fermentation** — Inoculation with Bacillus subtilis var. natto until the product matures
+
+## Patent Significance
+
+This simple patent was published in the Official Simple Patent Bulletin Series A on December 20, 2024. The invention opens opportunities for developing probiotic food products based on underutilized Indonesian raw materials.`,
+    category: "Food Innovation",
+    date: "2024-12-20",
+    readTime: "6 min read",
+    image:
+      "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80",
+    author: "Gnothi Sea Fauziah",
+    tags: ["Natto", "Sacha Inchi", "Patent", "Fermentation", "Innovation"],
   },
   {
     id: "blog-2",
-    slug: "fermentation-science-tempeh",
-    title: "The Science Behind Tempeh Fermentation: From Soybeans to Superfood",
+    slug: "fermentation-science-natto",
+    title: "The Science of Natto Fermentation: From Soybean to Sacha Inchi",
     excerpt:
-      "Explore the biochemical transformations during tempeh fermentation and how indigenous microbial strains contribute to its nutritional enhancement.",
-    content: `Tempeh fermentation represents one of Indonesia's greatest contributions to global food science. The transformation of humble soybeans into a protein-rich, probiotic food involves complex microbial ecology.
+      "Understanding the principles of natto fermentation and how local raw materials like sacha inchi can serve as an innovative alternative substrate.",
+    content: `Natto fermentation involves Bacillus subtilis var. natto, which produces the nattokinase enzyme and beneficial bioactive compounds. Traditionally, natto is made from soybeans — however, raw material diversification is key to local food innovation.
 
-## The Fermentation Process
+## Why Sacha Inchi?
 
-Rhizopus oligosporus, the primary mold responsible for tempeh fermentation, produces enzymes that break down soybean proteins and carbohydrates. This process:
+Sacha inchi seeds (Plukenetia volubilis L.) grow in Indonesia and offer an attractive nutritional profile: high protein, omega-3, and vitamin E. Adapting natto to sacha inchi requires different soaking and fermentation optimization compared to soybeans.
 
-- Increases protein digestibility by 15-20%
-- Reduces anti-nutritional factors (trypsin inhibitors)
-- Generates bioactive peptides with antioxidant properties
-- Creates favorable conditions for lactic acid bacteria proliferation
+## Research Process
 
-## Research Insights
-
-My thesis research revealed that fermentation time significantly affects probiotic viability. The optimal window of 32-36 hours at 32°C balances microbial growth with desirable textural properties.
-
-Understanding these parameters enables food technologists to develop tempeh-based products with enhanced functional properties while preserving traditional quality characteristics.`,
+Our research focused on physicochemical characteristics during fermentation, soaking parameter evaluation, and sensory acceptance of the final product. Results were documented in the simple patent published in December 2024.`,
     category: "Food Science",
-    date: "2025-05-28",
-    readTime: "6 min read",
-    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80",
-    author: "Nadia Rahma Putri",
-    tags: ["Fermentation", "Tempeh", "Probiotics", "Research"],
+    date: "2024-11-15",
+    readTime: "5 min read",
+    image:
+      "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=800&q=80",
+    author: "Gnothi Sea Fauziah",
+    tags: ["Fermentation", "Natto", "Sacha Inchi", "Research"],
   },
   {
     id: "blog-3",
-    slug: "proximate-analysis-guide",
-    title: "Proximate Analysis: Essential Methods Every Food Technologist Should Master",
+    slug: "local-food-diversification-indonesia",
+    title: "Local Food Diversification: The Potential of Sacha Inchi Seeds",
     excerpt:
-      "A comprehensive overview of moisture, ash, protein, fat, and carbohydrate analysis methods used in food laboratories worldwide.",
-    content: `Proximate analysis forms the foundation of food composition testing. These five parameters – moisture, ash, protein, fat, and carbohydrate – provide essential data for nutritional labeling, quality control, and product development.
+      "Indonesia holds a wealth of local food resources that remain underutilized. Sacha inchi is one raw material with significant potential.",
+    content: `Indonesia is one of the world's centers of food biodiversity. However, many local ingredients such as sacha inchi seeds are not yet fully leveraged in modern processed products.
 
-## Standard Methods
+## Sacha Inchi Potential
 
-**Moisture Content** – Oven drying at 105°C until constant weight (AOAC 934.01)
+Plukenetia volubilis L., or sacha inchi, is known as the "Inca peanut" for its high omega-3 and protein content. Developing fermented products like sacha inchi natto adds economic and nutritional value to this ingredient.
 
-**Ash Content** – Muffle furnace at 550°C (AOAC 942.05)
+## Diversification Vision
 
-**Protein** – Kjeldahl method with 6.25 conversion factor for plant proteins (AOAC 992.23)
-
-**Fat** – Soxhlet extraction with petroleum ether (AOAC 920.39)
-
-**Carbohydrate** – Calculated by difference: 100 - (moisture + ash + protein + fat)
-
-## Quality Assurance in Analysis
-
-Always run triplicate samples, include method blanks, and use certified reference materials. Calibration of equipment and proper sample preparation are equally critical for reliable results.`,
-    category: "Research",
-    date: "2025-04-10",
-    readTime: "10 min read",
-    image: "https://images.unsplash.com/photo-1581093458791-9f3023bfa1e5?w=800&q=80",
-    author: "Nadia Rahma Putri",
-    tags: ["Proximate Analysis", "Laboratory", "AOAC", "Quality Control"],
+Through patent invention, we hope to inspire further development of innovative local food products — supporting farmers, the food industry, and community nutrition.`,
+    category: "Food Technology",
+    date: "2024-10-08",
+    readTime: "4 min read",
+    image:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
+    author: "Gnothi Sea Fauziah",
+    tags: ["Local Food", "Sacha Inchi", "Diversification", "Indonesia"],
   },
   {
     id: "blog-4",
-    slug: "sustainable-food-packaging",
-    title: "Sustainable Food Packaging: From Plastic to Edible Films",
+    slug: "patent-simple-food-invention",
+    title:
+      "Understanding Simple Patents for Food Product Inventions",
     excerpt:
-      "The food industry is shifting toward biodegradable packaging solutions. Discover how edible films from seaweed and other renewable sources are changing the game.",
-    content: `The global food packaging market generates over 300 million tons of plastic waste annually. Edible and biodegradable packaging offers a promising alternative that aligns with circular economy principles.
+      "A brief guide to simple patents in Indonesia and how food technology students can protect their inventions.",
+    content: `A simple patent is a form of intellectual property protection for inventions meeting specific inventive thresholds. In Indonesia, simple patents are published through the Official Simple Patent Bulletin Series A.
 
-## Edible Film Technology
+## Application Process
 
-Films made from polysaccharides (carrageenan, starch, chitosan) and proteins (gelatin, whey) can provide adequate barrier properties while being completely biodegradable or even edible.
+As an inventor, the process involves documenting the invention, drafting process claims, and submitting to the Directorate General of Intellectual Property (DGIP). Our "Sacha Inchi Natto Production Process" invention was published on December 20, 2024.
 
-## Key Performance Parameters
+## Benefits for Students
 
-- **Tensile strength**: Must withstand handling during distribution
-- **Water vapor permeability**: Critical for moisture-sensitive products
-- **Oxygen barrier**: Essential for oxidative-sensitive foods
-- **Biodegradability**: Complete breakdown within 30-90 days
-
-Our research on carrageenan films from Eucheuma cottonii demonstrated promising mechanical properties and complete biodegradation within 21 days, making them viable for short-shelf-life products.`,
-    category: "Food Innovation",
-    date: "2025-03-22",
-    readTime: "7 min read",
-    image: "https://images.unsplash.com/photo-1615485920104-857866b366cf?w=800&q=80",
-    author: "Nadia Rahma Putri",
-    tags: ["Packaging", "Sustainability", "Innovation", "Biodegradable"],
-  },
-  {
-    id: "blog-5",
-    slug: "nutrition-labeling-regulations",
-    title: "Navigating Food Nutrition Labeling Regulations in Indonesia",
-    excerpt:
-      "Understanding BPOM requirements for nutrition facts panels, health claims, and allergen declarations for food products in the Indonesian market.",
-    content: `Proper nutrition labeling is both a legal requirement and a consumer trust issue. In Indonesia, BPOM Regulation No. 31/2018 governs nutrition labeling requirements for packaged foods.
-
-## Mandatory Information
-
-- Serving size and servings per container
-- Energy value (kcal/kJ)
-- Total fat, saturated fat, trans fat
-- Total carbohydrate, sugars, dietary fiber
-- Protein and sodium content
-- % Daily Value based on 2,000 kcal reference diet
-
-## Common Compliance Issues
-
-Many SMEs struggle with accurate nutrient analysis and proper rounding rules. Using calculated values from ingredient databases requires validation against laboratory analysis for final products.`,
-    category: "Food Technology",
-    date: "2025-02-14",
+Simple patents not only protect inventions but also strengthen the academic and professional profile of food technology students in the eyes of industry and recruiters.`,
+    category: "Research",
+    date: "2024-09-20",
     readTime: "5 min read",
-    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
-    author: "Nadia Rahma Putri",
-    tags: ["Nutrition", "Regulations", "BPOM", "Labeling"],
-  },
-  {
-    id: "blog-6",
-    slug: "career-food-technology-indonesia",
-    title: "Building a Career in Food Technology: Opportunities in Indonesia's Growing Industry",
-    excerpt:
-      "Indonesia's food and beverage industry is valued at over USD 120 billion. Here's how Food Technology graduates can navigate career paths in R&D, QA, and production.",
-    content: `Indonesia's food industry is one of the largest in Southeast Asia, with major players like Indofood, Mayora, GarudaFood, and Nutrifood continuously investing in innovation and quality.
-
-## Career Pathways
-
-**Research & Development** – Product formulation, sensory evaluation, shelf life testing
-
-**Quality Assurance/Control** – HACCP implementation, audit management, supplier quality
-
-**Production/Operations** – Process optimization, GMP compliance, efficiency improvement
-
-**Regulatory Affairs** – Product registration, labeling compliance, export certification
-
-## Skills That Stand Out
-
-Beyond technical laboratory skills, employers value candidates who demonstrate problem-solving ability, cross-functional communication, and understanding of commercial constraints. Internship experience at recognized food companies significantly strengthens your profile.`,
-    category: "Product Development",
-    date: "2025-01-08",
-    readTime: "6 min read",
-    image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&q=80",
-    author: "Nadia Rahma Putri",
-    tags: ["Career", "Industry", "Food Technology", "Indonesia"],
+    image:
+      "https://images.unsplash.com/photo-1581093458791-9f3023bfa1e5?w=800&q=80",
+    author: "Gnothi Sea Fauziah",
+    tags: ["Patent", "IP", "Food Technology", "Innovation"],
   },
 ];
 
@@ -193,11 +124,7 @@ export function getBlogPostBySlug(slug: string): BlogPost | undefined {
 export const blogCategories = [
   "All",
   "Food Science",
-  "Food Safety",
   "Food Innovation",
-  "Food Processing",
   "Food Technology",
   "Research",
-  "Product Development",
-  "Nutrition",
 ];

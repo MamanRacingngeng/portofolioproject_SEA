@@ -1,120 +1,112 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, FlaskConical } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { getFeaturedProjects } from "@/data/projects";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { SectionHeader } from "@/components/ui/section-header";
+import { RevealOnScroll } from "@/components/motion/animations";
+import { cn } from "@/lib/utils";
 
 export function FeaturedProjectsSection() {
   const featured = getFeaturedProjects();
+  const [lead, ...rest] = featured;
 
   return (
-    <section id="projects" className="py-24 bg-white relative">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-4"
-        >
-          <div>
-            <p className="text-sm font-medium text-fresh-600 tracking-widest uppercase mb-3">
-              Featured Projects
-            </p>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-earth-700 mb-4">
-              Research & Development
-            </h2>
-            <p className="text-earth-600/80 max-w-xl">
-              Selected food science projects demonstrating laboratory research,
-              product development, and quality analysis capabilities.
-            </p>
-          </div>
-          <Link href="/projects">
-            <Button variant="outline">
-              View All Projects
-              <ArrowRight className="h-4 w-4" />
-            </Button>
+    <section id="projects" className="border-t border-earth-200/60 bg-cream-50 py-16 sm:py-24">
+      <div className="container-app mx-auto w-full max-w-7xl">
+        <RevealOnScroll className="mb-10 flex flex-col justify-between gap-6 sm:mb-14 lg:flex-row lg:items-end">
+          <SectionHeader
+            index="03"
+            label="Projects"
+            title="Work that started in the lab and ended on paper"
+            description="Flagship research — from the sacha inchi natto patent to local food diversification."
+          />
+          <Link
+            href="/projects"
+            className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.14em] text-fresh-700 hover:text-fresh-800"
+          >
+            All projects
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </Link>
-        </motion.div>
+        </RevealOnScroll>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {featured.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.15, duration: 0.5 }}
-              className={`group bg-cream-50 rounded-2xl overflow-hidden border border-cream-200 hover:shadow-elevated transition-all duration-500 ${
-                index === 0 ? "lg:col-span-2 lg:row-span-1" : ""
-              }`}
+        {lead && (
+          <RevealOnScroll>
+            <Link
+              href={`/projects/${lead.slug}`}
+              className="group editorial-card mb-5 grid overflow-hidden lg:grid-cols-[1.2fr_1fr]"
             >
-              <div
-                className={`relative overflow-hidden ${
-                  index === 0 ? "h-64 lg:h-72" : "h-48"
-                }`}
-              >
+              <div className="relative min-h-[220px] lg:min-h-[360px]">
                 <Image
-                  src={project.image}
-                  alt={project.title}
+                  src={lead.image}
+                  alt={lead.title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 1024px) 100vw, 60vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-earth-700/60 to-transparent" />
-                <div className="absolute bottom-4 left-4">
-                  <Badge variant="secondary" className="bg-white/90 text-earth-700">
-                    <FlaskConical className="h-3 w-3 mr-1" />
-                    {project.category}
-                  </Badge>
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-earth-900/50 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-earth-900/20" />
               </div>
-
-              <div className="p-6">
-                <h3 className="font-display text-xl font-semibold text-earth-700 mb-2 group-hover:text-fresh-600 transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-earth-600/80 leading-relaxed mb-4 line-clamp-2">
-                  {project.shortDescription}
+              <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-10">
+                <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.16em] text-fresh-700">
+                  {lead.category}
                 </p>
-
-                <div className="mb-4">
-                  <p className="text-xs font-semibold text-earth-500 uppercase tracking-wide mb-2">
-                    Key Results
-                  </p>
-                  <ul className="space-y-1">
-                    {project.results.slice(0, 2).map((result) => (
-                      <li
-                        key={result}
-                        className="text-xs text-earth-600 flex items-start gap-2"
-                      >
-                        <span className="text-fresh-500 shrink-0">→</span>
-                        {result}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {project.tags.slice(0, 3).map((tag) => (
-                    <Badge key={tag} variant="outline" className="text-[10px]">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-
-                <Link
-                  href={`/projects/${project.slug}`}
-                  className="inline-flex items-center gap-1 text-sm font-medium text-fresh-600 hover:text-fresh-700 transition-colors"
-                >
-                  Read Case Study
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                <h3 className="mb-3 font-display text-2xl font-semibold leading-tight text-earth-700 sm:text-3xl">
+                  {lead.title}
+                </h3>
+                <p className="mb-5 text-sm leading-relaxed text-earth-600/90 sm:text-base">
+                  {lead.shortDescription}
+                </p>
+                <span className="inline-flex items-center gap-2 text-sm font-semibold text-fresh-700">
+                  Read case study
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </span>
               </div>
-            </motion.div>
+            </Link>
+          </RevealOnScroll>
+        )}
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {rest.map((project, index) => (
+            <RevealOnScroll key={project.id} delay={index * 0.08}>
+              <Link
+                href={`/projects/${project.slug}`}
+                className="group editorial-card flex h-full flex-col"
+              >
+                <div className="relative h-44 overflow-hidden sm:h-48">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-5 sm:p-6">
+                  <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.14em] text-earth-500">
+                    {project.category}
+                  </p>
+                  <h3 className="mb-2 font-display text-lg font-semibold text-earth-700 group-hover:text-fresh-700">
+                    {project.title}
+                  </h3>
+                  <p className="line-clamp-2 flex-1 text-sm text-earth-600/85">
+                    {project.shortDescription}
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {project.tags.slice(0, 2).map((tag) => (
+                      <span
+                        key={tag}
+                        className={cn(
+                          "border border-earth-200 px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider text-earth-600"
+                        )}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </Link>
+            </RevealOnScroll>
           ))}
         </div>
       </div>

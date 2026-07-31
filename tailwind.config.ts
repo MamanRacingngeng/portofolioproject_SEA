@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: "480px",
+      },
       colors: {
         fresh: {
           50: "#f4faf5",
@@ -53,11 +56,13 @@ const config: Config = {
           500: "#8b6914",
           600: "#6b4423",
           700: "#5c3a1e",
+          800: "#452c16",
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-playfair)", "Georgia", "serif"],
+        sans: ["var(--font-sans-primary)", "system-ui", "sans-serif"],
+        display: ["var(--font-display-primary)", "system-ui", "sans-serif"],
+        brand: ["var(--font-display-primary)", "system-ui", "sans-serif"],
         mono: ["var(--font-jetbrains)", "monospace"],
       },
       boxShadow: {
@@ -75,6 +80,10 @@ const config: Config = {
         float: "float 6s ease-in-out infinite",
         "float-delayed": "float 6s ease-in-out 2s infinite",
         "fade-in": "fadeIn 0.6s ease-out forwards",
+        "spin-slow": "spin 8s linear infinite",
+        "pulse-soft": "pulseSoft 3s ease-in-out infinite",
+        shimmer: "shimmer 3s linear infinite",
+        marquee: "marquee 28s linear infinite",
       },
       keyframes: {
         float: {
@@ -84,6 +93,18 @@ const config: Config = {
         fadeIn: {
           "0%": { opacity: "0", transform: "translateY(16px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        pulseSoft: {
+          "0%, 100%": { opacity: "0.4" },
+          "50%": { opacity: "0.8" },
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "-200% center" },
+          "100%": { backgroundPosition: "200% center" },
+        },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
         },
       },
     },

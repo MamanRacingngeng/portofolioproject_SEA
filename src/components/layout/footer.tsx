@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {
-  Microscope,
   Mail,
   Phone,
   MapPin,
@@ -8,22 +7,23 @@ import {
   Leaf,
 } from "lucide-react";
 import { siteConfig, navLinks } from "@/data/site";
+import { Logo } from "@/components/layout/logo";
 
 export function Footer() {
   return (
     <footer className="bg-earth-700 text-cream-100">
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+      <div className="container-app mx-auto max-w-7xl py-12 sm:py-16">
+        <div className="grid grid-cols-1 gap-10 sm:gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-fresh-500 text-white">
-                <Microscope className="h-5 w-5" />
-              </div>
+            <div className="mb-5 flex flex-col gap-4">
+              <Logo variant="footer" theme="dark" showTagline />
               <div>
-                <p className="font-display text-xl font-semibold text-white">
+                <p className="font-display text-lg font-semibold text-white sm:text-xl">
                   {siteConfig.name}
                 </p>
-                <p className="text-sm text-cream-300">{siteConfig.degree}</p>
+                <p className="text-xs text-cream-300 sm:text-sm">
+                  {siteConfig.degree}
+                </p>
               </div>
             </div>
             <p className="text-cream-300 text-sm leading-relaxed max-w-md mb-6">
@@ -113,7 +113,7 @@ export function Footer() {
           </p>
           <p className="text-xs text-cream-400 flex items-center gap-1">
             Crafted with scientific precision
-            <Microscope className="h-3 w-3" />
+            <Leaf className="h-3 w-3" />
           </p>
         </div>
       </div>
