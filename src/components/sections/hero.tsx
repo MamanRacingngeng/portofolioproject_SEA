@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Download, Mail, ArrowUpRight } from "lucide-react";
 import { siteConfig } from "@/data/site";
+import { useLanguage } from "@/components/providers/language-provider";
 import { Button } from "@/components/ui/button";
 import { PortraitImage } from "@/components/ui/portrait-image";
 import { Marquee } from "@/components/ui/marquee";
@@ -22,8 +23,10 @@ const fadeUp = {
 };
 
 export function HeroSection() {
+  const { t } = useLanguage();
   const [firstName, ...rest] = siteConfig.name.split(" ");
   const lastName = rest.join(" ");
+  const year = t.site.patent.published.split(" ").pop();
 
   return (
     <section className="relative flex min-h-[100dvh] flex-col pt-[var(--header-height)]">
@@ -36,7 +39,7 @@ export function HeroSection() {
             variants={fadeUp}
             className="mb-5 font-mono text-[11px] uppercase tracking-[0.2em] text-fresh-700"
           >
-            {siteConfig.location} · Class of {siteConfig.cohort}
+            {siteConfig.location} · {t.home.hero.classOf} {siteConfig.cohort}
           </motion.p>
 
           <motion.h1
@@ -60,11 +63,11 @@ export function HeroSection() {
           >
             <div className="accent-line" />
             <p className="max-w-md text-sm leading-relaxed text-earth-600 sm:text-base">
-              {siteConfig.title}. Inventor of{" "}
+              {t.site.heroIntro.beforeEmphasis}{" "}
               <span className="font-semibold text-earth-700">
-                Sacha Inchi Natto
+                {t.site.heroIntro.emphasis}
               </span>{" "}
-              — turning local ingredients into published food science.
+              {t.site.heroIntro.afterEmphasis}
             </p>
           </motion.div>
 
@@ -87,7 +90,7 @@ export function HeroSection() {
                 className="rounded-md shadow-[3px_3px_0_rgba(48,102,64,0.35)]"
               >
                 <Download className="h-4 w-4" />
-                Download CV
+                {t.common.downloadCv}
               </Button>
             </a>
             <Link href="/contact">
@@ -97,12 +100,12 @@ export function HeroSection() {
                 className="rounded-md border-earth-300"
               >
                 <Mail className="h-4 w-4" />
-                Contact
+                {t.common.contact}
               </Button>
             </Link>
             <Link href="/projects">
               <Button variant="ghost" size="lg" className="rounded-md">
-                View work
+                {t.common.viewWork}
                 <ArrowUpRight className="h-4 w-4" />
               </Button>
             </Link>
@@ -115,7 +118,7 @@ export function HeroSection() {
             variants={fadeUp}
             className="flex flex-wrap gap-6 border-t border-earth-200/80 pt-6"
           >
-            {siteConfig.stats.map((stat) => (
+            {t.site.stats.map((stat) => (
               <div key={stat.label}>
                 <p className="font-display text-2xl font-semibold text-fresh-700 sm:text-3xl">
                   {stat.value}
@@ -136,18 +139,20 @@ export function HeroSection() {
         >
           <div className="relative w-full max-w-[300px] sm:max-w-[340px] lg:max-w-[380px]">
             <div className="absolute -right-3 -top-3 z-10 stamp-badge bg-cream-50">
-              Patent · {siteConfig.patent.published.split(" ").pop()}
+              {t.home.hero.patentStamp} · {year}
             </div>
             <div className="polaroid-frame rotate-1 transition-transform duration-300 hover:rotate-0">
               <div className="relative aspect-[4/5] overflow-hidden bg-earth-100">
                 <PortraitImage
                   src="/images/portrait.png"
-                  alt={`${siteConfig.name} - Food Technology Student`}
+                  alt={`${siteConfig.name} - ${t.common.portraitAlt}`}
+                  hint={t.common.tapForColor}
+                  ariaSuffix={t.common.portraitAriaSuffix}
                   priority
                 />
               </div>
               <p className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-earth-500">
-                {siteConfig.university}
+                {t.site.university}
               </p>
             </div>
             <div className="absolute -bottom-4 -left-4 hidden h-24 w-24 border-l-2 border-b-2 border-fresh-400/40 lg:block" />
@@ -155,7 +160,7 @@ export function HeroSection() {
         </motion.div>
       </div>
 
-      <Marquee items={siteConfig.roles} />
+      <Marquee items={t.site.roles} />
     </section>
   );
 }

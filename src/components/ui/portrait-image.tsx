@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils";
 interface PortraitImageProps {
   src: string;
   alt: string;
+  hint?: string;
+  ariaSuffix?: string;
   priority?: boolean;
   containerClassName?: string;
   imageClassName?: string;
@@ -16,6 +18,8 @@ interface PortraitImageProps {
 export function PortraitImage({
   src,
   alt,
+  hint = "Tap for color",
+  ariaSuffix = "tap to reveal full color",
   priority = false,
   containerClassName,
   imageClassName,
@@ -26,7 +30,7 @@ export function PortraitImage({
   return (
     <button
       type="button"
-      aria-label={`${alt} — tap to reveal full color`}
+      aria-label={`${alt} — ${ariaSuffix}`}
       aria-pressed={revealed}
       onClick={() => setRevealed((prev) => !prev)}
       className={cn(
@@ -67,7 +71,7 @@ export function PortraitImage({
           revealed && "opacity-0"
         )}
       >
-        Tap for color
+        {hint}
       </span>
     </button>
   );

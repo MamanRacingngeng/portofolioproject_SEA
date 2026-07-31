@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { siteConfig } from "@/data/site";
-import { projects } from "@/data/projects";
-import { blogPosts } from "@/data/blog";
+import { projectSlugs } from "@/data/projects";
+import { blogSlugs } from "@/data/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
@@ -15,16 +15,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
-  const projectPages = projects.map((project) => ({
-    url: `${baseUrl}/projects/${project.slug}`,
+  const projectPages = projectSlugs.map((slug) => ({
+    url: `${baseUrl}/projects/${slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
-  const blogPages = blogPosts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
+  const blogPages = blogSlugs.map((slug) => ({
+    url: `${baseUrl}/blog/${slug}`,
+    lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.6,
   }));

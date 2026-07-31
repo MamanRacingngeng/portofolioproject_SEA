@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site";
+import { useLanguage } from "@/components/providers/language-provider";
 
 interface LogoProps {
   variant?: "nav" | "footer" | "hero";
@@ -27,6 +30,7 @@ export function Logo({
   className,
   showTagline = variant !== "hero",
 }: LogoProps) {
+  const { t } = useLanguage();
   const isDark = theme === "dark";
 
   return (
@@ -69,7 +73,7 @@ export function Logo({
             isDark ? "text-cream-300/90" : "text-fresh-600/75"
           )}
         >
-          {siteConfig.brand.tagline}
+          {t.brand.tagline}
         </span>
       )}
 

@@ -11,6 +11,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { siteConfig } from "@/data/site";
+import { useLanguage } from "@/components/providers/language-provider";
 import { Button } from "@/components/ui/button";
 import { PortraitImage } from "@/components/ui/portrait-image";
 import {
@@ -20,6 +21,8 @@ import {
 } from "@/components/layout/page-shell";
 
 export default function ContactPage() {
+  const { t } = useLanguage();
+  const page = t.pages.contact;
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -42,9 +45,9 @@ export default function ContactPage() {
   return (
     <PageShell>
       <PageHero
-        label="Contact"
-        title="Let's Connect"
-        description="Interested in collaborating on food research, fermentation innovation, or product development? I'd love to hear from you."
+        label={page.label}
+        title={page.title}
+        description={page.description}
       />
 
       <section className="bg-white py-12 sm:py-16">
@@ -61,7 +64,9 @@ export default function ContactPage() {
                 <div className="relative mx-auto aspect-[3/4] w-full max-w-[240px] overflow-hidden rounded-2xl shadow-elevated xs:max-w-[260px] sm:max-w-xs">
                   <PortraitImage
                     src="/images/portrait.png"
-                    alt={siteConfig.name}
+                    alt={`${siteConfig.name} - ${t.common.portraitAlt}`}
+                    hint={t.common.tapForColor}
+                    ariaSuffix={t.common.portraitAriaSuffix}
                   />
                 </div>
               </div>
@@ -71,13 +76,13 @@ export default function ContactPage() {
                   {
                     href: `mailto:${siteConfig.email}`,
                     icon: Mail,
-                    label: "Email",
+                    label: t.common.email,
                     value: siteConfig.email,
                   },
                   {
                     href: `tel:${siteConfig.phone}`,
                     icon: Phone,
-                    label: "Phone",
+                    label: t.common.phone,
                     value: siteConfig.phone,
                   },
                 ].map((item) => (
@@ -103,7 +108,7 @@ export default function ContactPage() {
                     <MapPin className="h-5 w-5 text-fresh-600" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-xs text-earth-500">Location</p>
+                    <p className="text-xs text-earth-500">{t.common.location}</p>
                     <p className="text-sm font-medium text-earth-700">
                       {siteConfig.location}
                     </p>
@@ -120,9 +125,9 @@ export default function ContactPage() {
                     <LinkedinIcon className="h-5 w-5 text-fresh-600 transition-colors group-hover:text-white" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-xs text-earth-500">LinkedIn</p>
+                    <p className="text-xs text-earth-500">{t.common.linkedin}</p>
                     <p className="text-sm font-medium text-earth-700">
-                      Connect on LinkedIn
+                      {t.common.connectLinkedIn}
                     </p>
                   </div>
                 </a>
@@ -137,22 +142,20 @@ export default function ContactPage() {
             >
               <div className="rounded-2xl border border-cream-200 bg-cream-50 p-4 shadow-soft sm:p-6 md:p-8">
                 <h2 className="mb-2 font-display text-xl font-semibold text-earth-700 sm:text-2xl">
-                  Send a Message
+                  {t.common.sendMessage}
                 </h2>
                 <p className="mb-6 text-sm text-earth-500">
-                  Fill out the form below and I&apos;ll get back to you as soon
-                  as possible.
+                  {page.formDescription}
                 </p>
 
                 {submitted ? (
                   <div className="py-10 text-center sm:py-12">
                     <CheckCircle2 className="mx-auto mb-4 h-14 w-14 text-fresh-500 sm:h-16 sm:w-16" />
                     <h3 className="mb-2 font-display text-xl font-semibold text-earth-700">
-                      Message Sent!
+                      {page.success.title}
                     </h3>
                     <p className="text-sm text-earth-600 sm:text-base">
-                      Thank you for reaching out. I&apos;ll respond within
-                      24–48 hours.
+                      {page.success.message}
                     </p>
                   </div>
                 ) : (
@@ -163,7 +166,7 @@ export default function ContactPage() {
                           htmlFor="name"
                           className="mb-1.5 block text-sm font-medium text-earth-600"
                         >
-                          Full Name
+                          {page.form.name}
                         </label>
                         <input
                           type="text"
@@ -174,7 +177,7 @@ export default function ContactPage() {
                           value={formData.name}
                           onChange={handleChange}
                           className="w-full rounded-xl border border-cream-300 bg-white px-4 py-3 text-base text-earth-700 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-fresh-500 sm:text-sm"
-                          placeholder="Your name"
+                          placeholder={page.form.namePlaceholder}
                         />
                       </div>
                       <div>
@@ -182,7 +185,7 @@ export default function ContactPage() {
                           htmlFor="email"
                           className="mb-1.5 block text-sm font-medium text-earth-600"
                         >
-                          Email Address
+                          {page.form.email}
                         </label>
                         <input
                           type="email"
@@ -194,7 +197,7 @@ export default function ContactPage() {
                           value={formData.email}
                           onChange={handleChange}
                           className="w-full rounded-xl border border-cream-300 bg-white px-4 py-3 text-base text-earth-700 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-fresh-500 sm:text-sm"
-                          placeholder="you@email.com"
+                          placeholder={page.form.emailPlaceholder}
                         />
                       </div>
                     </div>
@@ -204,7 +207,7 @@ export default function ContactPage() {
                         htmlFor="subject"
                         className="mb-1.5 block text-sm font-medium text-earth-600"
                       >
-                        Subject
+                        {page.form.subject}
                       </label>
                       <input
                         type="text"
@@ -214,7 +217,7 @@ export default function ContactPage() {
                         value={formData.subject}
                         onChange={handleChange}
                         className="w-full rounded-xl border border-cream-300 bg-white px-4 py-3 text-base text-earth-700 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-fresh-500 sm:text-sm"
-                        placeholder="Job opportunity, collaboration, etc."
+                        placeholder={page.form.subjectPlaceholder}
                       />
                     </div>
 
@@ -223,7 +226,7 @@ export default function ContactPage() {
                         htmlFor="message"
                         className="mb-1.5 block text-sm font-medium text-earth-600"
                       >
-                        Message
+                        {page.form.message}
                       </label>
                       <textarea
                         id="message"
@@ -233,13 +236,13 @@ export default function ContactPage() {
                         value={formData.message}
                         onChange={handleChange}
                         className="w-full resize-none rounded-xl border border-cream-300 bg-white px-4 py-3 text-base text-earth-700 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-fresh-500 sm:text-sm"
-                        placeholder="Tell me about your opportunity or inquiry..."
+                        placeholder={page.form.messagePlaceholder}
                       />
                     </div>
 
                     <Button type="submit" size="lg" className="w-full sm:w-auto">
                       <Send className="h-4 w-4" />
-                      Send Message
+                      {page.form.send}
                     </Button>
                   </form>
                 )}

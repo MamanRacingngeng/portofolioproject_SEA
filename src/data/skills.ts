@@ -15,15 +15,23 @@ import {
 } from "lucide-react";
 
 export interface SkillCategory {
-  title: string;
+  titleKey: keyof typeof titleKeys;
   icon: LucideIcon;
   skills: string[];
   color: string;
 }
 
+const titleKeys = {
+  laboratorySkills: true,
+  foodProcessing: true,
+  foodSafetyQuality: true,
+  researchStatistics: true,
+  professionalTools: true,
+} as const;
+
 export const skillCategories: SkillCategory[] = [
   {
-    title: "Laboratory Skills",
+    titleKey: "laboratorySkills",
     icon: Microscope,
     color: "fresh",
     skills: [
@@ -37,7 +45,7 @@ export const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    title: "Food Processing",
+    titleKey: "foodProcessing",
     icon: Beaker,
     color: "olive",
     skills: [
@@ -50,7 +58,7 @@ export const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    title: "Food Safety & Quality",
+    titleKey: "foodSafetyQuality",
     icon: ShieldCheck,
     color: "earth",
     skills: [
@@ -64,7 +72,7 @@ export const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    title: "Research & Statistics",
+    titleKey: "researchStatistics",
     icon: BarChart3,
     color: "wheat",
     skills: [
@@ -78,7 +86,7 @@ export const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    title: "Professional Tools",
+    titleKey: "professionalTools",
     icon: FlaskConical,
     color: "fresh",
     skills: [

@@ -1,25 +1,29 @@
 "use client";
 
 import { skillCategories, labEquipment } from "@/data/skills";
+import { useLanguage } from "@/components/providers/language-provider";
 import { SectionHeader } from "@/components/ui/section-header";
 import { RevealOnScroll, StaggerContainer, StaggerItem } from "@/components/motion/animations";
 
 export function SkillsSection() {
+  const { t } = useLanguage();
+  const section = t.home.skills;
+
   return (
     <section id="skills" className="border-t border-earth-200/60 bg-white py-16 sm:py-24">
       <div className="container-app mx-auto w-full max-w-7xl">
         <RevealOnScroll className="mb-12 sm:mb-16">
           <SectionHeader
-            index="05"
-            label="Skills"
-            title="Tools of the trade"
-            description="Food analysis, processing, safety systems, and the lab equipment behind the work."
+            index={section.index}
+            label={section.label}
+            title={section.title}
+            description={section.description}
           />
         </RevealOnScroll>
 
-        <StaggerContainer className="mb-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 sm:mb-14">
+        <StaggerContainer className="mb-10 grid grid-cols-1 gap-4 sm:mb-14 md:grid-cols-2 lg:grid-cols-3">
           {skillCategories.map((category, index) => (
-            <StaggerItem key={category.title}>
+            <StaggerItem key={category.titleKey}>
               <article className="editorial-card h-full p-5 sm:p-6">
                 <div className="mb-4 flex items-center gap-3 border-b border-earth-100 pb-3">
                   <span className="font-mono text-xs text-wheat-600">
@@ -27,7 +31,7 @@ export function SkillsSection() {
                   </span>
                   <category.icon className="h-4 w-4 text-fresh-700" />
                   <h3 className="font-display text-base font-semibold text-earth-700">
-                    {category.title}
+                    {t.skills.categories[category.titleKey]}
                   </h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -48,7 +52,7 @@ export function SkillsSection() {
         <RevealOnScroll>
           <div className="editorial-card p-6 sm:p-8">
             <h3 className="mb-6 font-display text-lg font-semibold text-earth-700">
-              Laboratory equipment
+              {section.labEquipment}
             </h3>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8">
               {labEquipment.map((equip) => (

@@ -1,15 +1,16 @@
+"use client";
+
 import Link from "next/link";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  LinkedinIcon,
-  Leaf,
-} from "lucide-react";
-import { siteConfig, navLinks } from "@/data/site";
+import { Mail, Phone, MapPin, LinkedinIcon, Leaf } from "lucide-react";
+import { siteConfig } from "@/data/site";
+import { getNavLinks } from "@/lib/i18n/content";
+import { useLanguage } from "@/components/providers/language-provider";
 import { Logo } from "@/components/layout/logo";
 
 export function Footer() {
+  const { t } = useLanguage();
+  const navLinks = getNavLinks(t);
+
   return (
     <footer className="bg-earth-700 text-cream-100">
       <div className="container-app mx-auto max-w-7xl py-12 sm:py-16">
@@ -22,24 +23,24 @@ export function Footer() {
                   {siteConfig.name}
                 </p>
                 <p className="text-xs text-cream-300 sm:text-sm">
-                  {siteConfig.degree}
+                  {t.site.degree}
                 </p>
               </div>
             </div>
-            <p className="text-cream-300 text-sm leading-relaxed max-w-md mb-6">
-              {siteConfig.summary.slice(0, 180)}...
+            <p className="mb-6 max-w-md text-sm leading-relaxed text-cream-300">
+              {t.site.summary.slice(0, 180)}...
             </p>
             <div className="flex flex-col gap-2 text-sm text-cream-300">
               <a
                 href={`mailto:${siteConfig.email}`}
-                className="flex items-center gap-2 hover:text-fresh-300 transition-colors"
+                className="flex items-center gap-2 transition-colors hover:text-fresh-300"
               >
                 <Mail className="h-4 w-4" />
                 {siteConfig.email}
               </a>
               <a
                 href={`tel:${siteConfig.phone}`}
-                className="flex items-center gap-2 hover:text-fresh-300 transition-colors"
+                className="flex items-center gap-2 transition-colors hover:text-fresh-300"
               >
                 <Phone className="h-4 w-4" />
                 {siteConfig.phone}
@@ -52,15 +53,15 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-display text-lg font-semibold text-white mb-4">
-              Navigation
+            <h3 className="mb-4 font-display text-lg font-semibold text-white">
+              {t.footer.navigation}
             </h3>
             <ul className="space-y-2">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-cream-300 hover:text-fresh-300 transition-colors"
+                    className="text-sm text-cream-300 transition-colors hover:text-fresh-300"
                   >
                     {link.label}
                   </Link>
@@ -70,49 +71,35 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-display text-lg font-semibold text-white mb-4">
-              Expertise
+            <h3 className="mb-4 font-display text-lg font-semibold text-white">
+              {t.footer.expertise}
             </h3>
             <ul className="space-y-2 text-sm text-cream-300">
-              <li className="flex items-center gap-2">
-                <Leaf className="h-3 w-3 text-fresh-400" />
-                Food Science & Analysis
-              </li>
-              <li className="flex items-center gap-2">
-                <Leaf className="h-3 w-3 text-fresh-400" />
-                Quality Assurance
-              </li>
-              <li className="flex items-center gap-2">
-                <Leaf className="h-3 w-3 text-fresh-400" />
-                Product Development
-              </li>
-              <li className="flex items-center gap-2">
-                <Leaf className="h-3 w-3 text-fresh-400" />
-                Food Safety (HACCP)
-              </li>
-              <li className="flex items-center gap-2">
-                <Leaf className="h-3 w-3 text-fresh-400" />
-                Research & Innovation
-              </li>
+              {t.footer.expertiseItems.map((item) => (
+                <li key={item} className="flex items-center gap-2">
+                  <Leaf className="h-3 w-3 text-fresh-400" />
+                  {item}
+                </li>
+              ))}
             </ul>
             <a
               href={siteConfig.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-6 text-sm text-cream-300 hover:text-fresh-300 transition-colors"
+              className="mt-6 inline-flex items-center gap-2 text-sm text-cream-300 transition-colors hover:text-fresh-300"
             >
               <LinkedinIcon className="h-4 w-4" />
-              LinkedIn Profile
+              {t.footer.linkedin}
             </a>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-earth-600 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-earth-600 pt-8 sm:flex-row">
           <p className="text-xs text-cream-400">
-            © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
+            © {new Date().getFullYear()} {siteConfig.name}. {t.footer.rights}
           </p>
-          <p className="text-xs text-cream-400 flex items-center gap-1">
-            Crafted with scientific precision
+          <p className="flex items-center gap-1 text-xs text-cream-400">
+            {t.footer.crafted}
             <Leaf className="h-3 w-3" />
           </p>
         </div>

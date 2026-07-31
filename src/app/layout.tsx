@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
 import { Navigation } from "@/components/layout/navigation";
 import { Footer } from "@/components/layout/footer";
+import { AppProviders } from "@/components/providers/app-providers";
 import { siteConfig } from "@/data/site";
+import { getDictionary } from "@/lib/i18n/get-dictionary";
 import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} | ${siteConfig.title}`,
+    default: `${siteConfig.name} | ${getDictionary("en").site.title}`,
     template: `%s | ${siteConfig.name}`,
   },
-  description: siteConfig.description,
+  description: getDictionary("en").site.description,
   icons: {
     icon: siteConfig.ogImage,
     apple: siteConfig.ogImage,
@@ -32,8 +34,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
-    title: `${siteConfig.name} | ${siteConfig.title}`,
-    description: siteConfig.description,
+    title: `${siteConfig.name} | ${getDictionary("en").site.title}`,
+    description: getDictionary("en").site.description,
     siteName: siteConfig.name,
     images: [
       {
@@ -46,8 +48,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} | ${siteConfig.title}`,
-    description: siteConfig.description,
+    title: `${siteConfig.name} | ${getDictionary("en").site.title}`,
+    description: getDictionary("en").site.description,
     images: [siteConfig.ogImage],
   },
   robots: {
@@ -78,8 +80,8 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: siteConfig.name,
-  jobTitle: "Food Technology Student & Patent Inventor",
-  description: siteConfig.description,
+  jobTitle: getDictionary("en").site.title,
+  description: getDictionary("en").site.description,
   url: siteConfig.url,
   email: siteConfig.email,
   telephone: siteConfig.phone,
@@ -90,7 +92,7 @@ const jsonLd = {
   },
   alumniOf: {
     "@type": "CollegeOrUniversity",
-    name: siteConfig.university,
+    name: getDictionary("en").site.university,
   },
   knowsAbout: [
     "Food Science",
@@ -108,7 +110,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="mobile-web-app-capable" content="yes" />
@@ -120,9 +122,11 @@ export default function RootLayout({
         />
       </head>
       <body className="flex min-h-[100dvh] flex-col">
-        <Navigation />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <AppProviders>
+          <Navigation />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </AppProviders>
       </body>
     </html>
   );

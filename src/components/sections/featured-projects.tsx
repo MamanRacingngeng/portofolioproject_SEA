@@ -4,29 +4,32 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { getFeaturedProjects } from "@/data/projects";
+import { useLanguage } from "@/components/providers/language-provider";
 import { SectionHeader } from "@/components/ui/section-header";
 import { RevealOnScroll } from "@/components/motion/animations";
 import { cn } from "@/lib/utils";
 
 export function FeaturedProjectsSection() {
-  const featured = getFeaturedProjects();
+  const { t } = useLanguage();
+  const featured = getFeaturedProjects(t);
   const [lead, ...rest] = featured;
+  const section = t.home.projects;
 
   return (
     <section id="projects" className="border-t border-earth-200/60 bg-cream-50 py-16 sm:py-24">
       <div className="container-app mx-auto w-full max-w-7xl">
         <RevealOnScroll className="mb-10 flex flex-col justify-between gap-6 sm:mb-14 lg:flex-row lg:items-end">
           <SectionHeader
-            index="03"
-            label="Projects"
-            title="Work that started in the lab and ended on paper"
-            description="Flagship research — from the sacha inchi natto patent to local food diversification."
+            index={section.index}
+            label={section.label}
+            title={section.title}
+            description={section.description}
           />
           <Link
             href="/projects"
             className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.14em] text-fresh-700 hover:text-fresh-800"
           >
-            All projects
+            {section.allProjects}
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </Link>
         </RevealOnScroll>
@@ -58,7 +61,7 @@ export function FeaturedProjectsSection() {
                   {lead.shortDescription}
                 </p>
                 <span className="inline-flex items-center gap-2 text-sm font-semibold text-fresh-700">
-                  Read case study
+                  {t.common.readCaseStudy}
                   <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>
               </div>

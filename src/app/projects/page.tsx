@@ -5,7 +5,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Filter } from "lucide-react";
-import { projects } from "@/data/projects";
+import { getProjects, getProjectCategoryKeys } from "@/data/projects";
+import type { ProjectCategoryKey } from "@/lib/i18n/content";
+import { useLanguage } from "@/components/providers/language-provider";
 import { Badge } from "@/components/ui/badge";
 import {
   PageShell,
@@ -14,25 +16,33 @@ import {
   StickyBar,
 } from "@/components/layout/page-shell";
 
-const categories = [
-  "All",
-  ...Array.from(new Set(projects.map((p) => p.category))),
-];
+type FilterKey = "all" | ProjectCategoryKey;
 
 export default function ProjectsPage() {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const { t } = useLanguage();
+  const page = t.pages.projects;
+  const projects = getProjects(t);
+  const [activeCategory, setActiveCategory] = useState<FilterKey>("all");
+
+  const categories: { key: FilterKey; label: string }[] = [
+    { key: "all", label: t.projects.categories.all },
+    ...getProjectCategoryKeys().map((key) => ({
+      key,
+      label: t.projects.categories[key],
+    })),
+  ];
 
   const filtered =
-    activeCategory === "All"
+    activeCategory === "all"
       ? projects
-      : projects.filter((p) => p.category === activeCategory);
+      : projects.filter((p) => p.categoryKey === activeCategory);
 
   return (
     <PageShell>
       <PageHero
-        label="Portfolio"
-        title="Research Projects"
-        description="Detailed case studies showcasing food science research, product development, quality analysis, and food safety projects."
+        label={page.label}
+        title={page.title}
+        description={page.description}
       />
 
       <StickyBar>
@@ -40,16 +50,16 @@ export default function ProjectsPage() {
           <Filter className="h-4 w-4 shrink-0 text-earth-400" />
           {categories.map((cat) => (
             <button
-              key={cat}
+              key={cat.key}
               type="button"
-              onClick={() => setActiveCategory(cat)}
+              onClick={() => setActiveCategory(cat.key)}
               className={`shrink-0 rounded-full px-3 py-2 text-xs font-medium transition-all tap-target sm:px-4 sm:text-sm ${
-                activeCategory === cat
+                activeCategory === cat.key
                   ? "bg-fresh-600 text-white shadow-soft"
                   : "bg-cream-100 text-earth-600 hover:bg-fresh-50"
               }`}
             >
-              {cat}
+              {cat.label}
             </button>
           ))}
         </div>
@@ -81,7 +91,7 @@ export default function ProjectsPage() {
                 </div>
 
                 <div className="p-4 sm:p-6">
-                  <h2 className="mb-2 font-display text-lg font-semibold text-earth-700 transition-colors group-hover:text-fresh-600 sm:text-xl break-anywhere">
+                  <h2 className="mb-2 break-anywhere font-display text-lg font-semibold text-earth-700 transition-colors group-hover:text-fresh-600 sm:text-xl">
                     {project.title}
                   </h2>
                   <p className="mb-4 text-sm leading-relaxed text-earth-600/80">
@@ -92,7 +102,7 @@ export default function ProjectsPage() {
                     href={`/projects/${project.slug}`}
                     className="inline-flex min-h-[var(--touch-min)] items-center gap-1 text-sm font-medium text-fresh-600 hover:text-fresh-700"
                   >
-                    View Case Study
+                    {t.common.viewCaseStudy}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>

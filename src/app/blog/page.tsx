@@ -5,7 +5,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
-import { blogPosts, blogCategories } from "@/data/blog";
+import { getBlogPosts, getBlogCategoryKeys } from "@/data/blog";
+import type { BlogCategoryKey } from "@/lib/i18n/content";
+import { useLanguage } from "@/components/providers/language-provider";
 import { Badge } from "@/components/ui/badge";
 import { formatDate } from "@/lib/utils";
 import {
@@ -15,36 +17,49 @@ import {
   StickyBar,
 } from "@/components/layout/page-shell";
 
+type FilterKey = "all" | BlogCategoryKey;
+
 export default function BlogPage() {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const { t } = useLanguage();
+  const page = t.pages.blog;
+  const posts = getBlogPosts(t);
+  const [activeCategory, setActiveCategory] = useState<FilterKey>("all");
+
+  const categories: { key: FilterKey; label: string }[] = [
+    { key: "all", label: t.blog.categories.all },
+    ...getBlogCategoryKeys().map((key) => ({
+      key,
+      label: t.blog.categories[key],
+    })),
+  ];
 
   const filtered =
-    activeCategory === "All"
-      ? blogPosts
-      : blogPosts.filter((p) => p.category === activeCategory);
+    activeCategory === "all"
+      ? posts
+      : posts.filter((p) => p.categoryKey === activeCategory);
 
   return (
     <PageShell>
       <PageHero
-        label="Insights"
-        title="Food Science Blog"
-        description="Articles on food science, safety, innovation, processing, and career insights for food technology professionals."
+        label={page.label}
+        title={page.title}
+        description={page.description}
       />
 
       <StickyBar>
         <div className="scrollbar-hide flex gap-2 overflow-x-auto pb-1">
-          {blogCategories.map((cat) => (
+          {categories.map((cat) => (
             <button
-              key={cat}
+              key={cat.key}
               type="button"
-              onClick={() => setActiveCategory(cat)}
+              onClick={() => setActiveCategory(cat.key)}
               className={`shrink-0 rounded-full px-3 py-2 text-xs font-medium transition-all tap-target sm:px-4 sm:text-sm ${
-                activeCategory === cat
+                activeCategory === cat.key
                   ? "bg-fresh-600 text-white shadow-soft"
                   : "bg-cream-100 text-earth-600 hover:bg-fresh-50"
               }`}
             >
-              {cat}
+              {cat.label}
             </button>
           ))}
         </div>
@@ -70,7 +85,7 @@ export default function BlogPage() {
                 </div>
                 <div className="flex flex-col justify-center p-5 sm:p-8">
                   <Badge className="mb-3 w-fit">{filtered[0].category}</Badge>
-                  <h2 className="mb-3 font-display text-xl font-semibold text-earth-700 sm:text-2xl break-anywhere">
+                  <h2 className="mb-3 break-anywhere font-display text-xl font-semibold text-earth-700 sm:text-2xl">
                     {filtered[0].title}
                   </h2>
                   <p className="mb-4 line-clamp-3 text-sm leading-relaxed text-earth-600/80">
@@ -90,7 +105,7 @@ export default function BlogPage() {
                     href={`/blog/${filtered[0].slug}`}
                     className="inline-flex min-h-[var(--touch-min)] items-center gap-1 text-sm font-medium text-fresh-600 hover:text-fresh-700"
                   >
-                    Read Article
+                    {t.common.readArticle}
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
@@ -134,7 +149,7 @@ export default function BlogPage() {
                       href={`/blog/${post.slug}`}
                       className="flex min-h-[var(--touch-min)] items-center gap-1 text-sm font-medium text-fresh-600 hover:text-fresh-700"
                     >
-                      Read
+                      {t.common.read}
                       <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
                   </div>

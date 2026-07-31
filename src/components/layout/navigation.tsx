@@ -6,11 +6,15 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Leaf } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { navLinks } from "@/data/site";
+import { getNavLinks } from "@/lib/i18n/content";
+import { useLanguage } from "@/components/providers/language-provider";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/layout/logo";
+import { LanguageSwitcher } from "@/components/ui/language-switcher";
 
 export function Navigation() {
+  const { t } = useLanguage();
+  const navLinks = getNavLinks(t);
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
@@ -43,7 +47,7 @@ export function Navigation() {
         isOpen && "border-b-2 border-fresh-600 bg-cream-50"
       )}
     >
-      <nav className="container-app mx-auto flex max-w-7xl items-center justify-between gap-3 py-3 sm:py-4">
+      <nav className="container-app mx-auto flex max-w-7xl items-center justify-between gap-2 py-3 sm:gap-3 sm:py-4">
         <Logo variant="nav" showTagline />
 
         <div className="hidden items-center gap-0.5 md:flex lg:gap-1">
@@ -70,25 +74,29 @@ export function Navigation() {
           ))}
         </div>
 
-        <div className="hidden shrink-0 md:block">
+        <div className="hidden shrink-0 items-center gap-2 md:flex lg:gap-3">
+          <LanguageSwitcher />
           <Link href="/contact">
             <Button size="sm" className="text-xs lg:text-sm">
               <Leaf className="h-3.5 w-3.5 lg:h-4 lg:w-4" />
-              <span className="hidden lg:inline">Contact Me</span>
-              <span className="lg:hidden">Contact</span>
+              <span className="hidden lg:inline">{t.nav.contactMe}</span>
+              <span className="lg:hidden">{t.nav.contactShort}</span>
             </Button>
           </Link>
         </div>
 
-        <button
-          type="button"
-          className="tap-target shrink-0 rounded-lg p-2 text-earth-700 hover:bg-fresh-50 md:hidden"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-expanded={isOpen}
-          aria-label={isOpen ? "Close menu" : "Open menu"}
-        >
-          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        <div className="flex shrink-0 items-center gap-1 md:hidden">
+          <LanguageSwitcher />
+          <button
+            type="button"
+            className="tap-target rounded-lg p-2 text-earth-700 hover:bg-fresh-50"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-expanded={isOpen}
+            aria-label={isOpen ? t.common.closeMenu : t.common.openMenu}
+          >
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -118,7 +126,7 @@ export function Navigation() {
                 </Link>
               ))}
               <Link href="/contact" className="mt-2">
-                <Button className="w-full">Contact Me</Button>
+                <Button className="w-full">{t.nav.contactMe}</Button>
               </Link>
             </div>
           </motion.div>
