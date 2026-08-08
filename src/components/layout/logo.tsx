@@ -32,7 +32,7 @@ export function Logo({ variant = "nav", light = false, className }: LogoProps) {
         <span
           className={cn(
             "font-display font-bold leading-none",
-            variant === "nav" ? "text-base sm:text-lg" : "text-lg",
+            variant === "nav" ? "text-base sm:text-lg" : "text-base sm:text-lg",
             light ? "text-white" : "text-foreground"
           )}
         >

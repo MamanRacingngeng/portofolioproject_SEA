@@ -9,8 +9,9 @@ export function HeroLabel({ children, className }: HeroLabelProps) {
   return (
     <span
       className={cn(
-        "mb-4 inline-flex w-fit items-center rounded-full border border-white/25 bg-black/10 px-4 py-1.5",
-        "text-[10px] font-bold uppercase tracking-[0.22em] text-white/95 backdrop-blur-sm sm:text-[11px]",
+        "relative z-10 mb-5 inline-flex w-fit max-w-full items-center rounded-lg",
+        "border border-white/30 bg-white/20 px-4 py-2 shadow-sm backdrop-blur-md",
+        "text-[11px] font-bold uppercase leading-tight tracking-[0.18em] text-white sm:text-xs sm:tracking-[0.22em]",
         className
       )}
     >

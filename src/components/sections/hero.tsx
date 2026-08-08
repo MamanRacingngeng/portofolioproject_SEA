@@ -27,53 +27,55 @@ export function HeroSection() {
           className="band-mint relative flex flex-col justify-center overflow-hidden px-6 py-12 text-white sm:px-10 lg:px-12 lg:py-16"
         >
           <FloatingField variant="hero-mint" />
-          <HeroLabel>{t.brand.tagline}</HeroLabel>
-          <FloatingElement y={8} duration={4.5} className="relative z-[1]">
-            <h1 className="font-display text-4xl font-extrabold leading-[0.9] xs:text-5xl sm:text-6xl lg:text-7xl">
-              {siteConfig.brand.nameLines.map((line) => (
-                <span
-                  key={line.text}
-                  className={`block ${line.accent ? "text-honey" : "text-white"}`}
-                >
-                  {line.text}
-                </span>
+          <div className="relative z-10">
+            <HeroLabel>{t.brand.tagline}</HeroLabel>
+            <FloatingElement y={8} duration={4.5}>
+              <h1 className="font-display text-4xl font-extrabold leading-[0.88] xs:text-5xl sm:text-6xl lg:text-7xl">
+                {siteConfig.brand.nameLines.map((line) => (
+                  <span
+                    key={line.text}
+                    className={`block ${line.accent ? "text-honey" : "text-white"}`}
+                  >
+                    {line.text}
+                  </span>
+                ))}
+              </h1>
+            </FloatingElement>
+            <p className="mt-4 text-xl font-medium text-emerald-100 sm:text-2xl">{t.home.hero.subtitle}</p>
+            <p className="mt-5 max-w-lg text-base leading-relaxed text-emerald-50/90">{t.site.summary}</p>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+              {t.site.roles.slice(0, 4).map((role, i) => (
+                <FloatingElement key={role} delay={i * 0.3} duration={4 + i * 0.5} y={6}>
+                  <motion.span
+                    whileHover={{ scale: 1.05 }}
+                    className={`${chipStyles[i]} !text-xs`}
+                  >
+                    {role}
+                  </motion.span>
+                </FloatingElement>
               ))}
-            </h1>
-          </FloatingElement>
-          <p className="mt-4 text-xl font-medium text-emerald-100 sm:text-2xl">{t.home.hero.subtitle}</p>
-          <p className="mt-5 max-w-lg text-base leading-relaxed text-emerald-50/90">{t.site.summary}</p>
+            </div>
 
-          <div className="mt-6 flex flex-wrap gap-2">
-            {t.site.roles.slice(0, 4).map((role, i) => (
-              <FloatingElement key={role} delay={i * 0.3} duration={4 + i * 0.5} y={6}>
-                <motion.span
-                  whileHover={{ scale: 1.05 }}
-                  className={`${chipStyles[i]} !text-xs`}
-                >
-                  {role}
-                </motion.span>
-              </FloatingElement>
-            ))}
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href={siteConfig.cvUrl}
-              download={siteConfig.cvFileName}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="honey" size="lg">
-                <Download className="h-4 w-4" />
-                {t.common.downloadCv}
-              </Button>
-            </a>
-            <Link href="/projects">
-              <Button variant="white" size="lg">
-                {t.common.viewWork}
-                <ArrowUpRight className="h-4 w-4" />
-              </Button>
-            </Link>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href={siteConfig.cvUrl}
+                download={siteConfig.cvFileName}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button variant="honey" size="lg">
+                  <Download className="h-4 w-4" />
+                  {t.common.downloadCv}
+                </Button>
+              </a>
+              <Link href="/projects">
+                <Button variant="white" size="lg">
+                  {t.common.viewWork}
+                  <ArrowUpRight className="h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </motion.div>
 
