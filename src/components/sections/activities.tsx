@@ -7,6 +7,7 @@ import { useLanguage } from "@/components/providers/language-provider";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Badge } from "@/components/ui/badge";
 import { RevealOnScroll, StaggerContainer, StaggerItem } from "@/components/motion/animations";
+import { FloatingField, FloatingElement } from "@/components/motion/floating";
 import { cn } from "@/lib/utils";
 
 const badgeVariants = ["mint", "honey", "coral", "violet"] as const;
@@ -17,8 +18,9 @@ export function ActivitiesSection() {
   const items = getActivities(t);
 
   return (
-    <section id="activities" className="py-16 sm:py-24">
-      <div className="container-app mx-auto max-w-7xl">
+    <section id="activities" className="relative overflow-hidden py-16 sm:py-24">
+      <FloatingField variant="section" />
+      <div className="container-app relative z-[1] mx-auto max-w-7xl">
         <RevealOnScroll className="mb-12">
           <SectionHeader
             index={section.index}
@@ -38,10 +40,11 @@ export function ActivitiesSection() {
                 item.span === "small" && "lg:col-span-4"
               )}
             >
-              <motion.figure
-                whileHover={{ y: -6 }}
-                className="group h-full overflow-hidden rounded-2xl bg-white shadow-md"
-              >
+              <FloatingElement delay={i * 0.2} duration={5 + (i % 3)} y={10}>
+                <motion.figure
+                  whileHover={{ y: -6 }}
+                  className="group h-full overflow-hidden rounded-2xl bg-white shadow-md"
+                >
                 <div
                   className={cn(
                     "relative overflow-hidden",
@@ -65,6 +68,7 @@ export function ActivitiesSection() {
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.caption}</p>
                 </figcaption>
               </motion.figure>
+              </FloatingElement>
             </StaggerItem>
           ))}
         </StaggerContainer>

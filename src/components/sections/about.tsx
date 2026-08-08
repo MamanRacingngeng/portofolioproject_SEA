@@ -4,6 +4,7 @@ import { useLanguage } from "@/components/providers/language-provider";
 import { SectionHeader } from "@/components/ui/section-header";
 import { SurfaceCard } from "@/components/ui/surface-card";
 import { RevealOnScroll, StaggerContainer, StaggerItem } from "@/components/motion/animations";
+import { FloatingField } from "@/components/motion/floating";
 
 const highlightTints = ["mint", "honey", "coral", "violet", "mint", "honey"] as const;
 
@@ -12,8 +13,9 @@ export function AboutSection() {
   const about = t.home.about;
 
   return (
-    <section id="about" className="py-16 sm:py-24">
-      <div className="container-app mx-auto max-w-7xl">
+    <section id="about" className="relative overflow-hidden py-16 sm:py-24">
+      <FloatingField variant="section" />
+      <div className="container-app relative z-[1] mx-auto max-w-7xl">
         <RevealOnScroll className="mb-12">
           <SectionHeader
             index={about.index}

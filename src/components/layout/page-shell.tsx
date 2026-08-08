@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { SectionHeader } from "@/components/ui/section-header";
+import { FloatingField } from "@/components/motion/floating";
 
 interface PageShellProps {
   children: React.ReactNode;
@@ -48,8 +49,9 @@ interface PageHeroProps {
 
 export function PageHero({ label, title, description }: PageHeroProps) {
   return (
-    <section className="band-mint py-12 text-white sm:py-16">
-      <PageContainer>
+    <section className="band-mint relative overflow-hidden py-12 text-white sm:py-16">
+      <FloatingField variant="page" />
+      <PageContainer className="relative z-[1]">
         <SectionHeader index="—" label={label} title={title} description={description} light />
       </PageContainer>
     </section>

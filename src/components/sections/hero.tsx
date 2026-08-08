@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { PortraitImage } from "@/components/ui/portrait-image";
 import { HeroLabel } from "@/components/ui/hero-label";
 import { MarqueeStrip } from "@/components/ui/marquee-strip";
+import { FloatingElement, FloatingField } from "@/components/motion/floating";
 
 const chipStyles = ["chip-mint", "chip-honey", "chip-coral", "chip-violet"] as const;
 const statColors = ["bg-mint text-white", "bg-honey text-amber-950", "bg-coral text-white"] as const;
@@ -23,31 +24,35 @@ export function HeroSection() {
           initial={{ opacity: 0, x: -24 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          className="band-mint flex flex-col justify-center px-6 py-12 text-white sm:px-10 lg:px-12 lg:py-16"
+          className="band-mint relative flex flex-col justify-center overflow-hidden px-6 py-12 text-white sm:px-10 lg:px-12 lg:py-16"
         >
+          <FloatingField variant="hero-mint" />
           <HeroLabel>{t.brand.tagline}</HeroLabel>
-          <h1 className="font-display text-4xl font-extrabold leading-[0.9] xs:text-5xl sm:text-6xl lg:text-7xl">
-            {siteConfig.brand.nameLines.map((line) => (
-              <span
-                key={line.text}
-                className={`block ${line.accent ? "text-honey" : "text-white"}`}
-              >
-                {line.text}
-              </span>
-            ))}
-          </h1>
+          <FloatingElement y={8} duration={4.5} className="relative z-[1]">
+            <h1 className="font-display text-4xl font-extrabold leading-[0.9] xs:text-5xl sm:text-6xl lg:text-7xl">
+              {siteConfig.brand.nameLines.map((line) => (
+                <span
+                  key={line.text}
+                  className={`block ${line.accent ? "text-honey" : "text-white"}`}
+                >
+                  {line.text}
+                </span>
+              ))}
+            </h1>
+          </FloatingElement>
           <p className="mt-4 text-xl font-medium text-emerald-100 sm:text-2xl">{t.home.hero.subtitle}</p>
           <p className="mt-5 max-w-lg text-base leading-relaxed text-emerald-50/90">{t.site.summary}</p>
 
           <div className="mt-6 flex flex-wrap gap-2">
             {t.site.roles.slice(0, 4).map((role, i) => (
-              <motion.span
-                key={role}
-                whileHover={{ scale: 1.05 }}
-                className={`${chipStyles[i]} !text-xs`}
-              >
-                {role}
-              </motion.span>
+              <FloatingElement key={role} delay={i * 0.3} duration={4 + i * 0.5} y={6}>
+                <motion.span
+                  whileHover={{ scale: 1.05 }}
+                  className={`${chipStyles[i]} !text-xs`}
+                >
+                  {role}
+                </motion.span>
+              </FloatingElement>
             ))}
           </div>
 
@@ -76,26 +81,31 @@ export function HeroSection() {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.65, delay: 0.1 }}
-          className="relative flex flex-col justify-end bg-honey-light p-6 sm:p-10 lg:p-12"
+          className="relative flex flex-col justify-end overflow-hidden bg-honey-light p-6 sm:p-10 lg:p-12"
         >
-          <div className="relative mx-auto w-full max-w-md">
-            <div className="absolute -right-3 -top-3 h-full w-full rounded-3xl bg-coral" aria-hidden="true" />
-            <div className="relative overflow-hidden rounded-3xl shadow-lift">
-              <div className="aspect-[4/5] bg-white">
-                <PortraitImage
-                  src="/images/portrait.png"
-                  alt={`${siteConfig.name} - ${t.common.portraitAlt}`}
-                  hint={t.common.tapForColor}
-                  ariaSuffix={t.common.portraitAriaSuffix}
-                  priority
-                />
+          <FloatingField variant="hero-honey" />
+          <FloatingElement y={16} duration={6} className="relative z-[1] mx-auto w-full max-w-md">
+            <div className="relative">
+              <div className="absolute -right-3 -top-3 h-full w-full rounded-3xl bg-coral animate-float-slow" aria-hidden="true" />
+              <div className="relative overflow-hidden rounded-3xl shadow-lift">
+                <div className="aspect-[4/5] bg-white">
+                  <PortraitImage
+                    src="/images/portrait.png"
+                    alt={`${siteConfig.name} - ${t.common.portraitAlt}`}
+                    hint={t.common.tapForColor}
+                    ariaSuffix={t.common.portraitAriaSuffix}
+                    priority
+                  />
+                </div>
               </div>
+              <FloatingElement delay={0.5} duration={4} y={10} className="absolute -left-2 bottom-8 sm:-left-4">
+                <div className="rounded-2xl bg-white px-4 py-3 shadow-lg">
+                  <p className="font-display text-2xl font-bold text-mint">{t.home.hero.patentStamp}</p>
+                  <p className="text-xs font-medium text-muted-foreground">Sacha Inchi Natto</p>
+                </div>
+              </FloatingElement>
             </div>
-            <div className="absolute -left-2 bottom-8 rounded-2xl bg-white px-4 py-3 shadow-lg sm:-left-4">
-              <p className="font-display text-2xl font-bold text-mint">{t.home.hero.patentStamp}</p>
-              <p className="text-xs font-medium text-muted-foreground">Sacha Inchi Natto</p>
-            </div>
-          </div>
+          </FloatingElement>
           <p className="mt-6 text-center text-sm font-medium text-amber-900/80">
             {siteConfig.name} · {t.site.university}
           </p>

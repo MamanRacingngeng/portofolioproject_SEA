@@ -15,6 +15,7 @@ import { useLanguage } from "@/components/providers/language-provider";
 import { Button } from "@/components/ui/button";
 import { PortraitImage } from "@/components/ui/portrait-image";
 import { SurfaceCard } from "@/components/ui/surface-card";
+import { FloatingElement } from "@/components/motion/floating";
 import {
   PageShell,
   PageContainer,
@@ -77,16 +78,18 @@ export default function ContactPage() {
               transition={{ duration: 0.6 }}
               className="lg:col-span-2"
             >
-              <SurfaceCard tint="honey" className="mb-6 overflow-hidden !p-3 sm:mb-8 sm:!p-4">
-                <div className="relative mx-auto aspect-[3/4] w-full max-w-[260px] overflow-hidden rounded-2xl bg-white sm:max-w-xs">
-                  <PortraitImage
-                    src="/images/portrait.png"
-                    alt={`${siteConfig.name} - ${t.common.portraitAlt}`}
-                    hint={t.common.tapForColor}
-                    ariaSuffix={t.common.portraitAriaSuffix}
-                  />
-                </div>
-              </SurfaceCard>
+              <FloatingElement y={14} duration={5.5}>
+                <SurfaceCard tint="honey" className="mb-6 overflow-hidden !p-3 sm:mb-8 sm:!p-4">
+                  <div className="relative mx-auto aspect-[3/4] w-full max-w-[260px] overflow-hidden rounded-2xl bg-white sm:max-w-xs">
+                    <PortraitImage
+                      src="/images/portrait.png"
+                      alt={`${siteConfig.name} - ${t.common.portraitAlt}`}
+                      hint={t.common.tapForColor}
+                      ariaSuffix={t.common.portraitAriaSuffix}
+                    />
+                  </div>
+                </SurfaceCard>
+              </FloatingElement>
 
               <div className="space-y-3 sm:space-y-4">
                 {contactItems.map((item) => (

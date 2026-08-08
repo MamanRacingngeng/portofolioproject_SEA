@@ -66,6 +66,15 @@ const config: Config = {
         lift: "0 12px 40px -12px rgba(6, 78, 59, 0.25)",
         honey: "0 12px 40px -12px rgba(245, 158, 11, 0.35)",
       },
+      keyframes: {
+        "float-y": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-12px)" },
+        },
+      },
+      animation: {
+        "float-y": "float-y 4.5s ease-in-out infinite",
+      },
     },
   },
   plugins: [],

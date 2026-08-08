@@ -9,6 +9,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { Badge } from "@/components/ui/badge";
 import { SurfaceCard } from "@/components/ui/surface-card";
 import { RevealOnScroll } from "@/components/motion/animations";
+import { FloatingField } from "@/components/motion/floating";
 
 export function FeaturedProjectsSection() {
   const { t } = useLanguage();
@@ -17,8 +18,9 @@ export function FeaturedProjectsSection() {
   const section = t.home.projects;
 
   return (
-    <section id="projects" className="bg-mint-light/30 py-16 sm:py-24">
-      <div className="container-app mx-auto max-w-7xl">
+    <section id="projects" className="relative overflow-hidden bg-mint-light/30 py-16 sm:py-24">
+      <FloatingField variant="section" />
+      <div className="container-app relative z-[1] mx-auto max-w-7xl">
         <RevealOnScroll className="mb-10 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
           <SectionHeader
             index={section.index}

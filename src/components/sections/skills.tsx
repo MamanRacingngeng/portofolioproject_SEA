@@ -5,6 +5,7 @@ import { useLanguage } from "@/components/providers/language-provider";
 import { SectionHeader } from "@/components/ui/section-header";
 import { SurfaceCard } from "@/components/ui/surface-card";
 import { RevealOnScroll, StaggerContainer, StaggerItem } from "@/components/motion/animations";
+import { FloatingField, FloatingElement } from "@/components/motion/floating";
 
 const categoryTints = ["mint", "honey", "coral", "violet", "mint", "honey"] as const;
 const iconColors = ["text-mint", "text-honey", "text-coral", "text-violet-600"] as const;
@@ -15,8 +16,9 @@ export function SkillsSection() {
   const section = t.home.skills;
 
   return (
-    <section id="skills" className="py-16 sm:py-24">
-      <div className="container-app mx-auto max-w-7xl">
+    <section id="skills" className="relative overflow-hidden py-16 sm:py-24">
+      <FloatingField variant="section" />
+      <div className="container-app relative z-[1] mx-auto max-w-7xl">
         <RevealOnScroll className="mb-12">
           <SectionHeader
             index={section.index}
@@ -52,14 +54,13 @@ export function SkillsSection() {
           <div className="band-honey rounded-3xl p-6 sm:p-8">
             <h3 className="font-display text-xl font-extrabold text-amber-950">{section.labEquipment}</h3>
             <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-8">
-              {labEquipment.map((equip) => (
-                <div
-                  key={equip.name}
-                  className="rounded-xl bg-white/60 p-3 text-center transition-transform hover:scale-105"
-                >
-                  <equip.icon className="mx-auto h-5 w-5 text-mint-dark" />
-                  <p className="mt-2 text-[10px] font-semibold leading-tight text-amber-900">{equip.name}</p>
-                </div>
+              {labEquipment.map((equip, i) => (
+                <FloatingElement key={equip.name} delay={i * 0.15} duration={4 + (i % 3)} y={8}>
+                  <div className="rounded-xl bg-white/60 p-3 text-center transition-transform hover:scale-105">
+                    <equip.icon className="mx-auto h-5 w-5 text-mint-dark" />
+                    <p className="mt-2 text-[10px] font-semibold leading-tight text-amber-900">{equip.name}</p>
+                  </div>
+                </FloatingElement>
               ))}
             </div>
           </div>
