@@ -327,29 +327,22 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 50% 40%, transparent 30%, rgba(4, 12, 36, 0.45) 100%),
-    linear-gradient(180deg, rgba(6, 16, 44, 0.08) 0%, transparent 35%, rgba(4, 10, 30, 0.25) 100%);
+    linear-gradient(180deg, rgba(6, 16, 44, 0.18) 0%, transparent 28%, transparent 72%, rgba(4, 10, 30, 0.28) 100%),
+    linear-gradient(90deg, rgba(4, 10, 30, 0.12) 0%, transparent 12%, transparent 88%, rgba(4, 10, 30, 0.12) 100%);
   pointer-events: none;
 }
 
 .hero-origin-color-grade {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(135deg, rgba(88, 120, 255, 0.08) 0%, transparent 40%),
-    linear-gradient(180deg, rgba(147, 112, 219, 0.06) 0%, transparent 55%);
-  pointer-events: none;
-  mix-blend-mode: soft-light;
+  display: none;
 }
 
 .hero-origin-title {
   font-family: var(--font-hero-primary);
-  font-size: clamp(4rem, 16vw, 9.5rem);
+  font-size: clamp(3.25rem, 14vw, 8.5rem);
   font-weight: 700;
-  line-height: 0.9;
-  letter-spacing: 0.38em;
-  text-indent: 0.38em;
-  text-shadow: 0 10px 48px rgba(0, 0, 0, 0.35);
+  line-height: 0.95;
+  letter-spacing: clamp(0.14em, 3.5vw, 0.34em);
+  text-shadow: 0 8px 36px rgba(0, 0, 0, 0.4);
 }
 
 .hero-origin-subtitle {

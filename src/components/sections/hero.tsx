@@ -8,13 +8,13 @@ import { useParallax } from "@/hooks/use-parallax";
 import { ParallaxScene } from "@/components/hero/parallax-scene";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 24 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
     transition: {
-      delay: 0.45 + i * 0.14,
-      duration: 0.9,
+      delay: 0.4 + i * 0.12,
+      duration: 0.85,
       ease: [0.22, 1, 0.36, 1] as const,
     },
   }),
@@ -22,14 +22,14 @@ const fadeUp = {
 
 export function HeroSection() {
   const { t } = useLanguage();
-  const { heroOpacity, scrollY, getTransform } = useParallax();
+  const { heroOpacity, getTransform } = useParallax();
 
   return (
-    <section className="relative h-[100dvh] min-h-[640px] overflow-hidden">
-      <ParallaxScene getTransform={getTransform} scrollY={scrollY} />
+    <section className="relative isolate h-[100svh] min-h-[600px] w-full overflow-hidden">
+      <ParallaxScene getTransform={getTransform} />
 
       <div
-        className="pointer-events-none relative z-20 flex h-full flex-col items-center justify-center px-6 text-center"
+        className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 pb-8 pt-20 text-center sm:px-10"
         style={{ opacity: heroOpacity }}
       >
         <motion.h1
@@ -37,7 +37,7 @@ export function HeroSection() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="hero-origin-title pointer-events-auto text-white"
+          className="hero-origin-title text-white"
         >
           {siteConfig.brand.wordmark}
         </motion.h1>
@@ -47,7 +47,7 @@ export function HeroSection() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="hero-origin-subtitle pointer-events-auto mt-4 max-w-md text-white/92 sm:max-w-lg"
+          className="hero-origin-subtitle mt-4 max-w-md text-white/90 sm:max-w-xl"
         >
           {t.home.hero.subtitle}
         </motion.p>
@@ -57,7 +57,7 @@ export function HeroSection() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          className="pointer-events-auto mt-8"
+          className="mt-8"
         >
           <Link href="#about" className="hero-origin-explore group">
             <span>{t.home.hero.explore}</span>
@@ -65,12 +65,6 @@ export function HeroSection() {
           </Link>
         </motion.div>
       </div>
-
-      <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-32 bg-gradient-to-t from-[#061428] to-transparent"
-        style={{ opacity: Math.min(1, scrollY / 120) }}
-        aria-hidden
-      />
     </section>
   );
 }
