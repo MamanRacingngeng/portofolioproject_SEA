@@ -36,9 +36,8 @@ export function PortraitImage({
       className={cn(
         "relative block h-full w-full min-h-[240px] overflow-hidden",
         "cursor-pointer touch-manipulation select-none",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fresh-500 focus-visible:ring-offset-2",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
         "group portrait-touch rounded-inherit",
-        "transition-shadow duration-500 group-hover:shadow-[0_0_30px_rgba(58,127,78,0.25)]",
         containerClassName
       )}
     >

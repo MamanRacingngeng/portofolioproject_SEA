@@ -23,8 +23,8 @@ const filterBtn = (active: boolean) =>
   cn(
     "shrink-0 rounded-md border px-3 py-2 text-xs font-medium transition-colors tap-target sm:px-4 sm:text-sm",
     active
-      ? "border-fresh-500 bg-gradient-to-r from-fresh-500 to-fresh-600 text-white shadow-glow"
-      : "border-fresh-200 bg-white/80 text-muted-foreground hover:border-fresh-300 hover:bg-fresh-50"
+      ? "bg-foreground text-background border-foreground"
+      : "border-border bg-card text-muted-foreground hover:bg-secondary"
   );
 
 export default function ProjectsPage() {
@@ -75,7 +75,7 @@ export default function ProjectsPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="group overflow-hidden glass-card shadow-sm"
+                className="group editorial-card-hover overflow-hidden"
               >
                 <div className="relative h-48 overflow-hidden sm:h-56">
                   <Image

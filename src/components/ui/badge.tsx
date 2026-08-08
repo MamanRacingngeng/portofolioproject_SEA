@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 interface BadgeProps {
   children: React.ReactNode;
-  variant?: "default" | "citrus" | "berry" | "wheat" | "outline" | "published" | "submitted" | "in-progress";
+  variant?: "default" | "muted" | "outline" | "published" | "submitted" | "in-progress";
   className?: string;
 }
 
@@ -10,15 +10,13 @@ export function Badge({ children, variant = "default", className }: BadgeProps) 
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-transform duration-200 hover:scale-105",
-        variant === "default" && "bg-fresh-100 text-fresh-700",
-        variant === "citrus" && "bg-citrus-100 text-citrus-600",
-        variant === "berry" && "bg-pink-100 text-pink-600",
-        variant === "wheat" && "bg-wheat-100 text-amber-700",
-        variant === "outline" && "border border-fresh-200 bg-white/60 text-fresh-700",
-        variant === "published" && "bg-emerald-100 text-emerald-700",
-        variant === "submitted" && "bg-amber-100 text-amber-700",
-        variant === "in-progress" && "bg-sky-100 text-sky-700",
+        "inline-flex items-center border px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide",
+        variant === "default" && "border-forest/20 bg-forest-light text-forest",
+        variant === "muted" && "border-border bg-secondary text-muted-foreground",
+        variant === "outline" && "border-border bg-card text-foreground",
+        variant === "published" && "border-emerald-200 bg-emerald-50 text-emerald-800",
+        variant === "submitted" && "border-amber-200 bg-amber-50 text-amber-800",
+        variant === "in-progress" && "border-sky-200 bg-sky-50 text-sky-800",
         className
       )}
     >
