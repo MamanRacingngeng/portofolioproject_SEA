@@ -2,21 +2,21 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Download, Mail, ArrowUpRight } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { useLanguage } from "@/components/providers/language-provider";
-import { Button } from "@/components/ui/button";
-import { PortraitImage } from "@/components/ui/portrait-image";
+import { useParallax } from "@/hooks/use-parallax";
+import { ParallaxScene } from "@/components/hero/parallax-scene";
 import { Marquee } from "@/components/ui/marquee";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 36 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
     transition: {
-      delay: i * 0.08,
-      duration: 0.55,
+      delay: 0.35 + i * 0.12,
+      duration: 0.85,
       ease: [0.22, 1, 0.36, 1] as const,
     },
   }),
@@ -24,143 +24,110 @@ const fadeUp = {
 
 export function HeroSection() {
   const { t } = useLanguage();
-  const [firstName, ...rest] = siteConfig.name.split(" ");
-  const lastName = rest.join(" ");
+  const { heroOpacity, scrollY, getTransform } = useParallax();
   const year = t.site.patent.published.split(" ").pop();
 
   return (
-    <section className="relative flex min-h-[100dvh] flex-col pt-[var(--header-height)]">
-      <div className="container-app mx-auto grid w-full max-w-7xl flex-1 grid-cols-1 items-center gap-10 py-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14 lg:py-20">
-        <div className="order-2 lg:order-1">
-          <motion.p
-            custom={0}
-            initial="hidden"
-            animate="visible"
-            variants={fadeUp}
-            className="mb-5 font-mono text-[11px] uppercase tracking-[0.2em] text-fresh-700"
-          >
-            {siteConfig.location} · {t.home.hero.classOf} {siteConfig.cohort}
-          </motion.p>
+    <section className="relative min-h-[100dvh] overflow-hidden">
+      <ParallaxScene getTransform={getTransform} scrollY={scrollY} />
 
-          <motion.h1
-            custom={1}
-            initial="hidden"
-            animate="visible"
-            variants={fadeUp}
-            className="mb-5 font-display text-[2.75rem] font-semibold leading-[0.95] text-earth-700 xs:text-5xl sm:text-6xl lg:text-7xl"
-          >
-            {firstName}
-            <br />
-            <span className="text-fresh-700">{lastName}</span>
-          </motion.h1>
+      <div
+        className="relative z-20 flex min-h-[100dvh] flex-col items-center justify-center px-6 pb-28 pt-24 text-center sm:px-10 sm:pb-32"
+        style={{ opacity: heroOpacity }}
+      >
+        <motion.p
+          custom={0}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="mb-4 font-mono text-[10px] uppercase tracking-[0.28em] text-fresh-200/90 sm:text-[11px]"
+        >
+          {siteConfig.location} · {t.home.hero.classOf} {siteConfig.cohort}
+        </motion.p>
 
-          <motion.div
-            custom={2}
-            initial="hidden"
-            animate="visible"
-            variants={fadeUp}
-            className="mb-6 flex flex-wrap items-center gap-4"
-          >
-            <div className="accent-line" />
-            <p className="max-w-md text-sm leading-relaxed text-earth-600 sm:text-base">
-              {t.site.heroIntro.beforeEmphasis}{" "}
-              <span className="font-semibold text-earth-700">
-                {t.site.heroIntro.emphasis}
-              </span>{" "}
-              {t.site.heroIntro.afterEmphasis}
-            </p>
-          </motion.div>
+        <motion.h1
+          custom={1}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="hero-title mb-4 font-display font-semibold uppercase tracking-[0.08em] text-white"
+        >
+          {siteConfig.brand.wordmark}
+        </motion.h1>
 
-          <motion.div
-            custom={3}
-            initial="hidden"
-            animate="visible"
-            variants={fadeUp}
-            className="mb-8 flex flex-wrap gap-3"
-          >
-            <a
-              href={siteConfig.cvUrl}
-              download={siteConfig.cvFileName}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button
-                variant="heroPrimary"
-                size="lg"
-                className="rounded-md shadow-[3px_3px_0_rgba(48,102,64,0.35)]"
-              >
-                <Download className="h-4 w-4" />
-                {t.common.downloadCv}
-              </Button>
-            </a>
-            <Link href="/contact">
-              <Button
-                variant="heroOutline"
-                size="lg"
-                className="rounded-md border-earth-300"
-              >
-                <Mail className="h-4 w-4" />
-                {t.common.contact}
-              </Button>
-            </Link>
-            <Link href="/projects">
-              <Button variant="ghost" size="lg" className="rounded-md">
-                {t.common.viewWork}
-                <ArrowUpRight className="h-4 w-4" />
-              </Button>
-            </Link>
-          </motion.div>
+        <motion.p
+          custom={2}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="mb-3 max-w-xl text-sm font-medium tracking-[0.04em] text-cream-100/90 sm:text-base"
+        >
+          {t.home.hero.subtitle}
+        </motion.p>
 
-          <motion.div
-            custom={4}
-            initial="hidden"
-            animate="visible"
-            variants={fadeUp}
-            className="flex flex-wrap gap-6 border-t border-earth-200/80 pt-6"
-          >
-            {t.site.stats.map((stat) => (
-              <div key={stat.label}>
-                <p className="font-display text-2xl font-semibold text-fresh-700 sm:text-3xl">
-                  {stat.value}
-                </p>
-                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-earth-500">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </motion.div>
-        </div>
+        <motion.p
+          custom={3}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="mb-8 max-w-lg text-xs leading-relaxed text-cream-200/75 sm:text-sm"
+        >
+          {t.home.hero.tagline}
+        </motion.p>
+
+        <motion.div custom={4} initial="hidden" animate="visible" variants={fadeUp}>
+          <Link href="#about" className="hero-explore-btn group">
+            <span>{t.home.hero.explore}</span>
+            <span className="hero-explore-btn-shine" aria-hidden />
+          </Link>
+        </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.15 }}
-          className="order-1 flex justify-center lg:order-2 lg:justify-end"
+          custom={5}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="mt-12 flex flex-wrap items-center justify-center gap-8 border-t border-white/10 pt-8 sm:gap-12"
         >
-          <div className="relative w-full max-w-[300px] sm:max-w-[340px] lg:max-w-[380px]">
-            <div className="absolute -right-3 -top-3 z-10 stamp-badge bg-cream-50">
-              {t.home.hero.patentStamp} · {year}
-            </div>
-            <div className="polaroid-frame rotate-1 transition-transform duration-300 hover:rotate-0">
-              <div className="relative aspect-[4/5] overflow-hidden bg-earth-100">
-                <PortraitImage
-                  src="/images/portrait.png"
-                  alt={`${siteConfig.name} - ${t.common.portraitAlt}`}
-                  hint={t.common.tapForColor}
-                  ariaSuffix={t.common.portraitAriaSuffix}
-                  priority
-                />
-              </div>
-              <p className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-earth-500">
-                {t.site.university}
+          {t.site.stats.map((stat) => (
+            <div key={stat.label} className="text-center">
+              <p className="font-display text-2xl font-semibold text-white sm:text-3xl">
+                {stat.value}
+              </p>
+              <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.18em] text-fresh-200/70 sm:text-[10px]">
+                {stat.label}
               </p>
             </div>
-            <div className="absolute -bottom-4 -left-4 hidden h-24 w-24 border-l-2 border-b-2 border-fresh-400/40 lg:block" />
+          ))}
+          <div className="hidden text-center sm:block">
+            <p className="font-display text-2xl font-semibold text-wheat-400 sm:text-3xl">
+              {year}
+            </p>
+            <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.18em] text-fresh-200/70 sm:text-[10px]">
+              {t.home.hero.patentStamp}
+            </p>
           </div>
         </motion.div>
       </div>
 
-      <Marquee items={t.site.roles} />
+      <motion.a
+        href="#about"
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.2, duration: 0.6 }}
+        className="absolute bottom-24 left-1/2 z-30 flex -translate-x-1/2 flex-col items-center gap-1 text-white/70 transition-colors hover:text-white sm:bottom-28"
+        style={{ opacity: Math.max(0, 1 - scrollY / 280) }}
+        aria-label={t.home.hero.scrollHint}
+      >
+        <span className="font-mono text-[9px] uppercase tracking-[0.2em]">
+          {t.home.hero.scrollHint}
+        </span>
+        <ChevronDown className="h-5 w-5 animate-bounce" />
+      </motion.a>
+
+      <div className="relative z-20 border-t border-white/10 bg-earth-900/40 backdrop-blur-sm">
+        <Marquee items={t.site.roles} />
+      </div>
     </section>
   );
 }

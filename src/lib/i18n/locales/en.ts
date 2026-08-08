@@ -79,7 +79,7 @@ export const en = {
     stats: [
       { value: "1", label: "Simple Patent" },
       { value: "2022", label: "Cohort" },
-      { value: "UAD", label: "University" },
+      { value: "NEC", label: "Bronze Medal" },
     ],
     patent: {
       title: "Sacha Inchi Natto Production Process (Plukenetia volubilis L.)",
@@ -100,13 +100,18 @@ export const en = {
     hero: {
       classOf: "Class of",
       patentStamp: "Patent",
+      subtitle: "Food Technology Student & Patent Inventor",
+      tagline:
+        "Fermentation research, local food innovation, and campus leadership at Ahmad Dahlan University.",
+      explore: "Explore",
+      scrollHint: "Scroll",
     },
     about: {
       index: "02",
       label: "About",
       title: "Food technologist with a patent on the lab bench",
       description:
-        "Food Technology undergraduate at Ahmad Dahlan University (Class of 2022), registered as inventor of the simple patent for Sacha Inchi Natto Production Process. Experienced in fermentation research, local food product diversification, and academic laboratory work. Active in student arts delegation and laboratory assistant selection programs.",
+        "Food Technology undergraduate at Ahmad Dahlan University (Class of 2022), registered as inventor of the simple patent for Sacha Inchi Natto Production Process. Active in ICOFTA organizing, NEC competition, library service, public speaking, and university cultural activities.",
       patentCard: "Patent Invention",
       highlights: [
         {
@@ -146,16 +151,25 @@ export const en = {
       label: "Experience",
       title: "Where the research actually happened",
       description:
-        "Patent work, laboratory practicum, and university activities beyond the classroom.",
+        "Patent work, conference organizing, national competition, library service, and campus leadership beyond the classroom.",
       typeLabels: {
         research: "Research",
         volunteer: "Volunteer",
         internship: "Internship",
         work: "Work",
+        event: "Event",
+        competition: "Competition",
       },
     },
+    activities: {
+      index: "05",
+      label: "Activities",
+      title: "Moments from campus, conferences, and competition",
+      description:
+        "Photos from ICOFTA 2023, NEC Season 2, UAD library service, formal speaking engagements, and university events.",
+    },
     projects: {
-      index: "03",
+      index: "06",
       label: "Projects",
       title: "Work that started in the lab and ended on paper",
       description:
@@ -163,7 +177,7 @@ export const en = {
       allProjects: "All projects",
     },
     skills: {
-      index: "05",
+      index: "07",
       label: "Skills",
       title: "Tools of the trade",
       description:
@@ -171,7 +185,7 @@ export const en = {
       labEquipment: "Laboratory equipment",
     },
     cta: {
-      leftLabel: "06 — Let's talk",
+      leftLabel: "08 — Let's talk",
       quote:
         "Good food science starts with curiosity — and ends with something people actually want to eat.",
       quoteContext:
@@ -266,7 +280,8 @@ export const en = {
       institution: "Sacha Inchi Natto Production Process",
       duration: "2023 – 2024",
       location: "Yogyakarta, Indonesia",
-      type: "research" as "research" | "volunteer" | "internship" | "work",
+      type: "research" as "research" | "volunteer" | "internship" | "work" | "event" | "competition",
+      imageKey: undefined,
       responsibilities: [
         "Developed a natto production process using sacha inchi seeds (Plukenetia volubilis L.) as raw material",
         "Conducted soaking, peeling, and fermentation stages for natto production",
@@ -280,12 +295,85 @@ export const en = {
       ],
     },
     {
+      id: "exp-4",
+      position: "Bronze Medalist — NEC Season 2",
+      institution: "National Education Competition (NEC)",
+      duration: "May 2024",
+      location: "Jakarta, Indonesia",
+      type: "competition" as "research" | "volunteer" | "internship" | "work" | "event" | "competition",
+      imageKey: "nec-bronze-medal-2024" as const,
+      responsibilities: [
+        "Competed in the National Education Competition (NEC) Season 2 as part of the UAD team",
+        "Prepared presentation materials and collaborative strategy for the national stage",
+        "Represented Ahmad Dahlan University in a nationwide education competition",
+      ],
+      achievements: [
+        "Awarded Bronze Medal at NEC Season 2, Jakarta (12 May 2024)",
+        "Recognized for team performance in a national-scale education competition",
+      ],
+    },
+    {
+      id: "exp-5",
+      position: "Organizing Committee — ICOFTA 2023",
+      institution: "International Conference on Food Technology and Agriculture",
+      duration: "October 2023",
+      location: "Campus 4 UAD Amphitheater, Yogyakarta",
+      type: "event" as "research" | "volunteer" | "internship" | "work" | "event" | "competition",
+      imageKey: "icofta-2023-stage" as const,
+      responsibilities: [
+        "Served on the organizing committee for ICOFTA 2023 at Universitas Ahmad Dahlan",
+        "Coordinated on-stage operations and event logistics at the amphitheater",
+        "Supported an international conference bridging food technology and agriculture",
+      ],
+      achievements: [
+        "Helped deliver ICOFTA 2023 — International Conference on Food Technology and Agriculture",
+        "Gained firsthand experience in academic conference organization",
+      ],
+    },
+    {
+      id: "exp-6",
+      position: "Library Service Team",
+      institution: "UAD Library (Perpustakaan UAD)",
+      duration: "2023 – 2024",
+      location: "Yogyakarta, Indonesia",
+      type: "work" as "research" | "volunteer" | "internship" | "work" | "event" | "competition",
+      imageKey: "uad-library-team" as const,
+      responsibilities: [
+        "Assisted library operations and front-desk service at Perpustakaan UAD",
+        "Supported locker management and visitor assistance for students and staff",
+        "Worked collaboratively with the library service team",
+      ],
+      achievements: [
+        "Contributed to daily library service for the UAD academic community",
+        "Built teamwork and public-facing service experience on campus",
+      ],
+    },
+    {
+      id: "exp-7",
+      position: "Event Speaker & MC",
+      institution: "Ahmad Dahlan University",
+      duration: "2022 – Present",
+      location: "Yogyakarta, Indonesia",
+      type: "event" as "research" | "volunteer" | "internship" | "work" | "event" | "competition",
+      imageKey: "formal-event-speaker" as const,
+      responsibilities: [
+        "Delivered speeches and moderated segments at formal university events",
+        "Presented in front of faculty, guests, and student audiences on campus",
+        "Represented student voices at institutional ceremonies and programs",
+      ],
+      achievements: [
+        "Developed public speaking and stage presence at university-level events",
+        "Active in formal campus programs with national and institutional symbols",
+      ],
+    },
+    {
       id: "exp-2",
       position: "Laboratory Assistant Selection Candidate",
       institution: "Food Technology Program, Ahmad Dahlan University",
       duration: "2023 – 2024",
       location: "Yogyakarta, Indonesia",
-      type: "research" as "research" | "volunteer" | "internship" | "work",
+      type: "research" as "research" | "volunteer" | "internship" | "work" | "event" | "competition",
+      imageKey: undefined,
       responsibilities: [
         "Participated in selection for food technology laboratory course teaching assistants",
         "Prepared practical materials for food analysis and food processing courses",
@@ -302,7 +390,8 @@ export const en = {
       institution: "Ahmad Dahlan University",
       duration: "2022 – Present",
       location: "Yogyakarta, Indonesia",
-      type: "volunteer" as "research" | "volunteer" | "internship" | "work",
+      type: "volunteer" as "research" | "volunteer" | "internship" | "work" | "event" | "competition",
+      imageKey: "university-auditorium-event" as const,
       responsibilities: [
         "Represented the university/faculty in student creative dance competitions",
         "Practiced and prepared choreography for university- and faculty-level events",
@@ -315,6 +404,58 @@ export const en = {
     },
   ],
 
+  activities: [
+    {
+      id: "act-1",
+      title: "Bronze Medal — NEC Season 2",
+      caption:
+        "National Education Competition, Jakarta · 12 May 2024 — team achievement with Ahmad Dahlan University.",
+      category: "Competition",
+    },
+    {
+      id: "act-2",
+      title: "ICOFTA 2023 — Organizing Committee",
+      caption:
+        "International Conference on Food Technology and Agriculture at Campus 4 UAD Amphitheater · 21 October 2023.",
+      category: "Conference",
+    },
+    {
+      id: "act-3",
+      title: "Formal Event Speaker",
+      caption:
+        "Speaking at a university ceremony with national, Muhammadiyah, and UAD institutional flags.",
+      category: "Public Speaking",
+    },
+    {
+      id: "act-4",
+      title: "Campus Presentation",
+      caption:
+        "Delivering remarks at a formal UAD event from the university podium.",
+      category: "Public Speaking",
+    },
+    {
+      id: "act-5",
+      title: "UAD Library Service Team",
+      caption:
+        "Front-desk and locker service team at Perpustakaan UAD library.",
+      category: "Campus Service",
+    },
+    {
+      id: "act-6",
+      title: "University Auditorium Event",
+      caption:
+        "Group photo after a large-scale university event in the campus auditorium.",
+      category: "Campus Event",
+    },
+    {
+      id: "act-7",
+      title: "ICOFTA 2023 — Stage Team",
+      caption:
+        "Committee members on stage at the International Conference on Food Technology and Agriculture.",
+      category: "Conference",
+    },
+  ],
+
   education: {
     university: "Ahmad Dahlan University, Yogyakarta",
     degree: "Food Technology (Bachelor of Food Technology)",
@@ -324,7 +465,9 @@ export const en = {
       "Sacha Inchi Natto Production Process (Plukenetia volubilis L.) — Simple Patent Invention",
     highlights: [
       "Simple Patent Inventor — Sacha Inchi Natto Production Process (2024)",
-      "Laboratory Assistant Selection Candidate — Food Technology",
+      "Bronze Medal — National Education Competition (NEC) Season 2 (2024)",
+      "ICOFTA 2023 Organizing Committee — International Conference on Food Technology and Agriculture",
+      "Library Service Team — Perpustakaan UAD",
       "2nd Place in Creative Dance at university/faculty level",
       "Student Arts Delegate — Ahmad Dahlan University",
     ],
@@ -335,6 +478,13 @@ export const en = {
       id: "cert-1",
       name: "Simple Patent — Sacha Inchi Natto Production Process",
       issuer: "Directorate General of Intellectual Property (DGIP)",
+      year: "2024",
+      category: "quality" as "food-safety" | "quality" | "laboratory" | "halal",
+    },
+    {
+      id: "cert-4",
+      name: "Bronze Medal — National Education Competition (NEC) Season 2",
+      issuer: "National Education Competition · Jakarta",
       year: "2024",
       category: "quality" as "food-safety" | "quality" | "laboratory" | "halal",
     },

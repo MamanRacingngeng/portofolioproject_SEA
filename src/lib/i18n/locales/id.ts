@@ -81,7 +81,7 @@ export const id: Dictionary = {
     stats: [
       { value: "1", label: "Paten Sederhana" },
       { value: "2022", label: "Angkatan" },
-      { value: "UAD", label: "Universitas" },
+      { value: "NEC", label: "Medali Perunggu" },
     ],
     patent: {
       title: "Proses Produksi Natto Sacha Inchi (Plukenetia volubilis L.)",
@@ -102,13 +102,18 @@ export const id: Dictionary = {
     hero: {
       classOf: "Angkatan",
       patentStamp: "Paten",
+      subtitle: "Mahasiswa Teknologi Pangan & Inventor Paten",
+      tagline:
+        "Penelitian fermentasi, inovasi pangan lokal, dan kepemimpinan kampus di Universitas Ahmad Dahlan.",
+      explore: "Jelajahi",
+      scrollHint: "Gulir",
     },
     about: {
       index: "02",
       label: "Tentang",
       title: "Ahli teknologi pangan dengan paten di meja laboratorium",
       description:
-        "Mahasiswa S1 Teknologi Pangan di Universitas Ahmad Dahlan (Angkatan 2022), terdaftar sebagai inventor paten sederhana Proses Produksi Natto Sacha Inchi. Berpengalaman dalam penelitian fermentasi, diversifikasi produk pangan lokal, dan praktikum laboratorium akademik. Aktif dalam delegasi seni mahasiswa dan program seleksi asisten laboratorium.",
+        "Mahasiswa S1 Teknologi Pangan di Universitas Ahmad Dahlan (Angkatan 2022), terdaftar sebagai inventor paten sederhana Proses Produksi Natto Sacha Inchi. Aktif di panitia ICOFTA, kompetisi NEC, layanan Perpustakaan UAD, public speaking, dan kegiatan seni budaya kampus.",
       patentCard: "Invensi Paten",
       highlights: [
         {
@@ -148,16 +153,25 @@ export const id: Dictionary = {
       label: "Pengalaman",
       title: "Di mana penelitian benar-benar terjadi",
       description:
-        "Karya paten, praktikum laboratorium, dan kegiatan kampus di luar ruang kelas.",
+        "Karya paten, panitia konferensi, kompetisi nasional, layanan perpustakaan, dan kepemimpinan kampus di luar ruang kelas.",
       typeLabels: {
         research: "Penelitian",
         volunteer: "Relawan",
         internship: "Magang",
         work: "Pekerjaan",
+        event: "Acara",
+        competition: "Kompetisi",
       },
     },
+    activities: {
+      index: "05",
+      label: "Aktivitas",
+      title: "Momen dari kampus, konferensi, dan kompetisi",
+      description:
+        "Foto dari ICOFTA 2023, NEC Season 2, layanan Perpustakaan UAD, public speaking, dan acara universitas.",
+    },
     projects: {
-      index: "03",
+      index: "06",
       label: "Proyek",
       title: "Karya yang dimulai di lab dan berakhir di kertas",
       description:
@@ -165,7 +179,7 @@ export const id: Dictionary = {
       allProjects: "Semua proyek",
     },
     skills: {
-      index: "05",
+      index: "07",
       label: "Keahlian",
       title: "Alat-alat profesi",
       description:
@@ -173,7 +187,7 @@ export const id: Dictionary = {
       labEquipment: "Peralatan laboratorium",
     },
     cta: {
-      leftLabel: "06 — Mari berbicara",
+      leftLabel: "08 — Mari berbicara",
       quote:
         "Ilmu pangan yang baik dimulai dari rasa ingin tahu — dan berakhir dengan sesuatu yang benar-benar ingin dimakan orang.",
       quoteContext:
@@ -268,7 +282,8 @@ export const id: Dictionary = {
       institution: "Proses Produksi Natto Sacha Inchi",
       duration: "2023 – 2024",
       location: "Yogyakarta, Indonesia",
-      type: "research" as "research" | "volunteer" | "internship" | "work",
+      type: "research" as "research" | "volunteer" | "internship" | "work" | "event" | "competition",
+      imageKey: undefined,
       responsibilities: [
         "Mengembangkan proses produksi natto menggunakan biji sacha inchi (Plukenetia volubilis L.) sebagai bahan baku",
         "Melakukan tahap perendaman, pengupasan, dan fermentasi untuk produksi natto",
@@ -282,12 +297,85 @@ export const id: Dictionary = {
       ],
     },
     {
+      id: "exp-4",
+      position: "Peraih Medali Perunggu — NEC Season 2",
+      institution: "National Education Competition (NEC)",
+      duration: "Mei 2024",
+      location: "Jakarta, Indonesia",
+      type: "competition" as "research" | "volunteer" | "internship" | "work" | "event" | "competition",
+      imageKey: "nec-bronze-medal-2024" as const,
+      responsibilities: [
+        "Berkompetisi dalam National Education Competition (NEC) Season 2 sebagai bagian tim UAD",
+        "Menyiapkan materi presentasi dan strategi kolaboratif untuk tingkat nasional",
+        "Mewakili Universitas Ahmad Dahlan dalam kompetisi pendidikan berskala nasional",
+      ],
+      achievements: [
+        "Meraih Medali Perunggu NEC Season 2, Jakarta (12 Mei 2024)",
+        "Diakui atas performa tim dalam kompetisi pendidikan tingkat nasional",
+      ],
+    },
+    {
+      id: "exp-5",
+      position: "Panitia — ICOFTA 2023",
+      institution: "International Conference on Food Technology and Agriculture",
+      duration: "Oktober 2023",
+      location: "Amphiteater Kampus 4 UAD, Yogyakarta",
+      type: "event" as "research" | "volunteer" | "internship" | "work" | "event" | "competition",
+      imageKey: "icofta-2023-stage" as const,
+      responsibilities: [
+        "Menjadi panitia penyelenggara ICOFTA 2023 di Universitas Ahmad Dahlan",
+        "Mengkoordinasikan operasional panggung dan logistik acara di amphiteater",
+        "Mendukung konferensi internasional yang menghubungkan teknologi pangan dan pertanian",
+      ],
+      achievements: [
+        "Terlibat dalam penyelenggaraan ICOFTA 2023 — International Conference on Food Technology and Agriculture",
+        "Memperoleh pengalaman langsung dalam organisasi konferensi akademik",
+      ],
+    },
+    {
+      id: "exp-6",
+      position: "Tim Layanan Perpustakaan",
+      institution: "Perpustakaan UAD",
+      duration: "2023 – 2024",
+      location: "Yogyakarta, Indonesia",
+      type: "work" as "research" | "volunteer" | "internship" | "work" | "event" | "competition",
+      imageKey: "uad-library-team" as const,
+      responsibilities: [
+        "Membantu operasional perpustakaan dan layanan front desk di Perpustakaan UAD",
+        "Mendukung pengelolaan loker dan bantuan pengunjung untuk mahasiswa dan staf",
+        "Bekerja sama dalam tim layanan perpustakaan",
+      ],
+      achievements: [
+        "Berkontribusi pada layanan harian perpustakaan untuk komunitas akademik UAD",
+        "Membangun pengalaman kerja tim dan pelayanan publik di kampus",
+      ],
+    },
+    {
+      id: "exp-7",
+      position: "Pembicara & MC Acara",
+      institution: "Universitas Ahmad Dahlan",
+      duration: "2022 – Sekarang",
+      location: "Yogyakarta, Indonesia",
+      type: "event" as "research" | "volunteer" | "internship" | "work" | "event" | "competition",
+      imageKey: "formal-event-speaker" as const,
+      responsibilities: [
+        "Menyampaikan pidato dan memoderasi segmen acara formal universitas",
+        "Tampil di depan dosen, tamu, dan audiens mahasiswa di kampus",
+        "Mewakili suara mahasiswa dalam upacara dan program institusi",
+      ],
+      achievements: [
+        "Mengembangkan public speaking dan kepercayaan diri di panggung acara universitas",
+        "Aktif dalam program kampus formal dengan simbol nasional dan institusi",
+      ],
+    },
+    {
       id: "exp-2",
       position: "Kandidat Seleksi Asisten Laboratorium",
       institution: "Program Studi Teknologi Pangan, Universitas Ahmad Dahlan",
       duration: "2023 – 2024",
       location: "Yogyakarta, Indonesia",
-      type: "research" as "research" | "volunteer" | "internship" | "work",
+      type: "research" as "research" | "volunteer" | "internship" | "work" | "event" | "competition",
+      imageKey: undefined,
       responsibilities: [
         "Mengikuti seleksi asisten pengajar praktikum laboratorium teknologi pangan",
         "Menyiapkan materi praktikum untuk mata kuliah analisis pangan dan pengolahan pangan",
@@ -304,7 +392,8 @@ export const id: Dictionary = {
       institution: "Universitas Ahmad Dahlan",
       duration: "2022 – Sekarang",
       location: "Yogyakarta, Indonesia",
-      type: "volunteer" as "research" | "volunteer" | "internship" | "work",
+      type: "volunteer" as "research" | "volunteer" | "internship" | "work" | "event" | "competition",
+      imageKey: "university-auditorium-event" as const,
       responsibilities: [
         "Mewakili universitas/fakultas dalam kompetisi tari kreasi mahasiswa",
         "Berlatih dan menyiapkan koreografi untuk acara tingkat universitas dan fakultas",
@@ -317,6 +406,58 @@ export const id: Dictionary = {
     },
   ],
 
+  activities: [
+    {
+      id: "act-1",
+      title: "Medali Perunggu — NEC Season 2",
+      caption:
+        "National Education Competition, Jakarta · 12 Mei 2024 — pencapaian tim bersama Universitas Ahmad Dahlan.",
+      category: "Kompetisi",
+    },
+    {
+      id: "act-2",
+      title: "ICOFTA 2023 — Panitia Penyelenggara",
+      caption:
+        "International Conference on Food Technology and Agriculture di Amphiteater Kampus 4 UAD · 21 Oktober 2023.",
+      category: "Konferensi",
+    },
+    {
+      id: "act-3",
+      title: "Pembicara Acara Formal",
+      caption:
+        "Berbicara di upacara universitas dengan bendera nasional, Muhammadiyah, dan UAD.",
+      category: "Public Speaking",
+    },
+    {
+      id: "act-4",
+      title: "Presentasi di Kampus",
+      caption:
+        "Menyampaikan sambutan di acara formal UAD dari podium universitas.",
+      category: "Public Speaking",
+    },
+    {
+      id: "act-5",
+      title: "Tim Layanan Perpustakaan UAD",
+      caption:
+        "Tim layanan front desk dan loker di Perpustakaan UAD.",
+      category: "Layanan Kampus",
+    },
+    {
+      id: "act-6",
+      title: "Acara Auditorium Universitas",
+      caption:
+        "Foto bersama setelah acara berskala besar di auditorium kampus.",
+      category: "Acara Kampus",
+    },
+    {
+      id: "act-7",
+      title: "ICOFTA 2023 — Tim Panggung",
+      caption:
+        "Anggota panitia di panggung International Conference on Food Technology and Agriculture.",
+      category: "Konferensi",
+    },
+  ],
+
   education: {
     university: "Universitas Ahmad Dahlan, Yogyakarta",
     degree: "Teknologi Pangan (Sarjana Teknologi Pangan)",
@@ -326,7 +467,9 @@ export const id: Dictionary = {
       "Proses Produksi Natto Sacha Inchi (Plukenetia volubilis L.) — Invensi Paten Sederhana",
     highlights: [
       "Inventor Paten Sederhana — Proses Produksi Natto Sacha Inchi (2024)",
-      "Kandidat Seleksi Asisten Laboratorium — Teknologi Pangan",
+      "Medali Perunggu — National Education Competition (NEC) Season 2 (2024)",
+      "Panitia ICOFTA 2023 — International Conference on Food Technology and Agriculture",
+      "Tim Layanan Perpustakaan — Perpustakaan UAD",
       "Juara 2 Tari Kreasi tingkat universitas/fakultas",
       "Delegasi Seni Mahasiswa — Universitas Ahmad Dahlan",
     ],
@@ -337,6 +480,13 @@ export const id: Dictionary = {
       id: "cert-1",
       name: "Paten Sederhana — Proses Produksi Natto Sacha Inchi",
       issuer: "Direktorat Jenderal Kekayaan Intelektual (DJKI)",
+      year: "2024",
+      category: "quality" as "food-safety" | "quality" | "laboratory" | "halal",
+    },
+    {
+      id: "cert-4",
+      name: "Medali Perunggu — National Education Competition (NEC) Season 2",
+      issuer: "National Education Competition · Jakarta",
       year: "2024",
       category: "quality" as "food-safety" | "quality" | "laboratory" | "halal",
     },

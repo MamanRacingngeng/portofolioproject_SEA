@@ -269,12 +269,204 @@
 @media (prefers-reduced-motion: reduce) {
   .gradient-text,
   .glow-ring,
-  .animate-marquee {
+  .animate-marquee,
+  .hero-wave,
+  .hero-molecule,
+  .hero-sun-rays {
     animation: none;
   }
 
   .interactive-card:hover,
   .editorial-card:hover {
     transform: none;
+  }
+}
+
+/* ── Immersive parallax hero ── */
+.hero-sky {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255, 214, 140, 0.28) 0%, transparent 28%),
+    radial-gradient(circle at 82% 18%, rgba(107, 184, 127, 0.18) 0%, transparent 24%),
+    linear-gradient(180deg, #0f2419 0%, #163222 28%, #1f4a34 52%, #255a3f 72%, #1a3828 100%);
+}
+
+.hero-sun-rays {
+  position: absolute;
+  inset: -20% -10% 40%;
+  background:
+    conic-gradient(
+      from 210deg at 12% 8%,
+      transparent 0deg,
+      rgba(255, 220, 150, 0.14) 18deg,
+      transparent 36deg,
+      rgba(255, 220, 150, 0.1) 54deg,
+      transparent 72deg,
+      rgba(255, 220, 150, 0.08) 90deg,
+      transparent 120deg
+    );
+  filter: blur(8px);
+  animation: hero-rays 14s ease-in-out infinite alternate;
+}
+
+.hero-stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.45) 0 1px, transparent 2px),
+    radial-gradient(circle at 72% 18%, rgba(255, 255, 255, 0.35) 0 1px, transparent 2px),
+    radial-gradient(circle at 48% 12%, rgba(255, 255, 255, 0.25) 0 1px, transparent 2px),
+    radial-gradient(circle at 86% 42%, rgba(255, 255, 255, 0.3) 0 1px, transparent 2px);
+  opacity: 0.5;
+}
+
+.hero-molecule {
+  position: absolute;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(2px);
+  animation: float 8s ease-in-out infinite;
+}
+
+.hero-molecule-a {
+  top: 22%;
+  left: 12%;
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.hero-molecule-b {
+  top: 34%;
+  left: 24%;
+  width: 2.5rem;
+  height: 2.5rem;
+  animation-delay: 1.5s;
+}
+
+.hero-molecule-c {
+  top: 18%;
+  right: 34%;
+  width: 3rem;
+  height: 3rem;
+  animation-delay: 0.8s;
+}
+
+.hero-waves {
+  position: absolute;
+  inset: auto 0 0;
+  height: 34%;
+  overflow: hidden;
+}
+
+.hero-wave {
+  position: absolute;
+  left: -10%;
+  width: 120%;
+  border-radius: 45%;
+  opacity: 0.55;
+}
+
+.hero-wave-1 {
+  bottom: -62%;
+  height: 140%;
+  background: linear-gradient(180deg, rgba(48, 102, 64, 0.15), rgba(23, 52, 38, 0.85));
+  animation: hero-wave 9s ease-in-out infinite;
+}
+
+.hero-wave-2 {
+  bottom: -68%;
+  height: 145%;
+  background: linear-gradient(180deg, rgba(74, 157, 98, 0.12), rgba(35, 68, 45, 0.9));
+  animation: hero-wave 11s ease-in-out infinite reverse;
+  opacity: 0.75;
+}
+
+.hero-wave-3 {
+  bottom: -72%;
+  height: 150%;
+  background: linear-gradient(180deg, rgba(196, 146, 58, 0.08), rgba(26, 56, 40, 0.95));
+  animation: hero-wave 13s ease-in-out infinite;
+  opacity: 0.9;
+}
+
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at center, transparent 35%, rgba(8, 20, 14, 0.55) 100%),
+    linear-gradient(180deg, rgba(8, 20, 14, 0.15) 0%, transparent 30%, rgba(8, 20, 14, 0.35) 100%);
+  pointer-events: none;
+}
+
+.hero-title {
+  font-size: clamp(3.5rem, 14vw, 8.5rem);
+  line-height: 0.92;
+  text-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+}
+
+.hero-explore-btn {
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  background: #c45245;
+  padding: 0.85rem 2rem;
+  font-family: var(--font-jetbrains);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: white;
+  box-shadow: 0 12px 40px rgba(196, 82, 69, 0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-explore-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 18px 48px rgba(196, 82, 69, 0.45);
+}
+
+.hero-explore-btn-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 65%
+  );
+  transform: translateX(-120%);
+  animation: hero-shine 3.5s ease-in-out infinite;
+}
+
+@keyframes hero-rays {
+  0% {
+    opacity: 0.65;
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.05) rotate(3deg);
+  }
+}
+
+@keyframes hero-wave {
+  0%,
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  50% {
+    transform: translateX(-2.5%) rotate(-1deg);
+  }
+}
+
+@keyframes hero-shine {
+  0%,
+  70%,
+  100% {
+    transform: translateX(-120%);
+  }
+  85% {
+    transform: translateX(120%);
   }
 }
