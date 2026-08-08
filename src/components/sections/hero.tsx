@@ -27,8 +27,9 @@ export function HeroSection() {
           <span className="mb-4 inline-block w-fit rounded-lg bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-wider">
             {t.brand.tagline}
           </span>
-          <h1 className="font-display text-5xl font-extrabold leading-[0.95] xs:text-6xl sm:text-7xl lg:text-8xl">
-            {siteConfig.brand.wordmark}
+          <h1 className="font-display text-4xl font-extrabold leading-[0.95] xs:text-5xl sm:text-6xl lg:text-7xl">
+            <span className="block">GNOTHI</span>
+            <span className="block text-honey">SEA FAUZIAH</span>
           </h1>
           <p className="mt-4 text-xl font-medium text-emerald-100 sm:text-2xl">{t.home.hero.subtitle}</p>
           <p className="mt-5 max-w-lg text-base leading-relaxed text-emerald-50/90">{t.site.summary}</p>

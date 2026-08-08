@@ -31,11 +31,12 @@ export function Logo({ variant = "nav", light = false, className }: LogoProps) {
       <span className="flex flex-col">
         <span
           className={cn(
-            "font-display text-lg font-bold leading-none",
+            "font-display font-bold leading-none",
+            variant === "nav" ? "text-base sm:text-lg" : "text-lg",
             light ? "text-white" : "text-foreground"
           )}
         >
-          {siteConfig.brand.wordmark}
+          {variant === "nav" ? siteConfig.brand.wordmarkShort : siteConfig.brand.wordmark}
         </span>
         {variant !== "nav" && (
           <span className={cn("text-[10px] font-medium", light ? "text-emerald-100" : "text-muted-foreground")}>

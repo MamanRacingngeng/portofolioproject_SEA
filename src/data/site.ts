@@ -3,7 +3,8 @@ export const siteConfig = {
   url: "https://portofolioproject-sea.vercel.app",
   ogImage: "/images/portrait.png",
   brand: {
-    wordmark: "GNOTH",
+    wordmark: "GNOTHI SEA FAUZIAH",
+    wordmarkShort: "GNOTHI",
   },
   cvUrl: "/documents/cv-gnothi-sea-fauziah.pdf",
   cvFileName: "CV-Gnothi-Sea-Fauziah.pdf",
