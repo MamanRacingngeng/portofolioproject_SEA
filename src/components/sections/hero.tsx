@@ -7,6 +7,7 @@ import { siteConfig } from "@/data/site";
 import { useLanguage } from "@/components/providers/language-provider";
 import { Button } from "@/components/ui/button";
 import { PortraitImage } from "@/components/ui/portrait-image";
+import { HeroLabel } from "@/components/ui/hero-label";
 import { MarqueeStrip } from "@/components/ui/marquee-strip";
 
 const chipStyles = ["chip-mint", "chip-honey", "chip-coral", "chip-violet"] as const;
@@ -24,12 +25,16 @@ export function HeroSection() {
           transition={{ duration: 0.6 }}
           className="band-mint flex flex-col justify-center px-6 py-12 text-white sm:px-10 lg:px-12 lg:py-16"
         >
-          <span className="mb-4 inline-block w-fit rounded-lg bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-wider">
-            {t.brand.tagline}
-          </span>
-          <h1 className="font-display text-4xl font-extrabold leading-[0.95] xs:text-5xl sm:text-6xl lg:text-7xl">
-            <span className="block">GNOTHI</span>
-            <span className="block text-honey">SEA FAUZIAH</span>
+          <HeroLabel>{t.brand.tagline}</HeroLabel>
+          <h1 className="font-display text-4xl font-extrabold leading-[0.9] xs:text-5xl sm:text-6xl lg:text-7xl">
+            {siteConfig.brand.nameLines.map((line) => (
+              <span
+                key={line.text}
+                className={`block ${line.accent ? "text-honey" : "text-white"}`}
+              >
+                {line.text}
+              </span>
+            ))}
           </h1>
           <p className="mt-4 text-xl font-medium text-emerald-100 sm:text-2xl">{t.home.hero.subtitle}</p>
           <p className="mt-5 max-w-lg text-base leading-relaxed text-emerald-50/90">{t.site.summary}</p>

@@ -5,6 +5,11 @@ export const siteConfig = {
   brand: {
     wordmark: "GNOTHI SEA FAUZIAH",
     wordmarkShort: "GNOTHI",
+    nameLines: [
+      { text: "GNOTHI", accent: false },
+      { text: "SEA", accent: true },
+      { text: "FAUZIAH", accent: true },
+    ],
   },
   cvUrl: "/documents/cv-gnothi-sea-fauziah.pdf",
   cvFileName: "CV-Gnothi-Sea-Fauziah.pdf",
