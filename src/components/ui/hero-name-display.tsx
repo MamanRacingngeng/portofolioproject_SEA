@@ -13,20 +13,20 @@ export function HeroNameDisplay({ className }: HeroNameDisplayProps) {
   return (
     <h1
       className={cn(
-        "font-display text-[2.75rem] font-extrabold leading-[0.85] xs:text-6xl sm:text-7xl lg:text-[5.25rem]",
+        "font-display text-[2.65rem] font-extrabold leading-[0.88] xs:text-[3.25rem] sm:text-7xl lg:text-[5rem]",
         className
       )}
     >
       {plainLines.map((line) => (
-        <span key={line.text} className="block text-white">
+        <span key={line.text} className="block text-white drop-shadow-sm">
           {line.text}
         </span>
       ))}
 
       {blockLines.length > 0 && (
-        <span className="name-block-label mt-1 inline-block max-w-full">
+        <span className="name-block-label mt-2 inline-block max-w-full">
           {blockLines.map((line) => (
-            <span key={line.text} className="block text-neutral-950">
+            <span key={line.text} className="block text-white">
               {line.text}
             </span>
           ))}

@@ -7,13 +7,13 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-mint text-white shadow-lift hover:bg-mint-dark hover:-translate-y-0.5",
-        honey: "bg-honey text-amber-950 shadow-honey hover:-translate-y-0.5 hover:brightness-105",
-        coral: "bg-coral text-white hover:-translate-y-0.5 hover:brightness-110",
-        outline: "border-2 border-mint bg-white text-mint-dark hover:bg-mint-light",
-        secondary: "bg-mint-light text-mint-dark hover:bg-mint-light/80",
+        default: "bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lift hover:-translate-y-0.5 hover:brightness-110",
+        honey: "bg-gradient-to-r from-cyan-500 to-sky-400 text-white shadow-honey hover:-translate-y-0.5 hover:brightness-110",
+        coral: "bg-gradient-to-r from-indigo-500 to-blue-600 text-white shadow-lift hover:-translate-y-0.5 hover:brightness-110",
+        outline: "border-2 border-blue-500 bg-white text-blue-800 hover:bg-blue-50",
+        secondary: "bg-blue-100 text-blue-800 hover:bg-blue-200",
         ghost: "hover:bg-muted",
-        white: "bg-white text-mint-dark shadow-md hover:-translate-y-0.5",
+        white: "bg-white text-blue-800 shadow-md hover:-translate-y-0.5",
       },
       size: {
         default: "h-11 px-5",

@@ -27,17 +27,17 @@ export function AboutSection() {
 
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
           <RevealOnScroll className="lg:col-span-7">
-            <SurfaceCard tint="mint" className="h-full !bg-mint !p-6 text-white sm:!p-8">
+            <SurfaceCard tint="mint" className="band-mint h-full !p-6 text-white sm:!p-8">
               <span className="inline-block rounded-lg bg-white/20 px-3 py-1 text-xs font-bold uppercase tracking-wider">
                 {about.patentCard}
               </span>
               <h3 className="font-display mt-4 text-2xl font-bold leading-snug sm:text-3xl">
                 {t.site.patent.title}
               </h3>
-              <p className="mt-4 text-base leading-relaxed text-emerald-50/90">
+              <p className="mt-4 text-base leading-relaxed text-blue-50/90">
                 {t.site.patent.description}
               </p>
-              <p className="mt-6 text-xs text-emerald-100/80">
+              <p className="mt-6 text-xs text-blue-100/80">
                 {t.common.published} {t.site.patent.published} · {t.site.patent.publication}
               </p>
             </SurfaceCard>

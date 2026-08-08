@@ -39,7 +39,9 @@ export function Navigation() {
     <header
       className={cn(
         "fixed left-0 right-0 top-0 z-50 pt-[env(safe-area-inset-top)] transition-all duration-300",
-        scrolled || isOpen ? "bg-white/95 shadow-md backdrop-blur-md" : "bg-cream/90 backdrop-blur-sm"
+        scrolled || isOpen
+          ? "border-b border-blue-100 bg-white/90 shadow-md shadow-blue-500/5 backdrop-blur-md"
+          : "bg-sky-50/80 backdrop-blur-sm"
       )}
     >
       <nav className="container-app mx-auto flex max-w-7xl items-center justify-between gap-4 py-3 sm:py-3.5">
@@ -60,7 +62,7 @@ export function Navigation() {
                 {active && (
                   <motion.span
                     layoutId="nav-active"
-                    className="absolute inset-x-2 -bottom-0.5 h-0.5 rounded-full bg-honey"
+                    className="absolute inset-x-2 -bottom-0.5 h-0.5 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500"
                   />
                 )}
                 {link.label}
@@ -82,7 +84,7 @@ export function Navigation() {
           <LanguageSwitcher />
           <button
             type="button"
-            className="tap-target rounded-xl bg-mint-light p-2 text-mint-dark"
+            className="tap-target rounded-xl bg-blue-100 p-2 text-blue-800"
             onClick={() => setIsOpen(!isOpen)}
             aria-expanded={isOpen}
             aria-label={isOpen ? t.common.closeMenu : t.common.openMenu}

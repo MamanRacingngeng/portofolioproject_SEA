@@ -20,7 +20,7 @@ export function SectionHeader({
       <div className="flex items-center gap-3">
         <span
           className={`font-display text-4xl font-extrabold sm:text-5xl ${
-            light ? "text-white/30" : "text-mint/25"
+            light ? "text-white/30" : "text-blue-500/20"
           }`}
         >
           {index}
@@ -39,7 +39,7 @@ export function SectionHeader({
       {description && (
         <p
           className={`mt-4 max-w-2xl text-base leading-relaxed sm:text-lg ${
-            light ? "text-white/85" : "text-muted-foreground"
+            light ? "text-blue-50/90" : "text-muted-foreground"
           }`}
         >
           {description}

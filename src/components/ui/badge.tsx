@@ -11,15 +11,15 @@ export function Badge({ children, variant = "mint", className }: BadgeProps) {
     <span
       className={cn(
         "inline-flex items-center rounded-lg px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide",
-        variant === "mint" && "bg-mint-light text-mint-dark",
-        variant === "honey" && "bg-honey-light text-amber-900",
-        variant === "coral" && "bg-coral-light text-orange-900",
+        variant === "mint" && "bg-blue-100 text-blue-800",
+        variant === "honey" && "bg-cyan-100 text-cyan-900",
+        variant === "coral" && "bg-indigo-100 text-indigo-800",
         variant === "violet" && "bg-violet-100 text-violet-800",
         variant === "muted" && "bg-muted text-muted-foreground",
-        variant === "outline" && "border-2 border-border bg-white text-foreground",
-        variant === "published" && "bg-emerald-100 text-emerald-800",
-        variant === "submitted" && "bg-amber-100 text-amber-800",
-        variant === "in-progress" && "bg-sky-100 text-sky-800",
+        variant === "outline" && "border-2 border-blue-200 bg-white text-blue-800",
+        variant === "published" && "bg-sky-100 text-sky-800",
+        variant === "submitted" && "bg-blue-100 text-blue-800",
+        variant === "in-progress" && "bg-indigo-100 text-indigo-800",
         className
       )}
     >
