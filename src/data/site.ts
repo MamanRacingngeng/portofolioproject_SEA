@@ -6,9 +6,9 @@ export const siteConfig = {
     wordmark: "GNOTHI SEA FAUZIAH",
     wordmarkShort: "GNOTHI",
     nameLines: [
-      { text: "GNOTHI", accent: false },
-      { text: "SEA", accent: true },
-      { text: "FAUZIAH", accent: true },
+      { text: "GNOTHI", variant: "plain" as const },
+      { text: "SEA", variant: "block" as const },
+      { text: "FAUZIAH", variant: "block" as const },
     ],
   },
   cvUrl: "/documents/cv-gnothi-sea-fauziah.pdf",

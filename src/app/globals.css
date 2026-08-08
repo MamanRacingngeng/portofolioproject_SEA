@@ -117,6 +117,19 @@
   .band-honey {
     background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
   }
+
+  .name-block-label {
+    background-color: #d4f542;
+    padding: 0.2rem 0.55rem 0.35rem;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  @media (min-width: 640px) {
+    .name-block-label {
+      padding: 0.25rem 0.75rem 0.45rem;
+    }
+  }
 }
 
 @layer utilities {
