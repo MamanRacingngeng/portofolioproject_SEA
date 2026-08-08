@@ -7,6 +7,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { Badge } from "@/components/ui/badge";
 import { RevealOnScroll, StaggerContainer, StaggerItem } from "@/components/motion/animations";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 export function ActivitiesSection() {
   const { t } = useLanguage();
@@ -14,8 +15,8 @@ export function ActivitiesSection() {
   const items = getActivities(t);
 
   return (
-    <section id="activities" className="border-b border-border bg-background py-16 sm:py-24">
-      <div className="container-app mx-auto max-w-7xl">
+    <section id="activities" className="mesh-section relative py-16 sm:py-24">
+      <div className="container-app relative z-10 mx-auto max-w-7xl">
         <RevealOnScroll className="mb-12">
           <SectionHeader
             index={section.index}
@@ -26,7 +27,7 @@ export function ActivitiesSection() {
         </RevealOnScroll>
 
         <StaggerContainer className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-12">
-          {items.map((item) => (
+          {items.map((item, index) => (
             <StaggerItem
               key={item.id}
               className={cn(
@@ -35,7 +36,11 @@ export function ActivitiesSection() {
                 item.span === "small" && "lg:col-span-4"
               )}
             >
-              <figure className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm">
+              <motion.figure
+                whileHover={{ y: -8, scale: 1.01 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="group overflow-hidden rounded-2xl border border-white/60 bg-white/70 shadow-card backdrop-blur-sm"
+              >
                 <div
                   className={cn(
                     "relative overflow-hidden",
@@ -47,15 +52,21 @@ export function ActivitiesSection() {
                     alt={item.title}
                     fill
                     sizes="(max-width: 1024px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <Badge className="absolute left-3 top-3">{item.category}</Badge>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
+                  <Badge
+                    variant={index % 3 === 0 ? "wheat" : index % 3 === 1 ? "citrus" : "berry"}
+                    className="absolute left-3 top-3"
+                  >
+                    {item.category}
+                  </Badge>
                 </div>
                 <figcaption className="p-4 sm:p-5">
-                  <h3 className="text-base font-semibold sm:text-lg">{item.title}</h3>
+                  <h3 className="font-display text-base font-bold sm:text-lg">{item.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground">{item.caption}</p>
                 </figcaption>
-              </figure>
+              </motion.figure>
             </StaggerItem>
           ))}
         </StaggerContainer>

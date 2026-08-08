@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { SectionHeader } from "@/components/ui/section-header";
+import { FoodTechBg } from "@/components/decorations/food-tech-bg";
 
 interface PageShellProps {
   children: React.ReactNode;
@@ -10,7 +11,7 @@ interface PageShellProps {
 
 export function PageShell({ children, className }: PageShellProps) {
   return (
-    <div className={cn("min-h-screen bg-background pt-[var(--header-height)]", className)}>
+    <div className={cn("min-h-screen bg-background pt-[calc(var(--header-height)+1rem)]", className)}>
       {children}
     </div>
   );
@@ -48,8 +49,9 @@ interface PageHeroProps {
 
 export function PageHero({ label, title, description }: PageHeroProps) {
   return (
-    <section className="border-b border-border bg-muted/30 py-12 sm:py-16">
-      <PageContainer>
+    <section className="mesh-section relative overflow-hidden border-b border-fresh-100 py-12 sm:py-16">
+      <FoodTechBg variant="section" />
+      <PageContainer className="relative z-10">
         <SectionHeader index="—" label={label} title={title} description={description} />
       </PageContainer>
     </section>
@@ -58,7 +60,7 @@ export function PageHero({ label, title, description }: PageHeroProps) {
 
 export function StickyBar({ children }: { children: React.ReactNode }) {
   return (
-    <section className="sticky-bar sticky z-40 border-b border-border bg-background/95 py-3 backdrop-blur-sm">
+    <section className="sticky-bar sticky z-40 border-b border-fresh-100/80 bg-white/80 py-3 backdrop-blur-xl">
       <PageContainer>{children}</PageContainer>
     </section>
   );

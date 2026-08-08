@@ -22,7 +22,7 @@ import {
 import { cn } from "@/lib/utils";
 
 const inputClass =
-  "w-full rounded-md border border-input bg-background px-4 py-3 text-base text-foreground transition-all focus:outline-none focus:ring-2 focus:ring-ring sm:text-sm";
+  "w-full rounded-xl border border-fresh-200 bg-white/80 px-4 py-3 text-base text-foreground backdrop-blur-sm transition-all focus:outline-none focus:ring-2 focus:ring-fresh-400 sm:text-sm";
 
 export default function ContactPage() {
   const { t } = useLanguage();
@@ -90,7 +90,7 @@ export default function ContactPage() {
                   <a
                     key={item.label}
                     href={item.href}
-                    className="group flex min-h-[var(--touch-min)] items-center gap-3 rounded-xl border border-border bg-card p-3 transition-colors hover:bg-muted/50 sm:p-4"
+                    className="group flex min-h-[var(--touch-min)] items-center gap-3 rounded-2xl border border-white/60 bg-white/70 shadow-card backdrop-blur-sm p-3 transition-colors hover:bg-muted/50 sm:p-4"
                   >
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                       <item.icon className="h-5 w-5" />
@@ -102,7 +102,7 @@ export default function ContactPage() {
                   </a>
                 ))}
 
-                <div className="flex min-h-[var(--touch-min)] items-center gap-3 rounded-xl border border-border bg-card p-3 sm:p-4">
+                <div className="flex min-h-[var(--touch-min)] items-center gap-3 rounded-2xl border border-white/60 bg-white/70 shadow-card backdrop-blur-sm p-3 sm:p-4">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">
                     <MapPin className="h-5 w-5" />
                   </div>
@@ -116,7 +116,7 @@ export default function ContactPage() {
                   href={siteConfig.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex min-h-[var(--touch-min)] items-center gap-3 rounded-xl border border-border bg-card p-3 transition-colors hover:bg-muted/50 sm:p-4"
+                  className="group flex min-h-[var(--touch-min)] items-center gap-3 rounded-2xl border border-white/60 bg-white/70 shadow-card backdrop-blur-sm p-3 transition-colors hover:bg-muted/50 sm:p-4"
                 >
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                     <LinkedinIcon className="h-5 w-5" />
@@ -135,7 +135,7 @@ export default function ContactPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-3"
             >
-              <div className="rounded-xl border border-border bg-card p-4 shadow-sm sm:p-6 md:p-8">
+              <div className="rounded-2xl border border-white/60 bg-white/70 shadow-card backdrop-blur-sm p-4 shadow-sm sm:p-6 md:p-8">
                 <h2 className="text-xl font-bold sm:text-2xl">{t.common.sendMessage}</h2>
                 <p className="mt-2 text-sm text-muted-foreground">{page.formDescription}</p>
 

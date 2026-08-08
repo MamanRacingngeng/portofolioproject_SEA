@@ -103,7 +103,7 @@ export function ProjectDetailContent({ slug }: ProjectDetailContentProps) {
               {project.methodology.map((method) => (
                 <div
                   key={method}
-                  className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground"
+                  className="glass-card p-4 text-sm text-muted-foreground"
                 >
                   {method}
                 </div>
@@ -119,7 +119,7 @@ export function ProjectDetailContent({ slug }: ProjectDetailContentProps) {
                 {project.process.map((step, i) => (
                   <div key={step} className="relative pl-10">
                     <div className="absolute left-2.5 top-2 h-3 w-3 rounded-full border-2 border-background bg-primary" />
-                    <div className="rounded-lg border border-border bg-card p-4">
+                    <div className="glass-card p-4">
                       <p className="mb-1 text-xs font-semibold text-primary">
                         {t.common.step} {i + 1}
                       </p>

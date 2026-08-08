@@ -19,8 +19,8 @@ export function Logo({ variant = "nav", className }: LogoProps) {
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
           {t.home.hero.portfolioLabel} {new Date().getFullYear()}
         </p>
-        <p className="mt-2 text-5xl font-bold tracking-tight text-primary sm:text-7xl">
-          {siteConfig.brand.wordmark}
+        <p className="font-display mt-2 text-5xl font-extrabold tracking-tight sm:text-7xl">
+          <span className="gradient-text">{siteConfig.brand.wordmark}</span>
         </p>
       </Link>
     );
@@ -29,14 +29,19 @@ export function Logo({ variant = "nav", className }: LogoProps) {
   return (
     <Link
       href="/"
-      className={cn("group inline-flex flex-col gap-0.5", className)}
+      className={cn("group inline-flex items-center gap-2", className)}
       aria-label={`${siteConfig.brand.wordmark} — ${t.brand.tagline}`}
     >
-      <span className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
-        {siteConfig.brand.wordmark}
+      <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-fresh-500 to-fresh-600 text-sm font-bold text-white shadow-glow transition-transform group-hover:scale-105">
+        G
       </span>
-      <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-        {t.brand.tagline}
+      <span className="hidden flex-col sm:flex">
+        <span className="font-display text-lg font-bold leading-none text-foreground">
+          {siteConfig.brand.wordmark}
+        </span>
+        <span className="text-[10px] font-medium text-muted-foreground">
+          {t.brand.tagline}
+        </span>
       </span>
     </Link>
   );

@@ -49,7 +49,7 @@ export function CareerPageContent() {
             <h2 className="text-xl font-bold sm:text-2xl">{t.common.education}</h2>
           </div>
 
-          <div className="rounded-xl border border-border bg-card p-5 shadow-sm sm:p-8">
+          <div className="glass-card p-5 sm:p-8">
             <div className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
               <div className="min-w-0">
                 <h3 className="break-anywhere text-lg font-bold sm:text-xl">{education.degree}</h3>
@@ -119,7 +119,7 @@ export function CareerPageContent() {
             {certifications.map((cert) => {
               const Icon = certCategoryIcons[cert.category] || Award;
               return (
-                <div key={cert.id} className="rounded-xl border border-border bg-card p-4 shadow-sm sm:p-5">
+                <div key={cert.id} className="glass-card p-4 sm:p-5">
                   <div className="flex items-start gap-3">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">
                       <Icon className="h-5 w-5" />
@@ -150,7 +150,7 @@ export function CareerPageContent() {
 
           <div className="space-y-4 sm:space-y-6">
             {publications.map((pub) => (
-              <article key={pub.id} className="rounded-xl border border-border bg-card p-4 shadow-sm sm:p-6">
+              <article key={pub.id} className="glass-card p-4 sm:p-6">
                 <div className="mb-3 flex flex-wrap items-start justify-between gap-3">
                   <Badge variant={pub.status}>{statusLabels[pub.status]}</Badge>
                   <span className="text-xs text-muted-foreground">{pub.year}</span>
