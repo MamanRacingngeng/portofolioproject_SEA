@@ -2,26 +2,20 @@
 
 import Link from "next/link";
 import { useLanguage } from "@/components/providers/language-provider";
+import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
   const { t } = useLanguage();
   const page = t.pages.notFound;
 
   return (
-    <div className="flex min-h-[60vh] items-center justify-center px-6">
-      <div className="text-center">
-        <p className="mb-4 font-display text-6xl font-semibold text-fresh-200">
-          404
-        </p>
-        <h1 className="mb-2 font-display text-2xl font-semibold text-earth-700">
-          {page.title}
-        </h1>
-        <p className="mb-6 text-earth-500">{page.description}</p>
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 rounded-full bg-fresh-600 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-fresh-700"
-        >
-          {page.returnHome}
+    <div className="flex min-h-[60vh] items-center justify-center border-b-2 border-ink bg-paper px-6">
+      <div className="v26-card max-w-md bg-white p-8 text-center sm:p-12">
+        <p className="display-font text-6xl text-v26coral sm:text-7xl">404</p>
+        <h1 className="display-font mt-4 text-2xl sm:text-3xl">{page.title}</h1>
+        <p className="mt-3 text-sm text-ink/70 sm:text-base">{page.description}</p>
+        <Link href="/" className="mt-8 inline-block">
+          <Button size="lg">{page.returnHome}</Button>
         </Link>
       </div>
     </div>

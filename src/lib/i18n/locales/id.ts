@@ -100,6 +100,7 @@ export const id: Dictionary = {
 
   home: {
     hero: {
+      portfolioLabel: "PORTOFOLIO",
       classOf: "Angkatan",
       patentStamp: "Paten",
       subtitle: "Mahasiswa Teknologi Pangan & Inventor Paten",

@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 
 interface SectionHeaderProps {
@@ -6,7 +8,7 @@ interface SectionHeaderProps {
   title: string;
   description?: string;
   className?: string;
-  align?: "left" | "center";
+  dark?: boolean;
 }
 
 export function SectionHeader({
@@ -15,40 +17,46 @@ export function SectionHeader({
   title,
   description,
   className,
-  align = "left",
+  dark = false,
 }: SectionHeaderProps) {
   return (
-    <header
-      className={cn(
-        align === "center" && "text-center",
-        className
-      )}
-    >
-      <div
-        className={cn(
-          "mb-4 flex items-center gap-3",
-          align === "center" && "justify-center"
-        )}
-      >
-        <span className="font-mono text-xs font-medium text-wheat-600">
-          {index}
-        </span>
-        <span className="h-px w-8 bg-earth-300/60" />
-        <span className="font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-fresh-700">
+    <div className={cn("relative", className)}>
+      <div className="mb-4 flex items-end justify-between gap-4">
+        <span
+          className={cn(
+            "label-font text-xs font-bold tracking-[0.2em]",
+            dark ? "text-v26yellow" : "text-ink/60"
+          )}
+        >
           {label}
         </span>
+        <span
+          className={cn(
+            "display-font text-4xl leading-none sm:text-5xl",
+            dark ? "text-white/20" : "text-ink/10"
+          )}
+        >
+          {index}
+        </span>
       </div>
-      <h2 className="section-title mb-3 max-w-3xl">{title}</h2>
+      <h2
+        className={cn(
+          "display-font mb-4 max-w-3xl text-3xl leading-tight sm:text-4xl lg:text-5xl",
+          dark ? "text-white" : "text-ink"
+        )}
+      >
+        {title}
+      </h2>
       {description && (
         <p
           className={cn(
-            "max-w-2xl text-base leading-relaxed text-earth-600/90",
-            align === "center" && "mx-auto"
+            "max-w-2xl text-base leading-relaxed sm:text-lg",
+            dark ? "text-white/75" : "text-ink/70"
           )}
         >
           {description}
         </p>
       )}
-    </header>
+    </div>
   );
 }

@@ -25,7 +25,7 @@ export function BlogPostContent({ slug }: BlogPostContentProps) {
 
   return (
     <PageShell>
-      <section className="relative min-h-[35vh] sm:min-h-[40vh]">
+      <section className="relative min-h-[35vh] border-b-2 border-ink sm:min-h-[40vh]">
         <Image
           src={post.image}
           alt={post.title}
@@ -34,14 +34,14 @@ export function BlogPostContent({ slug }: BlogPostContentProps) {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-earth-700/80 to-transparent" />
+        <div className="absolute inset-0 bg-ink/60" />
       </section>
 
-      <article className="py-10 sm:py-12">
+      <article className="border-b-2 border-ink bg-white py-10 sm:py-12">
         <PageContainer size="narrow" className="max-w-3xl">
           <Link
             href="/blog"
-            className="mb-5 inline-flex min-h-[var(--touch-min)] items-center gap-2 text-sm text-fresh-600 hover:text-fresh-700 sm:mb-6"
+            className="label-font mb-5 inline-flex min-h-[var(--touch-min)] items-center gap-2 text-xs font-bold tracking-wider text-ink/70 hover:text-ink sm:mb-6"
           >
             <ArrowLeft className="h-4 w-4" />
             {t.common.backToBlog}
@@ -49,11 +49,11 @@ export function BlogPostContent({ slug }: BlogPostContentProps) {
 
           <Badge className="mb-4">{post.category}</Badge>
 
-          <h1 className="mb-5 break-anywhere font-display text-2xl font-semibold leading-tight text-earth-700 xs:text-3xl sm:mb-6 sm:text-4xl">
+          <h1 className="display-font mb-5 break-anywhere text-2xl leading-tight xs:text-3xl sm:mb-6 sm:text-4xl">
             {post.title}
           </h1>
 
-          <div className="mb-8 flex flex-wrap items-center gap-4 border-b border-cream-200 pb-8 text-sm text-earth-500">
+          <div className="mb-8 flex flex-wrap items-center gap-4 border-b-2 border-ink pb-8 text-sm text-ink/60">
             <span className="flex items-center gap-1.5">
               <User className="h-4 w-4" />
               {post.author}
@@ -72,10 +72,7 @@ export function BlogPostContent({ slug }: BlogPostContentProps) {
             {paragraphs.map((block, i) => {
               if (block.startsWith("## ")) {
                 return (
-                  <h2
-                    key={i}
-                    className="mb-4 mt-8 font-display text-2xl font-semibold text-earth-700"
-                  >
+                  <h2 key={i} className="display-font mb-4 mt-8 text-2xl">
                     {block.replace("## ", "")}
                   </h2>
                 );
@@ -88,18 +85,12 @@ export function BlogPostContent({ slug }: BlogPostContentProps) {
                       const match = line.match(/\*\*(.+?)\*\* – (.+)/);
                       if (match) {
                         return (
-                          <li
-                            key={line}
-                            className="flex items-start gap-3 text-earth-600"
-                          >
-                            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-fresh-100 text-xs font-semibold text-fresh-700">
+                          <li key={line} className="flex items-start gap-3 text-ink/80">
+                            <span className="flex h-6 w-6 shrink-0 items-center justify-center border-2 border-ink bg-v26yellow text-xs font-bold">
                               •
                             </span>
                             <span>
-                              <strong className="text-earth-700">
-                                {match[1]}
-                              </strong>{" "}
-                              – {match[2]}
+                              <strong className="text-ink">{match[1]}</strong> – {match[2]}
                             </span>
                           </li>
                         );
@@ -111,8 +102,8 @@ export function BlogPostContent({ slug }: BlogPostContentProps) {
               }
               if (block.startsWith("**") && block.includes("** – ")) {
                 return (
-                  <p key={i} className="leading-relaxed text-earth-600">
-                    <strong className="text-earth-700">
+                  <p key={i} className="leading-relaxed text-ink/80">
+                    <strong className="text-ink">
                       {block.match(/\*\*(.+?)\*\*/)?.[1]}
                     </strong>
                     {block.replace(/\*\*.+?\*\*/, "")}
@@ -120,14 +111,14 @@ export function BlogPostContent({ slug }: BlogPostContentProps) {
                 );
               }
               return (
-                <p key={i} className="text-lg leading-relaxed text-earth-600">
+                <p key={i} className="text-lg leading-relaxed text-ink/80">
                   {block}
                 </p>
               );
             })}
           </div>
 
-          <div className="mt-10 flex flex-wrap gap-2 border-t border-cream-200 pt-8">
+          <div className="mt-10 flex flex-wrap gap-2 border-t-2 border-ink pt-8">
             {post.tags.map((tag) => (
               <Badge key={tag} variant="outline">
                 {tag}

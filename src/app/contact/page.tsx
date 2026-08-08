@@ -19,6 +19,10 @@ import {
   PageContainer,
   PageHero,
 } from "@/components/layout/page-shell";
+import { cn } from "@/lib/utils";
+
+const inputClass =
+  "w-full border-2 border-ink bg-white px-4 py-3 text-base text-ink transition-all focus:outline-none focus:ring-2 focus:ring-v26yellow sm:text-sm";
 
 export default function ContactPage() {
   const { t } = useLanguage();
@@ -42,6 +46,21 @@ export default function ContactPage() {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const contactItems = [
+    {
+      href: `mailto:${siteConfig.email}`,
+      icon: Mail,
+      label: t.common.email,
+      value: siteConfig.email,
+    },
+    {
+      href: `tel:${siteConfig.phone}`,
+      icon: Phone,
+      label: t.common.phone,
+      value: siteConfig.phone,
+    },
+  ];
+
   return (
     <PageShell>
       <PageHero
@@ -50,7 +69,7 @@ export default function ContactPage() {
         description={page.description}
       />
 
-      <section className="bg-white py-12 sm:py-16">
+      <section className="border-b-2 border-ink bg-white py-12 sm:py-16">
         <PageContainer size="wide">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-5 lg:gap-12">
             <motion.div
@@ -59,9 +78,8 @@ export default function ContactPage() {
               transition={{ duration: 0.6 }}
               className="lg:col-span-2"
             >
-              <div className="relative mb-6 sm:mb-8">
-                <div className="absolute -inset-2 rounded-2xl bg-gradient-to-br from-fresh-100 to-cream-100 sm:-inset-3" />
-                <div className="relative mx-auto aspect-[3/4] w-full max-w-[240px] overflow-hidden rounded-2xl shadow-elevated xs:max-w-[260px] sm:max-w-xs">
+              <div className="v26-card mb-6 overflow-hidden bg-v26sky p-3 sm:mb-8 sm:p-4">
+                <div className="relative mx-auto aspect-[3/4] w-full max-w-[260px] overflow-hidden border-2 border-ink bg-white sm:max-w-xs">
                   <PortraitImage
                     src="/images/portrait.png"
                     alt={`${siteConfig.name} - ${t.common.portraitAlt}`}
@@ -72,46 +90,33 @@ export default function ContactPage() {
               </div>
 
               <div className="space-y-3 sm:space-y-4">
-                {[
-                  {
-                    href: `mailto:${siteConfig.email}`,
-                    icon: Mail,
-                    label: t.common.email,
-                    value: siteConfig.email,
-                  },
-                  {
-                    href: `tel:${siteConfig.phone}`,
-                    icon: Phone,
-                    label: t.common.phone,
-                    value: siteConfig.phone,
-                  },
-                ].map((item) => (
+                {contactItems.map((item) => (
                   <a
                     key={item.label}
                     href={item.href}
-                    className="group flex min-h-[var(--touch-min)] items-center gap-3 rounded-xl border border-cream-200 bg-cream-50 p-3 transition-all hover:border-fresh-200 hover:shadow-soft sm:p-4"
+                    className="v26-card group flex min-h-[var(--touch-min)] items-center gap-3 bg-paper p-3 transition-colors hover:bg-v26yellow sm:p-4"
                   >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-fresh-100 transition-colors group-hover:bg-fresh-600">
-                      <item.icon className="h-5 w-5 text-fresh-600 transition-colors group-hover:text-white" />
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center border-2 border-ink bg-white transition-colors group-hover:bg-ink group-hover:text-white">
+                      <item.icon className="h-5 w-5" />
                     </div>
                     <div className="min-w-0">
-                      <p className="text-xs text-earth-500">{item.label}</p>
-                      <p className="truncate text-sm font-medium text-earth-700">
-                        {item.value}
+                      <p className="label-font text-[10px] tracking-wider text-ink/50">
+                        {item.label}
                       </p>
+                      <p className="truncate text-sm font-semibold">{item.value}</p>
                     </div>
                   </a>
                 ))}
 
-                <div className="flex min-h-[var(--touch-min)] items-center gap-3 rounded-xl border border-cream-200 bg-cream-50 p-3 sm:p-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-fresh-100">
-                    <MapPin className="h-5 w-5 text-fresh-600" />
+                <div className="v26-card flex min-h-[var(--touch-min)] items-center gap-3 bg-paper p-3 sm:p-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center border-2 border-ink bg-white">
+                    <MapPin className="h-5 w-5" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-xs text-earth-500">{t.common.location}</p>
-                    <p className="text-sm font-medium text-earth-700">
-                      {siteConfig.location}
+                    <p className="label-font text-[10px] tracking-wider text-ink/50">
+                      {t.common.location}
                     </p>
+                    <p className="text-sm font-semibold">{siteConfig.location}</p>
                   </div>
                 </div>
 
@@ -119,16 +124,16 @@ export default function ContactPage() {
                   href={siteConfig.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex min-h-[var(--touch-min)] items-center gap-3 rounded-xl border border-cream-200 bg-cream-50 p-3 transition-all hover:border-fresh-200 hover:shadow-soft sm:p-4"
+                  className="v26-card group flex min-h-[var(--touch-min)] items-center gap-3 bg-paper p-3 transition-colors hover:bg-v26yellow sm:p-4"
                 >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-fresh-100 transition-colors group-hover:bg-fresh-600">
-                    <LinkedinIcon className="h-5 w-5 text-fresh-600 transition-colors group-hover:text-white" />
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center border-2 border-ink bg-white transition-colors group-hover:bg-ink group-hover:text-white">
+                    <LinkedinIcon className="h-5 w-5" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-xs text-earth-500">{t.common.linkedin}</p>
-                    <p className="text-sm font-medium text-earth-700">
-                      {t.common.connectLinkedIn}
+                    <p className="label-font text-[10px] tracking-wider text-ink/50">
+                      {t.common.linkedin}
                     </p>
+                    <p className="text-sm font-semibold">{t.common.connectLinkedIn}</p>
                   </div>
                 </a>
               </div>
@@ -140,32 +145,23 @@ export default function ContactPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-3"
             >
-              <div className="rounded-2xl border border-cream-200 bg-cream-50 p-4 shadow-soft sm:p-6 md:p-8">
-                <h2 className="mb-2 font-display text-xl font-semibold text-earth-700 sm:text-2xl">
-                  {t.common.sendMessage}
-                </h2>
-                <p className="mb-6 text-sm text-earth-500">
-                  {page.formDescription}
-                </p>
+              <div className="v26-card bg-paper p-4 sm:p-6 md:p-8">
+                <h2 className="display-font text-xl sm:text-2xl">{t.common.sendMessage}</h2>
+                <p className="mt-2 text-sm text-ink/70">{page.formDescription}</p>
 
                 {submitted ? (
                   <div className="py-10 text-center sm:py-12">
-                    <CheckCircle2 className="mx-auto mb-4 h-14 w-14 text-fresh-500 sm:h-16 sm:w-16" />
-                    <h3 className="mb-2 font-display text-xl font-semibold text-earth-700">
-                      {page.success.title}
-                    </h3>
-                    <p className="text-sm text-earth-600 sm:text-base">
+                    <CheckCircle2 className="mx-auto mb-4 h-14 w-14 text-v26mint sm:h-16 sm:w-16" />
+                    <h3 className="display-font text-xl">{page.success.title}</h3>
+                    <p className="mt-2 text-sm text-ink/75 sm:text-base">
                       {page.success.message}
                     </p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                  <form onSubmit={handleSubmit} className="mt-6 space-y-4 sm:space-y-5">
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
                       <div>
-                        <label
-                          htmlFor="name"
-                          className="mb-1.5 block text-sm font-medium text-earth-600"
-                        >
+                        <label htmlFor="name" className="label-font mb-1.5 block text-[10px] font-bold tracking-wider">
                           {page.form.name}
                         </label>
                         <input
@@ -176,15 +172,12 @@ export default function ContactPage() {
                           autoComplete="name"
                           value={formData.name}
                           onChange={handleChange}
-                          className="w-full rounded-xl border border-cream-300 bg-white px-4 py-3 text-base text-earth-700 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-fresh-500 sm:text-sm"
+                          className={inputClass}
                           placeholder={page.form.namePlaceholder}
                         />
                       </div>
                       <div>
-                        <label
-                          htmlFor="email"
-                          className="mb-1.5 block text-sm font-medium text-earth-600"
-                        >
+                        <label htmlFor="email" className="label-font mb-1.5 block text-[10px] font-bold tracking-wider">
                           {page.form.email}
                         </label>
                         <input
@@ -196,17 +189,14 @@ export default function ContactPage() {
                           inputMode="email"
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full rounded-xl border border-cream-300 bg-white px-4 py-3 text-base text-earth-700 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-fresh-500 sm:text-sm"
+                          className={inputClass}
                           placeholder={page.form.emailPlaceholder}
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label
-                        htmlFor="subject"
-                        className="mb-1.5 block text-sm font-medium text-earth-600"
-                      >
+                      <label htmlFor="subject" className="label-font mb-1.5 block text-[10px] font-bold tracking-wider">
                         {page.form.subject}
                       </label>
                       <input
@@ -216,16 +206,13 @@ export default function ContactPage() {
                         required
                         value={formData.subject}
                         onChange={handleChange}
-                        className="w-full rounded-xl border border-cream-300 bg-white px-4 py-3 text-base text-earth-700 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-fresh-500 sm:text-sm"
+                        className={inputClass}
                         placeholder={page.form.subjectPlaceholder}
                       />
                     </div>
 
                     <div>
-                      <label
-                        htmlFor="message"
-                        className="mb-1.5 block text-sm font-medium text-earth-600"
-                      >
+                      <label htmlFor="message" className="label-font mb-1.5 block text-[10px] font-bold tracking-wider">
                         {page.form.message}
                       </label>
                       <textarea
@@ -235,7 +222,7 @@ export default function ContactPage() {
                         rows={5}
                         value={formData.message}
                         onChange={handleChange}
-                        className="w-full resize-none rounded-xl border border-cream-300 bg-white px-4 py-3 text-base text-earth-700 transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-fresh-500 sm:text-sm"
+                        className={cn(inputClass, "resize-none")}
                         placeholder={page.form.messagePlaceholder}
                       />
                     </div>

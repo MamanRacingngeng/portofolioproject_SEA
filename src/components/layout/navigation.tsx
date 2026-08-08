@@ -14,24 +14,18 @@ import { LanguageSwitcher } from "@/components/ui/language-switcher";
 export function Navigation() {
   const { t } = useLanguage();
   const navLinks = getNavLinks(t);
-  const leftLinks = navLinks.slice(0, 2);
-  const rightLinks = navLinks.slice(2);
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const isHome = pathname === "/";
-  const isHeroOverlay = isHome && !scrolled && !isOpen;
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 56);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
+  useEffect(() => setIsOpen(false), [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -40,128 +34,61 @@ export function Navigation() {
     };
   }, [isOpen]);
 
-  const heroLinkClass = (href: string) =>
+  const linkClass = (href: string) =>
     cn(
-      "origin-nav-link px-3 py-2 transition-opacity hover:opacity-100",
-      pathname === href ? "opacity-100" : "opacity-80"
-    );
-
-  const defaultLinkClass = (href: string) =>
-    cn(
-      "relative px-2.5 py-2 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors lg:px-4 lg:text-xs",
-      pathname === href
-        ? "text-fresh-700"
-        : "text-earth-600 hover:text-fresh-700"
+      "label-font text-[11px] font-semibold tracking-[0.12em] transition-colors",
+      pathname === href ? "text-ink" : "text-ink/55 hover:text-ink"
     );
 
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-        "pt-[env(safe-area-inset-top)]",
-        isHeroOverlay
-          ? "border-b border-transparent bg-transparent"
-          : scrolled || isOpen
-            ? "border-b border-fresh-600/20 bg-cream-50/95 backdrop-blur-md"
-            : "border-b border-earth-200/40 bg-cream-50/85 backdrop-blur-sm",
-        isOpen && "border-b border-fresh-600/20 bg-cream-50"
+        "fixed top-0 left-0 right-0 z-50 border-b-2 border-ink pt-[env(safe-area-inset-top)] transition-colors",
+        scrolled || isOpen ? "bg-paper/95 backdrop-blur-md" : "bg-paper/80 backdrop-blur-sm"
       )}
     >
-      <nav
-        className={cn(
-          "mx-auto max-w-[1400px] px-6 py-5 sm:px-10",
-          isHeroOverlay && "lg:px-16 lg:py-6"
-        )}
-      >
-        <div className="hidden items-center md:grid md:grid-cols-[1fr_auto_1fr] md:gap-6">
-          <div className="flex items-center gap-1 sm:gap-3">
-            {leftLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={isHeroOverlay ? heroLinkClass(link.href) : defaultLinkClass(link.href)}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+      <nav className="container-app mx-auto flex max-w-7xl items-center justify-between gap-4 py-3 sm:py-4">
+        <Logo variant="nav" />
 
-          <div className="flex justify-center">
-            {isHeroOverlay ? (
-              <Link
-                href="/"
-                aria-label={t.brand.tagline}
-                className="flex h-4 w-4 items-center justify-center rounded-full bg-[#d9564c] shadow-[0_0_20px_rgba(217,86,76,0.65)] transition-transform hover:scale-110"
-              />
-            ) : (
-              <Logo variant="nav" showTagline={false} />
-            )}
-          </div>
-
-          <div className="flex items-center justify-end gap-1 sm:gap-3">
-            {rightLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={isHeroOverlay ? heroLinkClass(link.href) : defaultLinkClass(link.href)}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <LanguageSwitcher
-              theme={isHeroOverlay ? "origin" : "light"}
-              className={isHeroOverlay ? "ml-2" : undefined}
-            />
-          </div>
+        <div className="hidden items-center gap-6 md:flex">
+          {navLinks.map((link) => (
+            <Link key={link.href} href={link.href} className={linkClass(link.href)}>
+              {link.label}
+            </Link>
+          ))}
+          <LanguageSwitcher />
         </div>
 
-        <div className="flex items-center justify-between md:hidden">
-          {isHeroOverlay ? (
-            <Link href="/" aria-label={t.brand.tagline}>
-              <span className="block h-3 w-3 rounded-full bg-[#d9564c]" />
-            </Link>
-          ) : (
-            <Logo variant="nav" showTagline={false} />
-          )}
-
-          <div className="flex items-center gap-2">
-            <LanguageSwitcher theme={isHeroOverlay ? "origin" : "light"} />
-            <button
-              type="button"
-              className={cn(
-                "tap-target rounded-lg p-2 transition-colors",
-                isHeroOverlay
-                  ? "text-white hover:bg-white/10"
-                  : "text-earth-700 hover:bg-fresh-50"
-              )}
-              onClick={() => setIsOpen(!isOpen)}
-              aria-expanded={isOpen}
-              aria-label={isOpen ? t.common.closeMenu : t.common.openMenu}
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
+        <div className="flex items-center gap-2 md:hidden">
+          <LanguageSwitcher />
+          <button
+            type="button"
+            className="tap-target border-2 border-ink bg-v26yellow p-2 shadow-[3px_3px_0_#0e0e0e]"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-expanded={isOpen}
+            aria-label={isOpen ? t.common.closeMenu : t.common.openMenu}
+          >
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
       </nav>
 
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden border-b border-fresh-100 bg-white/98 backdrop-blur-md md:hidden"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="overflow-hidden border-t-2 border-ink bg-paper md:hidden"
           >
-            <div className="container-app mx-auto flex max-w-7xl flex-col gap-1 py-4 safe-pb">
+            <div className="container-app flex flex-col gap-1 py-4 safe-pb">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "tap-target rounded-xl px-4 py-3 text-base font-medium transition-colors",
-                    pathname === link.href
-                      ? "bg-fresh-50 text-fresh-700"
-                      : "text-earth-600 hover:bg-fresh-50"
+                    "label-font tap-target px-2 py-3 text-sm font-semibold tracking-wider",
+                    pathname === link.href ? "text-ink" : "text-ink/60"
                   )}
                 >
                   {link.label}

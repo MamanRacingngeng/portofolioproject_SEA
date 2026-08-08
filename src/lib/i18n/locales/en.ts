@@ -98,6 +98,7 @@ export const en = {
 
   home: {
     hero: {
+      portfolioLabel: "PORTFOLIO",
       classOf: "Class of",
       patentStamp: "Patent",
       subtitle: "Food Technology Student & Patent Inventor",

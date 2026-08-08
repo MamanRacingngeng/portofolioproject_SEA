@@ -13,18 +13,18 @@ export function Marquee({ items, className }: MarqueeProps) {
   return (
     <div
       className={cn(
-        "relative overflow-hidden border-y border-earth-200/80 bg-earth-800 py-3",
+        "overflow-hidden border-t-2 border-ink bg-ink py-3",
         className
       )}
     >
-      <div className="animate-marquee flex w-max gap-8 whitespace-nowrap px-4">
+      <div className="animate-marquee flex w-max gap-10 whitespace-nowrap px-4">
         {track.map((item, i) => (
           <span
             key={`${item}-${i}`}
-            className="flex items-center gap-8 font-mono text-xs uppercase tracking-[0.2em] text-cream-200/90"
+            className="label-font flex items-center gap-10 text-xs font-bold tracking-[0.2em] text-v26yellow"
           >
             {item}
-            <span className="text-wheat-400">◆</span>
+            <span className="text-white">★</span>
           </span>
         ))}
       </div>
