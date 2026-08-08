@@ -101,8 +101,6 @@ export const en = {
       classOf: "Class of",
       patentStamp: "Patent",
       subtitle: "Food Technology Student & Patent Inventor",
-      tagline:
-        "Fermentation research, local food innovation, and campus leadership at Ahmad Dahlan University.",
       explore: "Explore",
       scrollHint: "Scroll",
     },

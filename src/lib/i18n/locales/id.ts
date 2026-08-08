@@ -103,8 +103,6 @@ export const id: Dictionary = {
       classOf: "Angkatan",
       patentStamp: "Paten",
       subtitle: "Mahasiswa Teknologi Pangan & Inventor Paten",
-      tagline:
-        "Penelitian fermentasi, inovasi pangan lokal, dan kepemimpinan kampus di Universitas Ahmad Dahlan.",
       explore: "Jelajahi",
       scrollHint: "Gulir",
     },

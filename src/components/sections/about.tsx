@@ -10,8 +10,12 @@ export function AboutSection() {
   const about = t.home.about;
 
   return (
-    <section id="about" className="border-t border-earth-200/60 bg-white py-16 sm:py-24">
-      <div className="container-app mx-auto w-full max-w-7xl">
+    <section id="about" className="relative border-t border-[#061428] bg-cream-50 py-16 sm:py-24">
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#061428] to-cream-50"
+        aria-hidden
+      />
+      <div className="container-app relative mx-auto w-full max-w-7xl">
         <RevealOnScroll className="mb-12 sm:mb-16">
           <SectionHeader
             index={about.index}

@@ -9,9 +9,37 @@ export function LanguageSwitcher({
   theme = "light",
 }: {
   className?: string;
-  theme?: "light" | "dark";
+  theme?: "light" | "dark" | "origin";
 }) {
   const { locale, setLocale } = useLanguage();
+
+  if (theme === "origin") {
+    return (
+      <div
+        className={cn("inline-flex items-center gap-1.5", className)}
+        role="group"
+        aria-label="Language"
+      >
+        {(["en", "id"] as Locale[]).map((code, index) => (
+          <span key={code} className="inline-flex items-center gap-1.5">
+            {index > 0 && <span className="text-white/35">/</span>}
+            <button
+              type="button"
+              onClick={() => setLocale(code)}
+              className={cn(
+                "origin-nav-link px-1 py-0.5 transition-opacity hover:opacity-100",
+                locale === code ? "opacity-100" : "opacity-55"
+              )}
+              aria-pressed={locale === code}
+            >
+              {localeLabels[code]}
+            </button>
+          </span>
+        ))}
+      </div>
+    );
+  }
+
   const isDark = theme === "dark";
 
   return (
