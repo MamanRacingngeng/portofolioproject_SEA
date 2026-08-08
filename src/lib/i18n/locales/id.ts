@@ -101,6 +101,9 @@ export const id: Dictionary = {
   home: {
     hero: {
       portfolioLabel: "PORTOFOLIO",
+      floatingTitle: "Ilmu pangan yang lebih baik untuk lebih banyak orang",
+      floatingDescription:
+        "Mahasiswa Teknologi Pangan dan inventor paten — mengubah bahan lokal seperti sacha inchi menjadi produk fermentasi inovatif melalui riset di Universitas Ahmad Dahlan.",
       classOf: "Angkatan",
       patentStamp: "Paten",
       subtitle: "Mahasiswa Teknologi Pangan & Inventor Paten",

@@ -9,11 +9,11 @@ export default function NotFound() {
   const page = t.pages.notFound;
 
   return (
-    <div className="flex min-h-[60vh] items-center justify-center border-b-2 border-ink bg-paper px-6">
-      <div className="v26-card max-w-md bg-white p-8 text-center sm:p-12">
-        <p className="display-font text-6xl text-v26coral sm:text-7xl">404</p>
-        <h1 className="display-font mt-4 text-2xl sm:text-3xl">{page.title}</h1>
-        <p className="mt-3 text-sm text-ink/70 sm:text-base">{page.description}</p>
+    <div className="flex min-h-[60vh] items-center justify-center border-b border-border bg-background px-6">
+      <div className="max-w-md rounded-xl border border-border bg-card p-8 text-center shadow-sm sm:p-12">
+        <p className="text-6xl font-bold text-primary sm:text-7xl">404</p>
+        <h1 className="mt-4 text-2xl font-bold sm:text-3xl">{page.title}</h1>
+        <p className="mt-3 text-sm text-muted-foreground sm:text-base">{page.description}</p>
         <Link href="/" className="mt-8 inline-block">
           <Button size="lg">{page.returnHome}</Button>
         </Link>

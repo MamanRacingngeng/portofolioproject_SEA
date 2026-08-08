@@ -4,6 +4,7 @@ import Image from "next/image";
 import { getActivityImage, type ActivityImageKey } from "@/data/activities";
 import { useLanguage } from "@/components/providers/language-provider";
 import { SectionHeader } from "@/components/ui/section-header";
+import { Badge } from "@/components/ui/badge";
 import { RevealOnScroll, StaggerContainer, StaggerItem } from "@/components/motion/animations";
 
 export function ExperienceSection() {
@@ -12,7 +13,7 @@ export function ExperienceSection() {
   const typeLabels = exp.typeLabels;
 
   return (
-    <section id="experience" className="border-b-2 border-ink bg-paper py-16 sm:py-24">
+    <section id="experience" className="border-b border-border bg-muted/20 py-16 sm:py-24">
       <div className="container-app mx-auto max-w-7xl">
         <RevealOnScroll className="mb-12">
           <SectionHeader
@@ -33,40 +34,42 @@ export function ExperienceSection() {
 
             return (
               <StaggerItem key={item.id}>
-                <article className="v26-card overflow-hidden bg-white">
+                <article className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
                   <div className="grid gap-0 lg:grid-cols-[1fr_auto]">
                     <div className="p-5 sm:p-6">
                       <div className="mb-3 flex flex-wrap items-start justify-between gap-3">
                         <div>
-                          <span className="label-font text-xs font-bold text-v26coral">
+                          <span className="text-xs font-bold text-primary">
                             {String(index + 1).padStart(2, "0")}
                           </span>
-                          <h3 className="display-font mt-1 text-xl sm:text-2xl">{item.position}</h3>
-                          <p className="mt-1 text-sm font-semibold text-ink/70">{item.institution}</p>
+                          <h3 className="mt-1 text-xl font-semibold sm:text-2xl">{item.position}</h3>
+                          <p className="mt-1 text-sm font-medium text-muted-foreground">
+                            {item.institution}
+                          </p>
                         </div>
-                        <span className="v26-sticker bg-v26sky text-[10px]">
+                        <Badge variant="secondary">
                           {typeLabels[item.type as keyof typeof typeLabels]}
-                        </span>
+                        </Badge>
                       </div>
-                      <p className="label-font mb-4 text-[10px] tracking-wider text-ink/50">
+                      <p className="mb-4 text-xs tracking-wider text-muted-foreground">
                         {item.duration} · {item.location}
                       </p>
-                      <ul className="space-y-1.5 text-sm text-ink/80">
+                      <ul className="space-y-1.5 text-sm text-muted-foreground">
                         {item.responsibilities.slice(0, 3).map((resp) => (
                           <li key={resp} className="flex gap-2">
-                            <span className="text-v26coral">→</span>
+                            <span className="text-primary">→</span>
                             {resp}
                           </li>
                         ))}
                       </ul>
                       {item.achievements[0] && (
-                        <p className="mt-4 border-l-4 border-v26yellow pl-3 text-sm font-medium">
+                        <p className="mt-4 border-l-2 border-primary pl-3 text-sm font-medium">
                           {item.achievements[0]}
                         </p>
                       )}
                     </div>
                     {imageSrc && (
-                      <div className="relative min-h-[200px] border-t-2 border-ink lg:min-h-0 lg:w-56 lg:border-l-2 lg:border-t-0 xl:w-64">
+                      <div className="relative min-h-[200px] border-t border-border lg:min-h-0 lg:w-56 lg:border-l lg:border-t-0 xl:w-64">
                         <Image src={imageSrc} alt={item.position} fill className="object-cover" sizes="256px" />
                       </div>
                     )}

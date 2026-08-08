@@ -4,6 +4,7 @@ import Image from "next/image";
 import { getActivities } from "@/data/activities";
 import { useLanguage } from "@/components/providers/language-provider";
 import { SectionHeader } from "@/components/ui/section-header";
+import { Badge } from "@/components/ui/badge";
 import { RevealOnScroll, StaggerContainer, StaggerItem } from "@/components/motion/animations";
 import { cn } from "@/lib/utils";
 
@@ -13,7 +14,7 @@ export function ActivitiesSection() {
   const items = getActivities(t);
 
   return (
-    <section id="activities" className="border-b-2 border-ink bg-v26sky/30 py-16 sm:py-24">
+    <section id="activities" className="border-b border-border bg-background py-16 sm:py-24">
       <div className="container-app mx-auto max-w-7xl">
         <RevealOnScroll className="mb-12">
           <SectionHeader
@@ -34,10 +35,10 @@ export function ActivitiesSection() {
                 item.span === "small" && "lg:col-span-4"
               )}
             >
-              <figure className="v26-card group overflow-hidden bg-white">
+              <figure className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm">
                 <div
                   className={cn(
-                    "relative overflow-hidden border-b-2 border-ink",
+                    "relative overflow-hidden",
                     item.span === "large" ? "aspect-[16/10]" : "aspect-[4/3]"
                   )}
                 >
@@ -48,13 +49,11 @@ export function ActivitiesSection() {
                     sizes="(max-width: 1024px) 100vw, 33vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <span className="v26-sticker absolute left-3 top-3 bg-v26yellow text-[9px]">
-                    {item.category}
-                  </span>
+                  <Badge className="absolute left-3 top-3">{item.category}</Badge>
                 </div>
                 <figcaption className="p-4 sm:p-5">
-                  <h3 className="display-font text-base sm:text-lg">{item.title}</h3>
-                  <p className="mt-2 text-sm text-ink/70">{item.caption}</p>
+                  <h3 className="text-base font-semibold sm:text-lg">{item.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{item.caption}</p>
                 </figcaption>
               </figure>
             </StaggerItem>

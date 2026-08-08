@@ -99,6 +99,9 @@ export const en = {
   home: {
     hero: {
       portfolioLabel: "PORTFOLIO",
+      floatingTitle: "Better food science for more people",
+      floatingDescription:
+        "Food Technology student and patent inventor — turning local ingredients like sacha inchi into innovative fermented products through research at Ahmad Dahlan University.",
       classOf: "Class of",
       patentStamp: "Patent",
       subtitle: "Food Technology Student & Patent Inventor",

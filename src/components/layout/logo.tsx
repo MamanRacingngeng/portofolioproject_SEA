@@ -12,15 +12,14 @@ interface LogoProps {
 
 export function Logo({ variant = "nav", className }: LogoProps) {
   const { t } = useLanguage();
-  const year = new Date().getFullYear();
 
   if (variant === "hero") {
     return (
       <Link href="/" className={cn("group inline-block", className)}>
-        <p className="label-font text-xs font-bold tracking-[0.35em] text-ink/60">
-          {t.home.hero.portfolioLabel} {year}
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+          {t.home.hero.portfolioLabel} {new Date().getFullYear()}
         </p>
-        <p className="display-font mt-2 text-5xl leading-none text-ink sm:text-7xl lg:text-8xl">
+        <p className="mt-2 text-5xl font-bold tracking-tight text-primary sm:text-7xl">
           {siteConfig.brand.wordmark}
         </p>
       </Link>
@@ -33,10 +32,10 @@ export function Logo({ variant = "nav", className }: LogoProps) {
       className={cn("group inline-flex flex-col gap-0.5", className)}
       aria-label={`${siteConfig.brand.wordmark} — ${t.brand.tagline}`}
     >
-      <span className="display-font text-xl leading-none text-ink sm:text-2xl">
+      <span className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
         {siteConfig.brand.wordmark}
       </span>
-      <span className="label-font text-[9px] font-semibold tracking-[0.18em] text-ink/50">
+      <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
         {t.brand.tagline}
       </span>
     </Link>

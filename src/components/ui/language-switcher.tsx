@@ -10,7 +10,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "inline-flex border-2 border-ink bg-white shadow-[3px_3px_0_#0e0e0e]",
+        "inline-flex overflow-hidden rounded-md border border-border bg-background",
         className
       )}
       role="group"
@@ -22,8 +22,10 @@ export function LanguageSwitcher({ className }: { className?: string }) {
           type="button"
           onClick={() => setLocale(code)}
           className={cn(
-            "label-font min-w-[2.5rem] px-2.5 py-1.5 text-[10px] font-bold tracking-wider transition-colors",
-            locale === code ? "bg-v26yellow text-ink" : "text-ink/60 hover:bg-ink/5"
+            "min-w-[2.5rem] px-2.5 py-1.5 text-xs font-medium transition-colors",
+            locale === code
+              ? "bg-primary text-primary-foreground"
+              : "text-muted-foreground hover:bg-muted"
           )}
           aria-pressed={locale === code}
         >

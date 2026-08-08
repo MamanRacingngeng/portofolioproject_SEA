@@ -22,10 +22,10 @@ type FilterKey = "all" | BlogCategoryKey;
 
 const filterBtn = (active: boolean) =>
   cn(
-    "label-font shrink-0 border-2 border-ink px-3 py-2 text-[10px] font-bold uppercase tracking-wider transition-all tap-target sm:px-4 sm:text-xs",
+    "shrink-0 rounded-md border px-3 py-2 text-xs font-medium transition-colors tap-target sm:px-4 sm:text-sm",
     active
-      ? "bg-v26yellow shadow-[3px_3px_0_#0e0e0e]"
-      : "bg-white hover:bg-paper"
+      ? "border-primary bg-primary text-primary-foreground"
+      : "border-border bg-background text-muted-foreground hover:bg-muted"
   );
 
 export default function BlogPage() {
@@ -49,11 +49,7 @@ export default function BlogPage() {
 
   return (
     <PageShell>
-      <PageHero
-        label={page.label}
-        title={page.title}
-        description={page.description}
-      />
+      <PageHero label={page.label} title={page.title} description={page.description} />
 
       <StickyBar>
         <div className="scrollbar-hide flex gap-2 overflow-x-auto pb-1">
@@ -70,16 +66,16 @@ export default function BlogPage() {
         </div>
       </StickyBar>
 
-      <section className="border-b-2 border-ink bg-paper py-12 sm:py-16">
+      <section className="border-b border-border bg-background py-12 sm:py-16">
         <PageContainer>
           {filtered.length > 0 && (
             <motion.article
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="v26-card mb-8 overflow-hidden bg-white sm:mb-12"
+              className="mb-8 overflow-hidden rounded-xl border border-border bg-card shadow-sm sm:mb-12"
             >
               <div className="grid grid-cols-1 md:grid-cols-2">
-                <div className="relative min-h-[200px] border-b-2 border-ink md:min-h-[280px] md:border-b-0 md:border-r-2">
+                <div className="relative min-h-[200px] md:min-h-[280px]">
                   <Image
                     src={filtered[0].image}
                     alt={filtered[0].title}
@@ -90,13 +86,13 @@ export default function BlogPage() {
                 </div>
                 <div className="flex flex-col justify-center p-5 sm:p-8">
                   <Badge className="mb-3 w-fit">{filtered[0].category}</Badge>
-                  <h2 className="display-font mb-3 break-anywhere text-xl sm:text-2xl">
+                  <h2 className="mb-3 break-anywhere text-xl font-bold sm:text-2xl">
                     {filtered[0].title}
                   </h2>
-                  <p className="mb-4 line-clamp-3 text-sm leading-relaxed text-ink/75">
+                  <p className="mb-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
                     {filtered[0].excerpt}
                   </p>
-                  <div className="mb-4 flex flex-wrap items-center gap-3 text-xs text-ink/55">
+                  <div className="mb-4 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
                     <span className="flex items-center gap-1">
                       <Calendar className="h-3.5 w-3.5" />
                       {formatDate(filtered[0].date)}
@@ -108,7 +104,7 @@ export default function BlogPage() {
                   </div>
                   <Link
                     href={`/blog/${filtered[0].slug}`}
-                    className="label-font inline-flex min-h-[var(--touch-min)] items-center gap-1 text-xs font-bold tracking-wider hover:underline"
+                    className="inline-flex min-h-[var(--touch-min)] items-center gap-1 text-sm font-medium text-primary hover:underline"
                   >
                     {t.common.readArticle}
                     <ArrowRight className="h-4 w-4" />
@@ -125,9 +121,9 @@ export default function BlogPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="v26-card group overflow-hidden bg-white"
+                className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm"
               >
-                <div className="relative h-44 overflow-hidden border-b-2 border-ink sm:h-48">
+                <div className="relative h-44 overflow-hidden sm:h-48">
                   <Image
                     src={post.image}
                     alt={post.title}
@@ -140,17 +136,19 @@ export default function BlogPage() {
                   <Badge variant="outline" className="mb-3">
                     {post.category}
                   </Badge>
-                  <h3 className="display-font mb-2 line-clamp-2 text-base sm:text-lg">
+                  <h3 className="mb-2 line-clamp-2 text-base font-semibold sm:text-lg">
                     {post.title}
                   </h3>
-                  <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-ink/75">
+                  <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
                     {post.excerpt}
                   </p>
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs text-ink/55">{formatDate(post.date)}</span>
+                    <span className="text-xs text-muted-foreground">
+                      {formatDate(post.date)}
+                    </span>
                     <Link
                       href={`/blog/${post.slug}`}
-                      className="label-font flex min-h-[var(--touch-min)] items-center gap-1 text-xs font-bold tracking-wider hover:underline"
+                      className="flex min-h-[var(--touch-min)] items-center gap-1 text-sm font-medium text-primary hover:underline"
                     >
                       {t.common.read}
                       <ArrowRight className="h-3.5 w-3.5" />

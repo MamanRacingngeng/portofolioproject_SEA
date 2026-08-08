@@ -22,7 +22,7 @@ import {
 import { cn } from "@/lib/utils";
 
 const inputClass =
-  "w-full border-2 border-ink bg-white px-4 py-3 text-base text-ink transition-all focus:outline-none focus:ring-2 focus:ring-v26yellow sm:text-sm";
+  "w-full rounded-md border border-input bg-background px-4 py-3 text-base text-foreground transition-all focus:outline-none focus:ring-2 focus:ring-ring sm:text-sm";
 
 export default function ContactPage() {
   const { t } = useLanguage();
@@ -63,13 +63,9 @@ export default function ContactPage() {
 
   return (
     <PageShell>
-      <PageHero
-        label={page.label}
-        title={page.title}
-        description={page.description}
-      />
+      <PageHero label={page.label} title={page.title} description={page.description} />
 
-      <section className="border-b-2 border-ink bg-white py-12 sm:py-16">
+      <section className="border-b border-border bg-background py-12 sm:py-16">
         <PageContainer size="wide">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-5 lg:gap-12">
             <motion.div
@@ -78,8 +74,8 @@ export default function ContactPage() {
               transition={{ duration: 0.6 }}
               className="lg:col-span-2"
             >
-              <div className="v26-card mb-6 overflow-hidden bg-v26sky p-3 sm:mb-8 sm:p-4">
-                <div className="relative mx-auto aspect-[3/4] w-full max-w-[260px] overflow-hidden border-2 border-ink bg-white sm:max-w-xs">
+              <div className="mb-6 overflow-hidden rounded-xl border border-border bg-muted/30 p-3 sm:mb-8 sm:p-4">
+                <div className="relative mx-auto aspect-[3/4] w-full max-w-[260px] overflow-hidden rounded-lg bg-background sm:max-w-xs">
                   <PortraitImage
                     src="/images/portrait.png"
                     alt={`${siteConfig.name} - ${t.common.portraitAlt}`}
@@ -94,29 +90,25 @@ export default function ContactPage() {
                   <a
                     key={item.label}
                     href={item.href}
-                    className="v26-card group flex min-h-[var(--touch-min)] items-center gap-3 bg-paper p-3 transition-colors hover:bg-v26yellow sm:p-4"
+                    className="group flex min-h-[var(--touch-min)] items-center gap-3 rounded-xl border border-border bg-card p-3 transition-colors hover:bg-muted/50 sm:p-4"
                   >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center border-2 border-ink bg-white transition-colors group-hover:bg-ink group-hover:text-white">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                       <item.icon className="h-5 w-5" />
                     </div>
                     <div className="min-w-0">
-                      <p className="label-font text-[10px] tracking-wider text-ink/50">
-                        {item.label}
-                      </p>
-                      <p className="truncate text-sm font-semibold">{item.value}</p>
+                      <p className="text-xs text-muted-foreground">{item.label}</p>
+                      <p className="truncate text-sm font-medium">{item.value}</p>
                     </div>
                   </a>
                 ))}
 
-                <div className="v26-card flex min-h-[var(--touch-min)] items-center gap-3 bg-paper p-3 sm:p-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center border-2 border-ink bg-white">
+                <div className="flex min-h-[var(--touch-min)] items-center gap-3 rounded-xl border border-border bg-card p-3 sm:p-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">
                     <MapPin className="h-5 w-5" />
                   </div>
                   <div className="min-w-0">
-                    <p className="label-font text-[10px] tracking-wider text-ink/50">
-                      {t.common.location}
-                    </p>
-                    <p className="text-sm font-semibold">{siteConfig.location}</p>
+                    <p className="text-xs text-muted-foreground">{t.common.location}</p>
+                    <p className="text-sm font-medium">{siteConfig.location}</p>
                   </div>
                 </div>
 
@@ -124,16 +116,14 @@ export default function ContactPage() {
                   href={siteConfig.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="v26-card group flex min-h-[var(--touch-min)] items-center gap-3 bg-paper p-3 transition-colors hover:bg-v26yellow sm:p-4"
+                  className="group flex min-h-[var(--touch-min)] items-center gap-3 rounded-xl border border-border bg-card p-3 transition-colors hover:bg-muted/50 sm:p-4"
                 >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center border-2 border-ink bg-white transition-colors group-hover:bg-ink group-hover:text-white">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                     <LinkedinIcon className="h-5 w-5" />
                   </div>
                   <div className="min-w-0">
-                    <p className="label-font text-[10px] tracking-wider text-ink/50">
-                      {t.common.linkedin}
-                    </p>
-                    <p className="text-sm font-semibold">{t.common.connectLinkedIn}</p>
+                    <p className="text-xs text-muted-foreground">{t.common.linkedin}</p>
+                    <p className="text-sm font-medium">{t.common.connectLinkedIn}</p>
                   </div>
                 </a>
               </div>
@@ -145,15 +135,15 @@ export default function ContactPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-3"
             >
-              <div className="v26-card bg-paper p-4 sm:p-6 md:p-8">
-                <h2 className="display-font text-xl sm:text-2xl">{t.common.sendMessage}</h2>
-                <p className="mt-2 text-sm text-ink/70">{page.formDescription}</p>
+              <div className="rounded-xl border border-border bg-card p-4 shadow-sm sm:p-6 md:p-8">
+                <h2 className="text-xl font-bold sm:text-2xl">{t.common.sendMessage}</h2>
+                <p className="mt-2 text-sm text-muted-foreground">{page.formDescription}</p>
 
                 {submitted ? (
                   <div className="py-10 text-center sm:py-12">
-                    <CheckCircle2 className="mx-auto mb-4 h-14 w-14 text-v26mint sm:h-16 sm:w-16" />
-                    <h3 className="display-font text-xl">{page.success.title}</h3>
-                    <p className="mt-2 text-sm text-ink/75 sm:text-base">
+                    <CheckCircle2 className="mx-auto mb-4 h-14 w-14 text-emerald-500 sm:h-16 sm:w-16" />
+                    <h3 className="text-xl font-bold">{page.success.title}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground sm:text-base">
                       {page.success.message}
                     </p>
                   </div>
@@ -161,7 +151,7 @@ export default function ContactPage() {
                   <form onSubmit={handleSubmit} className="mt-6 space-y-4 sm:space-y-5">
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
                       <div>
-                        <label htmlFor="name" className="label-font mb-1.5 block text-[10px] font-bold tracking-wider">
+                        <label htmlFor="name" className="mb-1.5 block text-sm font-medium">
                           {page.form.name}
                         </label>
                         <input
@@ -177,7 +167,7 @@ export default function ContactPage() {
                         />
                       </div>
                       <div>
-                        <label htmlFor="email" className="label-font mb-1.5 block text-[10px] font-bold tracking-wider">
+                        <label htmlFor="email" className="mb-1.5 block text-sm font-medium">
                           {page.form.email}
                         </label>
                         <input
@@ -196,7 +186,7 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <label htmlFor="subject" className="label-font mb-1.5 block text-[10px] font-bold tracking-wider">
+                      <label htmlFor="subject" className="mb-1.5 block text-sm font-medium">
                         {page.form.subject}
                       </label>
                       <input
@@ -212,7 +202,7 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <label htmlFor="message" className="label-font mb-1.5 block text-[10px] font-bold tracking-wider">
+                      <label htmlFor="message" className="mb-1.5 block text-sm font-medium">
                         {page.form.message}
                       </label>
                       <textarea

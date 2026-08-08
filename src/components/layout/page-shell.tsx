@@ -10,7 +10,7 @@ interface PageShellProps {
 
 export function PageShell({ children, className }: PageShellProps) {
   return (
-    <div className={cn("min-h-screen bg-paper pt-[var(--header-height)]", className)}>
+    <div className={cn("min-h-screen bg-background pt-[var(--header-height)]", className)}>
       {children}
     </div>
   );
@@ -48,7 +48,7 @@ interface PageHeroProps {
 
 export function PageHero({ label, title, description }: PageHeroProps) {
   return (
-    <section className="border-b-2 border-ink bg-v26yellow py-12 sm:py-16">
+    <section className="border-b border-border bg-muted/30 py-12 sm:py-16">
       <PageContainer>
         <SectionHeader index="—" label={label} title={title} description={description} />
       </PageContainer>
@@ -58,7 +58,7 @@ export function PageHero({ label, title, description }: PageHeroProps) {
 
 export function StickyBar({ children }: { children: React.ReactNode }) {
   return (
-    <section className="sticky-bar sticky z-40 border-b-2 border-ink bg-paper py-3">
+    <section className="sticky-bar sticky z-40 border-b border-border bg-background/95 py-3 backdrop-blur-sm">
       <PageContainer>{children}</PageContainer>
     </section>
   );

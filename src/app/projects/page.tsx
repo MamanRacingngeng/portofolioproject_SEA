@@ -21,10 +21,10 @@ type FilterKey = "all" | ProjectCategoryKey;
 
 const filterBtn = (active: boolean) =>
   cn(
-    "label-font shrink-0 border-2 border-ink px-3 py-2 text-[10px] font-bold uppercase tracking-wider transition-all tap-target sm:px-4 sm:text-xs",
+    "shrink-0 rounded-md border px-3 py-2 text-xs font-medium transition-colors tap-target sm:px-4 sm:text-sm",
     active
-      ? "bg-v26yellow shadow-[3px_3px_0_#0e0e0e]"
-      : "bg-white hover:bg-paper"
+      ? "border-primary bg-primary text-primary-foreground"
+      : "border-border bg-background text-muted-foreground hover:bg-muted"
   );
 
 export default function ProjectsPage() {
@@ -48,15 +48,11 @@ export default function ProjectsPage() {
 
   return (
     <PageShell>
-      <PageHero
-        label={page.label}
-        title={page.title}
-        description={page.description}
-      />
+      <PageHero label={page.label} title={page.title} description={page.description} />
 
       <StickyBar>
         <div className="scrollbar-hide flex items-center gap-2 overflow-x-auto pb-1">
-          <Filter className="h-4 w-4 shrink-0 text-ink/40" />
+          <Filter className="h-4 w-4 shrink-0 text-muted-foreground" />
           {categories.map((cat) => (
             <button
               key={cat.key}
@@ -70,7 +66,7 @@ export default function ProjectsPage() {
         </div>
       </StickyBar>
 
-      <section className="border-b-2 border-ink bg-paper py-12 sm:py-16">
+      <section className="border-b border-border bg-background py-12 sm:py-16">
         <PageContainer>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
             {filtered.map((project, index) => (
@@ -79,9 +75,9 @@ export default function ProjectsPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="v26-card group overflow-hidden bg-white"
+                className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm"
               >
-                <div className="relative h-48 overflow-hidden border-b-2 border-ink sm:h-56">
+                <div className="relative h-48 overflow-hidden sm:h-56">
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -95,16 +91,16 @@ export default function ProjectsPage() {
                 </div>
 
                 <div className="p-4 sm:p-6">
-                  <h2 className="display-font mb-2 break-anywhere text-lg sm:text-xl">
+                  <h2 className="mb-2 break-anywhere text-lg font-semibold sm:text-xl">
                     {project.title}
                   </h2>
-                  <p className="mb-4 text-sm leading-relaxed text-ink/75">
+                  <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
                     {project.shortDescription}
                   </p>
 
                   <Link
                     href={`/projects/${project.slug}`}
-                    className="label-font inline-flex min-h-[var(--touch-min)] items-center gap-1 text-xs font-bold tracking-wider hover:underline"
+                    className="inline-flex min-h-[var(--touch-min)] items-center gap-1 text-sm font-medium text-primary hover:underline"
                   >
                     {t.common.viewCaseStudy}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

@@ -10,6 +10,7 @@ import { getNavLinks } from "@/lib/i18n/content";
 import { useLanguage } from "@/components/providers/language-provider";
 import { Logo } from "@/components/layout/logo";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
+import { Button } from "@/components/ui/button";
 
 export function Navigation() {
   const { t } = useLanguage();
@@ -36,15 +37,15 @@ export function Navigation() {
 
   const linkClass = (href: string) =>
     cn(
-      "label-font text-[11px] font-semibold tracking-[0.12em] transition-colors",
-      pathname === href ? "text-ink" : "text-ink/55 hover:text-ink"
+      "text-sm font-medium transition-colors",
+      pathname === href ? "text-primary" : "text-muted-foreground hover:text-foreground"
     );
 
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 border-b-2 border-ink pt-[env(safe-area-inset-top)] transition-colors",
-        scrolled || isOpen ? "bg-paper/95 backdrop-blur-md" : "bg-paper/80 backdrop-blur-sm"
+        "fixed left-0 right-0 top-0 z-50 border-b border-border pt-[env(safe-area-inset-top)] transition-colors",
+        scrolled || isOpen ? "bg-background/95 backdrop-blur-md" : "bg-background/80 backdrop-blur-sm"
       )}
     >
       <nav className="container-app mx-auto flex max-w-7xl items-center justify-between gap-4 py-3 sm:py-4">
@@ -57,19 +58,22 @@ export function Navigation() {
             </Link>
           ))}
           <LanguageSwitcher />
+          <Link href="/contact">
+            <Button size="sm">{t.nav.contactShort}</Button>
+          </Link>
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
           <LanguageSwitcher />
-          <button
-            type="button"
-            className="tap-target border-2 border-ink bg-v26yellow p-2 shadow-[3px_3px_0_#0e0e0e]"
+          <Button
+            variant="outline"
+            size="icon"
             onClick={() => setIsOpen(!isOpen)}
             aria-expanded={isOpen}
             aria-label={isOpen ? t.common.closeMenu : t.common.openMenu}
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+          </Button>
         </div>
       </nav>
 
@@ -79,7 +83,7 @@ export function Navigation() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden border-t-2 border-ink bg-paper md:hidden"
+            className="overflow-hidden border-t border-border bg-background md:hidden"
           >
             <div className="container-app flex flex-col gap-1 py-4 safe-pb">
               {navLinks.map((link) => (
@@ -87,13 +91,16 @@ export function Navigation() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "label-font tap-target px-2 py-3 text-sm font-semibold tracking-wider",
-                    pathname === link.href ? "text-ink" : "text-ink/60"
+                    "tap-target rounded-md px-2 py-3 text-sm font-medium",
+                    pathname === link.href ? "text-primary" : "text-muted-foreground"
                   )}
                 >
                   {link.label}
                 </Link>
               ))}
+              <Link href="/contact" className="px-2 pt-2">
+                <Button className="w-full">{t.nav.contactShort}</Button>
+              </Link>
             </div>
           </motion.div>
         )}
