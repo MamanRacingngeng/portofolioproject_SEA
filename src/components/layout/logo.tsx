@@ -7,26 +7,42 @@ import { useLanguage } from "@/components/providers/language-provider";
 
 interface LogoProps {
   variant?: "nav" | "footer" | "hero";
+  light?: boolean;
   className?: string;
 }
 
-export function Logo({ variant = "nav", className }: LogoProps) {
+export function Logo({ variant = "nav", light = false, className }: LogoProps) {
   const { t } = useLanguage();
 
   return (
     <Link
       href="/"
-      className={cn("group inline-block", className)}
+      className={cn("group inline-flex items-center gap-2.5", className)}
       aria-label={`${siteConfig.brand.wordmark} — ${t.brand.tagline}`}
     >
-      <span className="font-serif text-xl tracking-tight text-foreground sm:text-2xl">
-        {siteConfig.brand.wordmark}
+      <span
+        className={cn(
+          "flex h-9 w-9 items-center justify-center rounded-xl font-display text-sm font-extrabold transition-transform group-hover:scale-105",
+          light ? "bg-white text-mint-dark" : "bg-mint text-white"
+        )}
+      >
+        G
       </span>
-      {variant !== "nav" && (
-        <span className="mt-0.5 block text-[10px] uppercase tracking-widest text-muted-foreground">
-          {t.brand.tagline}
+      <span className="flex flex-col">
+        <span
+          className={cn(
+            "font-display text-lg font-bold leading-none",
+            light ? "text-white" : "text-foreground"
+          )}
+        >
+          {siteConfig.brand.wordmark}
         </span>
-      )}
+        {variant !== "nav" && (
+          <span className={cn("text-[10px] font-medium", light ? "text-emerald-100" : "text-muted-foreground")}>
+            {t.brand.tagline}
+          </span>
+        )}
+      </span>
     </Link>
   );
 }

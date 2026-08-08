@@ -2,21 +2,24 @@ import { cn } from "@/lib/utils";
 
 interface BadgeProps {
   children: React.ReactNode;
-  variant?: "default" | "muted" | "outline" | "published" | "submitted" | "in-progress";
+  variant?: "mint" | "honey" | "coral" | "violet" | "muted" | "outline" | "published" | "submitted" | "in-progress";
   className?: string;
 }
 
-export function Badge({ children, variant = "default", className }: BadgeProps) {
+export function Badge({ children, variant = "mint", className }: BadgeProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center border px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide",
-        variant === "default" && "border-forest/20 bg-forest-light text-forest",
-        variant === "muted" && "border-border bg-secondary text-muted-foreground",
-        variant === "outline" && "border-border bg-card text-foreground",
-        variant === "published" && "border-emerald-200 bg-emerald-50 text-emerald-800",
-        variant === "submitted" && "border-amber-200 bg-amber-50 text-amber-800",
-        variant === "in-progress" && "border-sky-200 bg-sky-50 text-sky-800",
+        "inline-flex items-center rounded-lg px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide",
+        variant === "mint" && "bg-mint-light text-mint-dark",
+        variant === "honey" && "bg-honey-light text-amber-900",
+        variant === "coral" && "bg-coral-light text-orange-900",
+        variant === "violet" && "bg-violet-100 text-violet-800",
+        variant === "muted" && "bg-muted text-muted-foreground",
+        variant === "outline" && "border-2 border-border bg-white text-foreground",
+        variant === "published" && "bg-emerald-100 text-emerald-800",
+        variant === "submitted" && "bg-amber-100 text-amber-800",
+        variant === "in-progress" && "bg-sky-100 text-sky-800",
         className
       )}
     >

@@ -13,25 +13,20 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-auto border-t border-border bg-card">
+    <footer className="band-mint mt-auto text-white">
       <div className="container-app mx-auto max-w-7xl py-12 sm:py-16">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div>
-            <Logo variant="footer" />
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              {t.site.summary}
-            </p>
+            <Logo variant="footer" light />
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-emerald-100/90">{t.site.summary}</p>
           </div>
 
           <div>
-            <p className="section-eyebrow mb-4">{t.footer.navigation}</p>
+            <p className="mb-4 text-xs font-bold uppercase tracking-wider text-honey">{t.footer.navigation}</p>
             <ul className="space-y-2">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                  >
+                  <Link href={link.href} className="text-sm text-emerald-50 hover:text-white">
                     {link.label}
                   </Link>
                 </li>
@@ -40,25 +35,25 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="section-eyebrow mb-4">{t.common.contact}</p>
-            <ul className="space-y-3 text-sm text-muted-foreground">
+            <p className="mb-4 text-xs font-bold uppercase tracking-wider text-honey">{t.common.contact}</p>
+            <ul className="space-y-3 text-sm text-emerald-50">
               <li className="flex items-start gap-2">
-                <Mail className="mt-0.5 h-4 w-4 shrink-0" />
-                <a href={`mailto:${siteConfig.email}`} className="hover:text-foreground">
+                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-honey" />
+                <a href={`mailto:${siteConfig.email}`} className="hover:text-white">
                   {siteConfig.email}
                 </a>
               </li>
               <li className="flex items-start gap-2">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-honey" />
                 {siteConfig.location}
               </li>
               <li className="flex items-start gap-2">
-                <LinkedinIcon className="mt-0.5 h-4 w-4 shrink-0" />
+                <LinkedinIcon className="mt-0.5 h-4 w-4 shrink-0 text-honey" />
                 <a
                   href={siteConfig.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-foreground"
+                  className="hover:text-white"
                 >
                   LinkedIn
                 </a>
@@ -67,10 +62,9 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="editorial-rule mt-10" />
-        <p className="mt-6 text-xs text-muted-foreground">
+        <div className="mt-10 border-t border-white/20 pt-6 text-xs text-emerald-100/80">
           © {year} {siteConfig.name}. {t.footer.rights}
-        </p>
+        </div>
       </div>
     </footer>
   );

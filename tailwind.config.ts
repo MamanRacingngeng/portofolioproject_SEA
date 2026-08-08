@@ -36,32 +36,35 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        forest: {
-          DEFAULT: "#2a4d3a",
-          light: "#e8f0eb",
-          dark: "#1e3829",
+        mint: {
+          DEFAULT: "#059669",
+          light: "#d1fae5",
+          dark: "#064e3b",
         },
-        clay: {
-          DEFAULT: "#b85c38",
-          light: "#f5ebe4",
+        honey: {
+          DEFAULT: "#f59e0b",
+          light: "#fef3c7",
         },
-        paper: "#f6f3ec",
-        ink: {
-          DEFAULT: "#1a1916",
-          muted: "#5c574f",
+        coral: {
+          DEFAULT: "#ea580c",
+          light: "#ffedd5",
         },
+        cream: "#fffbf5",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
-        serif: ["var(--font-serif)", "Georgia", "serif"],
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        md: "calc(var(--radius) - 4px)",
+        sm: "calc(var(--radius) - 8px)",
+        "2xl": "1rem",
+        "3xl": "1.5rem",
       },
-      maxWidth: {
-        prose: "42rem",
+      boxShadow: {
+        lift: "0 12px 40px -12px rgba(6, 78, 59, 0.25)",
+        honey: "0 12px 40px -12px rgba(245, 158, 11, 0.35)",
       },
     },
   },

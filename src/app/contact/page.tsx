@@ -14,6 +14,7 @@ import { siteConfig } from "@/data/site";
 import { useLanguage } from "@/components/providers/language-provider";
 import { Button } from "@/components/ui/button";
 import { PortraitImage } from "@/components/ui/portrait-image";
+import { SurfaceCard } from "@/components/ui/surface-card";
 import {
   PageShell,
   PageContainer,
@@ -22,7 +23,7 @@ import {
 import { cn } from "@/lib/utils";
 
 const inputClass =
-  "w-full border border-border bg-card px-4 py-3 text-base text-foreground transition-colors focus:outline-none focus:ring-2 focus:ring-ring sm:text-sm";
+  "w-full rounded-xl border-2 border-border bg-white px-4 py-3 text-base text-foreground transition-colors focus:border-mint focus:outline-none focus:ring-2 focus:ring-mint/20 sm:text-sm";
 
 export default function ContactPage() {
   const { t } = useLanguage();
@@ -52,12 +53,14 @@ export default function ContactPage() {
       icon: Mail,
       label: t.common.email,
       value: siteConfig.email,
+      color: "bg-mint-light text-mint-dark",
     },
     {
       href: `tel:${siteConfig.phone}`,
       icon: Phone,
       label: t.common.phone,
       value: siteConfig.phone,
+      color: "bg-honey-light text-amber-900",
     },
   ];
 
@@ -65,7 +68,7 @@ export default function ContactPage() {
     <PageShell>
       <PageHero label={page.label} title={page.title} description={page.description} />
 
-      <section className="border-b border-border bg-background py-12 sm:py-16">
+      <section className="py-12 sm:py-16">
         <PageContainer size="wide">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-5 lg:gap-12">
             <motion.div
@@ -74,8 +77,8 @@ export default function ContactPage() {
               transition={{ duration: 0.6 }}
               className="lg:col-span-2"
             >
-              <div className="mb-6 overflow-hidden rounded-xl border border-border bg-muted/30 p-3 sm:mb-8 sm:p-4">
-                <div className="relative mx-auto aspect-[3/4] w-full max-w-[260px] overflow-hidden rounded-lg bg-background sm:max-w-xs">
+              <SurfaceCard tint="honey" className="mb-6 overflow-hidden !p-3 sm:mb-8 sm:!p-4">
+                <div className="relative mx-auto aspect-[3/4] w-full max-w-[260px] overflow-hidden rounded-2xl bg-white sm:max-w-xs">
                   <PortraitImage
                     src="/images/portrait.png"
                     alt={`${siteConfig.name} - ${t.common.portraitAlt}`}
@@ -83,32 +86,32 @@ export default function ContactPage() {
                     ariaSuffix={t.common.portraitAriaSuffix}
                   />
                 </div>
-              </div>
+              </SurfaceCard>
 
               <div className="space-y-3 sm:space-y-4">
                 {contactItems.map((item) => (
                   <a
                     key={item.label}
                     href={item.href}
-                    className="group editorial-card-hover flex min-h-[var(--touch-min)] items-center gap-3 p-3 sm:p-4"
+                    className="group surface-card-interactive flex min-h-[var(--touch-min)] items-center gap-3 p-3 sm:p-4"
                   >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                    <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${item.color}`}>
                       <item.icon className="h-5 w-5" />
                     </div>
                     <div className="min-w-0">
                       <p className="text-xs text-muted-foreground">{item.label}</p>
-                      <p className="truncate text-sm font-medium">{item.value}</p>
+                      <p className="truncate text-sm font-semibold">{item.value}</p>
                     </div>
                   </a>
                 ))}
 
-                <div className="editorial-card flex min-h-[var(--touch-min)] items-center gap-3 p-3 sm:p-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">
+                <div className="surface-card flex min-h-[var(--touch-min)] items-center gap-3 p-3 sm:p-4">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-coral-light text-orange-900">
                     <MapPin className="h-5 w-5" />
                   </div>
                   <div className="min-w-0">
                     <p className="text-xs text-muted-foreground">{t.common.location}</p>
-                    <p className="text-sm font-medium">{siteConfig.location}</p>
+                    <p className="text-sm font-semibold">{siteConfig.location}</p>
                   </div>
                 </div>
 
@@ -116,14 +119,14 @@ export default function ContactPage() {
                   href={siteConfig.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group editorial-card-hover flex min-h-[var(--touch-min)] items-center gap-3 p-3 sm:p-4"
+                  className="group surface-card-interactive flex min-h-[var(--touch-min)] items-center gap-3 p-3 sm:p-4"
                 >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-mint-light text-mint-dark">
                     <LinkedinIcon className="h-5 w-5" />
                   </div>
                   <div className="min-w-0">
                     <p className="text-xs text-muted-foreground">{t.common.linkedin}</p>
-                    <p className="text-sm font-medium">{t.common.connectLinkedIn}</p>
+                    <p className="text-sm font-semibold">{t.common.connectLinkedIn}</p>
                   </div>
                 </a>
               </div>
@@ -135,14 +138,14 @@ export default function ContactPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="lg:col-span-3"
             >
-              <div className="editorial-card p-4 sm:p-6 md:p-8">
-                <h2 className="text-xl font-bold sm:text-2xl">{t.common.sendMessage}</h2>
+              <SurfaceCard tint="mint" className="!p-4 sm:!p-6 md:!p-8">
+                <h2 className="font-display text-xl font-bold sm:text-2xl">{t.common.sendMessage}</h2>
                 <p className="mt-2 text-sm text-muted-foreground">{page.formDescription}</p>
 
                 {submitted ? (
                   <div className="py-10 text-center sm:py-12">
-                    <CheckCircle2 className="mx-auto mb-4 h-14 w-14 text-emerald-500 sm:h-16 sm:w-16" />
-                    <h3 className="text-xl font-bold">{page.success.title}</h3>
+                    <CheckCircle2 className="mx-auto mb-4 h-14 w-14 text-mint sm:h-16 sm:w-16" />
+                    <h3 className="font-display text-xl font-bold">{page.success.title}</h3>
                     <p className="mt-2 text-sm text-muted-foreground sm:text-base">
                       {page.success.message}
                     </p>
@@ -151,7 +154,7 @@ export default function ContactPage() {
                   <form onSubmit={handleSubmit} className="mt-6 space-y-4 sm:space-y-5">
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
                       <div>
-                        <label htmlFor="name" className="mb-1.5 block text-sm font-medium">
+                        <label htmlFor="name" className="mb-1.5 block text-sm font-semibold">
                           {page.form.name}
                         </label>
                         <input
@@ -167,7 +170,7 @@ export default function ContactPage() {
                         />
                       </div>
                       <div>
-                        <label htmlFor="email" className="mb-1.5 block text-sm font-medium">
+                        <label htmlFor="email" className="mb-1.5 block text-sm font-semibold">
                           {page.form.email}
                         </label>
                         <input
@@ -186,7 +189,7 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <label htmlFor="subject" className="mb-1.5 block text-sm font-medium">
+                      <label htmlFor="subject" className="mb-1.5 block text-sm font-semibold">
                         {page.form.subject}
                       </label>
                       <input
@@ -202,7 +205,7 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <label htmlFor="message" className="mb-1.5 block text-sm font-medium">
+                      <label htmlFor="message" className="mb-1.5 block text-sm font-semibold">
                         {page.form.message}
                       </label>
                       <textarea
@@ -217,13 +220,13 @@ export default function ContactPage() {
                       />
                     </div>
 
-                    <Button type="submit" size="lg" className="w-full sm:w-auto">
+                    <Button type="submit" variant="coral" size="lg" className="w-full sm:w-auto">
                       <Send className="h-4 w-4" />
                       {page.form.send}
                     </Button>
                   </form>
                 )}
-              </div>
+              </SurfaceCard>
             </motion.div>
           </div>
         </PageContainer>

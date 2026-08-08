@@ -9,6 +9,7 @@ import { getProjects, getProjectCategoryKeys } from "@/data/projects";
 import type { ProjectCategoryKey } from "@/lib/i18n/content";
 import { useLanguage } from "@/components/providers/language-provider";
 import { Badge } from "@/components/ui/badge";
+import { SurfaceCard } from "@/components/ui/surface-card";
 import {
   PageShell,
   PageContainer,
@@ -21,10 +22,10 @@ type FilterKey = "all" | ProjectCategoryKey;
 
 const filterBtn = (active: boolean) =>
   cn(
-    "shrink-0 rounded-md border px-3 py-2 text-xs font-medium transition-colors tap-target sm:px-4 sm:text-sm",
+    "shrink-0 rounded-xl px-3 py-2 text-xs font-bold transition-all tap-target sm:px-4 sm:text-sm",
     active
-      ? "bg-foreground text-background border-foreground"
-      : "border-border bg-card text-muted-foreground hover:bg-secondary"
+      ? "bg-mint text-white shadow-lift"
+      : "bg-white text-muted-foreground shadow-sm hover:bg-mint-light"
   );
 
 export default function ProjectsPage() {
@@ -52,7 +53,7 @@ export default function ProjectsPage() {
 
       <StickyBar>
         <div className="scrollbar-hide flex items-center gap-2 overflow-x-auto pb-1">
-          <Filter className="h-4 w-4 shrink-0 text-muted-foreground" />
+          <Filter className="h-4 w-4 shrink-0 text-mint" />
           {categories.map((cat) => (
             <button
               key={cat.key}
@@ -66,7 +67,7 @@ export default function ProjectsPage() {
         </div>
       </StickyBar>
 
-      <section className="border-b border-border bg-background py-12 sm:py-16">
+      <section className="py-12 sm:py-16">
         <PageContainer>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
             {filtered.map((project, index) => (
@@ -74,38 +75,41 @@ export default function ProjectsPage() {
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="group editorial-card-hover overflow-hidden"
+                transition={{ delay: index * 0.08, duration: 0.5 }}
               >
-                <div className="relative h-48 overflow-hidden sm:h-56">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <Badge className="absolute left-3 top-3 sm:left-4 sm:top-4">
-                    {project.category}
-                  </Badge>
-                </div>
-
-                <div className="p-4 sm:p-6">
-                  <h2 className="mb-2 break-anywhere text-lg font-semibold sm:text-xl">
-                    {project.title}
-                  </h2>
-                  <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-                    {project.shortDescription}
-                  </p>
-
-                  <Link
-                    href={`/projects/${project.slug}`}
-                    className="inline-flex min-h-[var(--touch-min)] items-center gap-1 text-sm font-medium text-primary hover:underline"
+                <Link href={`/projects/${project.slug}`} className="group block h-full">
+                  <SurfaceCard
+                    tint={index % 3 === 0 ? "mint" : index % 3 === 1 ? "honey" : "coral"}
+                    className="overflow-hidden !p-0"
                   >
-                    {t.common.viewCaseStudy}
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </div>
+                    <div className="relative h-48 overflow-hidden sm:h-56">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <Badge className="absolute left-3 top-3 sm:left-4 sm:top-4">
+                        {project.category}
+                      </Badge>
+                    </div>
+
+                    <div className="p-4 sm:p-6">
+                      <h2 className="mb-2 break-anywhere font-display text-lg font-bold sm:text-xl">
+                        {project.title}
+                      </h2>
+                      <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+                        {project.shortDescription}
+                      </p>
+
+                      <span className="inline-flex min-h-[var(--touch-min)] items-center gap-1 text-sm font-bold text-mint group-hover:underline">
+                        {t.common.viewCaseStudy}
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </span>
+                    </div>
+                  </SurfaceCard>
+                </Link>
               </motion.article>
             ))}
           </div>

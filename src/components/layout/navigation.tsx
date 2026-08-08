@@ -20,7 +20,7 @@ export function Navigation() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 12);
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
@@ -38,34 +38,41 @@ export function Navigation() {
   return (
     <header
       className={cn(
-        "fixed left-0 right-0 top-0 z-50 border-b pt-[env(safe-area-inset-top)] transition-colors",
-        scrolled || isOpen ? "border-border bg-paper/95 backdrop-blur-sm" : "border-transparent bg-paper/80"
+        "fixed left-0 right-0 top-0 z-50 pt-[env(safe-area-inset-top)] transition-all duration-300",
+        scrolled || isOpen ? "bg-white/95 shadow-md backdrop-blur-md" : "bg-cream/90 backdrop-blur-sm"
       )}
     >
-      <nav className="container-app mx-auto flex max-w-7xl items-center justify-between gap-4 py-3 sm:py-4">
+      <nav className="container-app mx-auto flex max-w-7xl items-center justify-between gap-4 py-3 sm:py-3.5">
         <Logo variant="nav" />
 
-        <div className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                "text-sm transition-colors",
-                pathname === link.href
-                  ? "font-medium text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
+        <div className="hidden items-center gap-1 md:flex">
+          {navLinks.map((link) => {
+            const active = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "relative rounded-lg px-4 py-2 text-sm font-semibold transition-colors",
+                  active ? "text-mint-dark" : "text-muted-foreground hover:text-foreground"
+                )}
+              >
+                {active && (
+                  <motion.span
+                    layoutId="nav-active"
+                    className="absolute inset-x-2 -bottom-0.5 h-0.5 rounded-full bg-honey"
+                  />
+                )}
+                {link.label}
+              </Link>
+            );
+          })}
         </div>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-2 md:flex">
           <LanguageSwitcher />
           <Link href="/contact">
-            <Button size="sm" variant="accent">
+            <Button variant="honey" size="sm">
               {t.nav.contactShort}
             </Button>
           </Link>
@@ -75,7 +82,7 @@ export function Navigation() {
           <LanguageSwitcher />
           <button
             type="button"
-            className="tap-target flex items-center justify-center p-2 text-foreground"
+            className="tap-target rounded-xl bg-mint-light p-2 text-mint-dark"
             onClick={() => setIsOpen(!isOpen)}
             aria-expanded={isOpen}
             aria-label={isOpen ? t.common.closeMenu : t.common.openMenu}
@@ -88,26 +95,28 @@ export function Navigation() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="border-t border-border bg-paper md:hidden"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="overflow-hidden border-t border-border bg-white md:hidden"
           >
-            <div className="container-app flex flex-col py-4 safe-pb">
+            <div className="container-app flex flex-col gap-1 py-3 safe-pb">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "tap-target border-b border-border py-3 text-sm last:border-b-0",
-                    pathname === link.href ? "font-medium text-foreground" : "text-muted-foreground"
+                    "tap-target rounded-xl px-4 py-3 text-sm font-semibold",
+                    pathname === link.href
+                      ? "bg-mint-light text-mint-dark"
+                      : "text-muted-foreground"
                   )}
                 >
                   {link.label}
                 </Link>
               ))}
-              <Link href="/contact" className="pt-4">
-                <Button variant="accent" className="w-full">
+              <Link href="/contact" className="px-2 pt-2">
+                <Button variant="honey" className="w-full">
                   {t.nav.contactShort}
                 </Button>
               </Link>

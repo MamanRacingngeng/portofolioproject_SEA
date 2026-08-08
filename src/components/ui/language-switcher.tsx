@@ -9,7 +9,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
 
   return (
     <div
-      className={cn("inline-flex border border-border text-xs", className)}
+      className={cn("inline-flex overflow-hidden rounded-xl bg-mint-light p-1", className)}
       role="group"
       aria-label="Language"
     >
@@ -19,10 +19,8 @@ export function LanguageSwitcher({ className }: { className?: string }) {
           type="button"
           onClick={() => setLocale(code)}
           className={cn(
-            "min-w-[2.25rem] px-2 py-1.5 font-medium transition-colors",
-            locale === code
-              ? "bg-foreground text-background"
-              : "text-muted-foreground hover:text-foreground"
+            "min-w-[2.25rem] rounded-lg px-2.5 py-1.5 text-xs font-bold transition-all",
+            locale === code ? "bg-mint text-white shadow-sm" : "text-mint-dark hover:bg-white/60"
           )}
           aria-pressed={locale === code}
         >

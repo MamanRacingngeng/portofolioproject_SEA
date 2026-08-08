@@ -25,7 +25,7 @@ export function BlogPostContent({ slug }: BlogPostContentProps) {
 
   return (
     <PageShell>
-      <section className="relative min-h-[35vh] border-b border-border sm:min-h-[40vh]">
+      <section className="relative min-h-[35vh] sm:min-h-[40vh]">
         <Image
           src={post.image}
           alt={post.title}
@@ -34,36 +34,37 @@ export function BlogPostContent({ slug }: BlogPostContentProps) {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-foreground/60" />
+        <div className="absolute inset-0 bg-coral/60 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-mint-dark/40" />
       </section>
 
-      <article className="border-b border-border bg-background py-10 sm:py-12">
+      <article className="py-10 sm:py-12">
         <PageContainer size="narrow" className="max-w-3xl">
           <Link
             href="/blog"
-            className="mb-5 inline-flex min-h-[var(--touch-min)] items-center gap-2 text-sm text-primary hover:underline sm:mb-6"
+            className="mb-5 inline-flex min-h-[var(--touch-min)] items-center gap-2 text-sm font-bold text-mint hover:underline sm:mb-6"
           >
             <ArrowLeft className="h-4 w-4" />
             {t.common.backToBlog}
           </Link>
 
-          <Badge className="mb-4">{post.category}</Badge>
+          <Badge variant="honey" className="mb-4">{post.category}</Badge>
 
-          <h1 className="mb-5 break-anywhere text-2xl font-bold leading-tight xs:text-3xl sm:mb-6 sm:text-4xl">
+          <h1 className="mb-5 break-anywhere font-display text-2xl font-extrabold leading-tight xs:text-3xl sm:mb-6 sm:text-4xl">
             {post.title}
           </h1>
 
           <div className="mb-8 flex flex-wrap items-center gap-4 border-b border-border pb-8 text-sm text-muted-foreground">
             <span className="flex items-center gap-1.5">
-              <User className="h-4 w-4" />
+              <User className="h-4 w-4 text-mint" />
               {post.author}
             </span>
             <span className="flex items-center gap-1.5">
-              <Calendar className="h-4 w-4" />
+              <Calendar className="h-4 w-4 text-honey" />
               {formatDate(post.date)}
             </span>
             <span className="flex items-center gap-1.5">
-              <Clock className="h-4 w-4" />
+              <Clock className="h-4 w-4 text-coral" />
               {post.readTime}
             </span>
           </div>
@@ -72,7 +73,7 @@ export function BlogPostContent({ slug }: BlogPostContentProps) {
             {paragraphs.map((block, i) => {
               if (block.startsWith("## ")) {
                 return (
-                  <h2 key={i} className="mb-4 mt-8 text-2xl font-bold">
+                  <h2 key={i} className="mb-4 mt-8 font-display text-2xl font-bold text-mint-dark">
                     {block.replace("## ", "")}
                   </h2>
                 );
@@ -86,7 +87,7 @@ export function BlogPostContent({ slug }: BlogPostContentProps) {
                       if (match) {
                         return (
                           <li key={line} className="flex items-start gap-3 text-muted-foreground">
-                            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
+                            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-mint-light text-xs font-bold text-mint-dark">
                               •
                             </span>
                             <span>
@@ -119,8 +120,8 @@ export function BlogPostContent({ slug }: BlogPostContentProps) {
           </div>
 
           <div className="mt-10 flex flex-wrap gap-2 border-t border-border pt-8">
-            {post.tags.map((tag) => (
-              <Badge key={tag} variant="outline">
+            {post.tags.map((tag, i) => (
+              <Badge key={tag} variant={i % 2 === 0 ? "mint" : "coral"}>
                 {tag}
               </Badge>
             ))}
@@ -128,7 +129,7 @@ export function BlogPostContent({ slug }: BlogPostContentProps) {
 
           <div className="mt-8">
             <Link href="/blog">
-              <Button variant="outline">
+              <Button variant="honey">
                 <ArrowLeft className="h-4 w-4" />
                 {t.common.backToAllArticles}
               </Button>
