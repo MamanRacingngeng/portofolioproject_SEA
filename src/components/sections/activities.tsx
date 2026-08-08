@@ -1,13 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { getActivities } from "@/data/activities";
 import { useLanguage } from "@/components/providers/language-provider";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Badge } from "@/components/ui/badge";
 import { RevealOnScroll, StaggerContainer, StaggerItem } from "@/components/motion/animations";
-import { FloatingField, FloatingElement } from "@/components/motion/floating";
 import { cn } from "@/lib/utils";
 
 const badgeVariants = ["mint", "honey", "coral", "violet"] as const;
@@ -18,9 +16,8 @@ export function ActivitiesSection() {
   const items = getActivities(t);
 
   return (
-    <section id="activities" className="relative overflow-hidden py-16 sm:py-24">
-      <FloatingField variant="section" />
-      <div className="container-app relative z-[1] mx-auto max-w-7xl">
+    <section id="activities" className="border-t border-[#003049]/10 bg-[#fdf0d5] py-16 sm:py-24">
+      <div className="container-app mx-auto max-w-7xl">
         <RevealOnScroll className="mb-12">
           <SectionHeader
             index={section.index}
@@ -40,11 +37,7 @@ export function ActivitiesSection() {
                 item.span === "small" && "lg:col-span-4"
               )}
             >
-              <FloatingElement delay={i * 0.2} duration={5 + (i % 3)} y={10}>
-                <motion.figure
-                  whileHover={{ y: -6 }}
-                  className="group h-full overflow-hidden rounded-2xl bg-white shadow-md"
-                >
+              <figure className="group h-full overflow-hidden rounded-lg border border-[#003049]/10 bg-white">
                 <div
                   className={cn(
                     "relative overflow-hidden",
@@ -56,19 +49,17 @@ export function ActivitiesSection() {
                     alt={item.title}
                     fill
                     sizes="(max-width: 1024px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-mint-dark/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
                 </div>
                 <figcaption className="p-4 sm:p-5">
                   <Badge variant={badgeVariants[i % badgeVariants.length]} className="mb-2">
                     {item.category}
                   </Badge>
-                  <h3 className="font-display font-bold">{item.title}</h3>
+                  <h3 className="font-display font-bold text-[#003049]">{item.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.caption}</p>
                 </figcaption>
-              </motion.figure>
-              </FloatingElement>
+              </figure>
             </StaggerItem>
           ))}
         </StaggerContainer>

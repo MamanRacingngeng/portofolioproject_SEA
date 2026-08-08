@@ -18,7 +18,7 @@ export function ExperienceSection() {
   const typeLabels = exp.typeLabels;
 
   return (
-    <section id="experience" className="bg-honey-light/40 py-16 sm:py-24">
+    <section id="experience" className="border-t border-[#003049]/10 bg-white py-16 sm:py-24">
       <div className="container-app mx-auto max-w-7xl">
         <RevealOnScroll className="mb-12">
           <SectionHeader
@@ -73,7 +73,7 @@ export function ExperienceSection() {
                         ))}
                       </ul>
                       {item.achievements[0] && (
-                        <p className="mt-4 rounded-xl bg-mint-light/60 px-4 py-3 text-sm font-medium text-mint-dark">
+                        <p className="mt-4 rounded-md border border-[#669bbc]/30 bg-[#669bbc]/10 px-4 py-3 text-sm font-medium text-[#003049]">
                           {item.achievements[0]}
                         </p>
                       )}

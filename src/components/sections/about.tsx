@@ -4,7 +4,6 @@ import { useLanguage } from "@/components/providers/language-provider";
 import { SectionHeader } from "@/components/ui/section-header";
 import { SurfaceCard } from "@/components/ui/surface-card";
 import { RevealOnScroll, StaggerContainer, StaggerItem } from "@/components/motion/animations";
-import { FloatingField } from "@/components/motion/floating";
 
 const highlightTints = ["mint", "honey", "coral", "violet", "mint", "honey"] as const;
 
@@ -13,9 +12,8 @@ export function AboutSection() {
   const about = t.home.about;
 
   return (
-    <section id="about" className="relative overflow-hidden py-16 sm:py-24">
-      <FloatingField variant="section" />
-      <div className="container-app relative z-[1] mx-auto max-w-7xl">
+    <section id="about" className="border-t border-[#003049]/10 py-16 sm:py-24">
+      <div className="container-app mx-auto max-w-7xl">
         <RevealOnScroll className="mb-12">
           <SectionHeader
             index={about.index}
@@ -34,10 +32,10 @@ export function AboutSection() {
               <h3 className="font-display mt-4 text-2xl font-bold leading-snug sm:text-3xl">
                 {t.site.patent.title}
               </h3>
-              <p className="mt-4 text-base leading-relaxed text-blue-50/90">
+              <p className="mt-4 text-base leading-relaxed text-[#669bbc]">
                 {t.site.patent.description}
               </p>
-              <p className="mt-6 text-xs text-blue-100/80">
+              <p className="mt-6 text-xs text-[#fdf0d5]/70">
                 {t.common.published} {t.site.patent.published} · {t.site.patent.publication}
               </p>
             </SurfaceCard>

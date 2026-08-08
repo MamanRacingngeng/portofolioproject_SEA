@@ -22,8 +22,8 @@ export function Logo({ variant = "nav", light = false, className }: LogoProps) {
     >
       <span
         className={cn(
-          "flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 font-display text-sm font-extrabold text-white transition-transform group-hover:scale-105",
-          light && "from-white to-sky-100 text-blue-800"
+          "flex h-9 w-9 items-center justify-center rounded-md font-display text-sm font-extrabold transition-colors",
+          light ? "bg-[#fdf0d5] text-[#003049]" : "bg-[#003049] text-[#fdf0d5] group-hover:bg-[#780000]"
         )}
       >
         G
@@ -33,13 +33,13 @@ export function Logo({ variant = "nav", light = false, className }: LogoProps) {
           className={cn(
             "font-display font-bold leading-none",
             variant === "nav" ? "text-base sm:text-lg" : "text-base sm:text-lg",
-            light ? "text-white" : "text-foreground"
+            light ? "text-[#fdf0d5]" : "text-[#003049]"
           )}
         >
           {variant === "nav" ? siteConfig.brand.wordmarkShort : siteConfig.brand.wordmark}
         </span>
         {variant !== "nav" && (
-          <span className={cn("text-[10px] font-medium", light ? "text-blue-100" : "text-muted-foreground")}>
+          <span className={cn("text-[10px] font-medium", light ? "text-[#669bbc]" : "text-muted-foreground")}>
             {t.brand.tagline}
           </span>
         )}

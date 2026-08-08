@@ -40,8 +40,8 @@ export function Navigation() {
       className={cn(
         "fixed left-0 right-0 top-0 z-50 pt-[env(safe-area-inset-top)] transition-all duration-300",
         scrolled || isOpen
-          ? "border-b border-blue-100 bg-white/90 shadow-md shadow-blue-500/5 backdrop-blur-md"
-          : "bg-sky-50/80 backdrop-blur-sm"
+          ? "border-b border-[#003049]/10 bg-[#fdf0d5]/95 backdrop-blur-sm"
+          : "bg-[#fdf0d5]/90"
       )}
     >
       <nav className="container-app mx-auto flex max-w-7xl items-center justify-between gap-4 py-3 sm:py-3.5">
@@ -56,13 +56,13 @@ export function Navigation() {
                 href={link.href}
                 className={cn(
                   "relative rounded-lg px-4 py-2 text-sm font-semibold transition-colors",
-                  active ? "text-mint-dark" : "text-muted-foreground hover:text-foreground"
+                  active ? "text-[#003049]" : "text-muted-foreground hover:text-[#003049]"
                 )}
               >
                 {active && (
                   <motion.span
                     layoutId="nav-active"
-                    className="absolute inset-x-2 -bottom-0.5 h-0.5 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500"
+                    className="absolute inset-x-2 -bottom-0.5 h-0.5 rounded-full bg-[#c1121f]"
                   />
                 )}
                 {link.label}
@@ -84,7 +84,7 @@ export function Navigation() {
           <LanguageSwitcher />
           <button
             type="button"
-            className="tap-target rounded-xl bg-blue-100 p-2 text-blue-800"
+            className="tap-target rounded-md border border-[#003049]/15 bg-white p-2 text-[#003049]"
             onClick={() => setIsOpen(!isOpen)}
             aria-expanded={isOpen}
             aria-label={isOpen ? t.common.closeMenu : t.common.openMenu}
@@ -110,7 +110,7 @@ export function Navigation() {
                   className={cn(
                     "tap-target rounded-xl px-4 py-3 text-sm font-semibold",
                     pathname === link.href
-                      ? "bg-mint-light text-mint-dark"
+                      ? "bg-[#669bbc]/15 text-[#003049]"
                       : "text-muted-foreground"
                   )}
                 >

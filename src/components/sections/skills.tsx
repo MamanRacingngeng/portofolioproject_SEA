@@ -5,10 +5,9 @@ import { useLanguage } from "@/components/providers/language-provider";
 import { SectionHeader } from "@/components/ui/section-header";
 import { SurfaceCard } from "@/components/ui/surface-card";
 import { RevealOnScroll, StaggerContainer, StaggerItem } from "@/components/motion/animations";
-import { FloatingField, FloatingElement } from "@/components/motion/floating";
 
-const categoryTints = ["mint", "honey", "coral", "violet", "mint", "honey"] as const;
-const iconColors = ["text-mint", "text-honey", "text-coral", "text-violet-600"] as const;
+const categoryTints = ["white", "honey", "mint", "white", "honey", "mint"] as const;
+const iconColors = ["text-[#003049]", "text-[#669bbc]", "text-[#c1121f]", "text-[#780000]"] as const;
 const chipStyles = ["chip-mint", "chip-honey", "chip-coral", "chip-violet"] as const;
 
 export function SkillsSection() {
@@ -16,9 +15,8 @@ export function SkillsSection() {
   const section = t.home.skills;
 
   return (
-    <section id="skills" className="relative overflow-hidden py-16 sm:py-24">
-      <FloatingField variant="section" />
-      <div className="container-app relative z-[1] mx-auto max-w-7xl">
+    <section id="skills" className="border-t border-[#003049]/10 bg-white py-16 sm:py-24">
+      <div className="container-app mx-auto max-w-7xl">
         <RevealOnScroll className="mb-12">
           <SectionHeader
             index={section.index}
@@ -32,9 +30,9 @@ export function SkillsSection() {
           {skillCategories.map((category, i) => (
             <StaggerItem key={category.titleKey}>
               <SurfaceCard tint={categoryTints[i % categoryTints.length]} className="h-full">
-                <div className="mb-4 flex items-center gap-2 border-b border-border/50 pb-3">
+                <div className="mb-4 flex items-center gap-2 border-b border-[#003049]/10 pb-3">
                   <category.icon className={`h-5 w-5 ${iconColors[i % iconColors.length]}`} />
-                  <h3 className="font-display text-sm font-bold">
+                  <h3 className="font-display text-sm font-bold text-[#003049]">
                     {t.skills.categories[category.titleKey]}
                   </h3>
                 </div>
@@ -51,16 +49,14 @@ export function SkillsSection() {
         </StaggerContainer>
 
         <RevealOnScroll>
-          <div className="band-honey rounded-3xl p-6 sm:p-8">
-            <h3 className="font-display text-xl font-extrabold text-amber-950">{section.labEquipment}</h3>
+          <div className="band-honey rounded-lg p-6 sm:p-8">
+            <h3 className="font-display text-xl font-extrabold text-[#fdf0d5]">{section.labEquipment}</h3>
             <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-8">
-              {labEquipment.map((equip, i) => (
-                <FloatingElement key={equip.name} delay={i * 0.15} duration={4 + (i % 3)} y={8}>
-                  <div className="rounded-xl bg-white/60 p-3 text-center transition-transform hover:scale-105">
-                    <equip.icon className="mx-auto h-5 w-5 text-mint-dark" />
-                    <p className="mt-2 text-[10px] font-semibold leading-tight text-amber-900">{equip.name}</p>
-                  </div>
-                </FloatingElement>
+              {labEquipment.map((equip) => (
+                <div key={equip.name} className="rounded-md border border-[#fdf0d5]/25 bg-[#003049]/15 p-3 text-center">
+                  <equip.icon className="mx-auto h-5 w-5 text-[#fdf0d5]" />
+                  <p className="mt-2 text-[10px] font-semibold leading-tight text-[#fdf0d5]/90">{equip.name}</p>
+                </div>
               ))}
             </div>
           </div>

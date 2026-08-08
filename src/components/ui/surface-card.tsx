@@ -13,10 +13,10 @@ interface SurfaceCardProps {
 
 const tints = {
   white: "bg-white",
-  mint: "bg-mint-light/60",
-  honey: "bg-honey-light/70",
-  coral: "bg-coral-light/60",
-  violet: "bg-violet-50",
+  mint: "bg-[#e8eef3]",
+  honey: "bg-[#fdf0d5]",
+  coral: "bg-[#fde8ea]",
+  violet: "bg-[#e8eef3]",
 };
 
 export function SurfaceCard({
@@ -28,18 +28,16 @@ export function SurfaceCard({
   const Component = interactive ? motion.div : "div";
   const motionProps = interactive
     ? {
-        whileHover: { y: -6, scale: 1.01 },
-        whileTap: { scale: 0.99 },
-        transition: { type: "spring" as const, stiffness: 400, damping: 25 },
+        whileHover: { y: -2 },
+        transition: { type: "spring" as const, stiffness: 400, damping: 30 },
       }
     : {};
 
   return (
     <Component
       className={cn(
-        "rounded-2xl p-5 shadow-md sm:p-6",
+        "rounded-lg border border-[#003049]/10 p-5 shadow-sm sm:p-6",
         tints[tint],
-        interactive && "cursor-default",
         className
       )}
       {...motionProps}

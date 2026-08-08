@@ -2,7 +2,6 @@
 
 import { cn } from "@/lib/utils";
 import { SectionHeader } from "@/components/ui/section-header";
-import { FloatingField } from "@/components/motion/floating";
 
 interface PageShellProps {
   children: React.ReactNode;
@@ -49,9 +48,8 @@ interface PageHeroProps {
 
 export function PageHero({ label, title, description }: PageHeroProps) {
   return (
-    <section className="band-mint relative overflow-hidden py-12 text-white sm:py-16">
-      <FloatingField variant="page" />
-      <PageContainer className="relative z-[1]">
+    <section className="band-mint border-b border-[#669bbc]/30 py-12 text-white sm:py-16">
+      <PageContainer>
         <SectionHeader index="—" label={label} title={title} description={description} light />
       </PageContainer>
     </section>
@@ -60,7 +58,7 @@ export function PageHero({ label, title, description }: PageHeroProps) {
 
 export function StickyBar({ children }: { children: React.ReactNode }) {
   return (
-    <section className="sticky-bar sticky z-40 border-b border-border bg-white/95 py-3 shadow-sm backdrop-blur-sm">
+    <section className="sticky-bar sticky z-40 border-b border-[#003049]/10 bg-[#fdf0d5] py-3">
       <PageContainer>{children}</PageContainer>
     </section>
   );
