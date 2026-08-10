@@ -5,6 +5,7 @@ import { getActivities } from "@/data/activities";
 import { useLanguage } from "@/components/providers/language-provider";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Badge } from "@/components/ui/badge";
+import { PkmReSpotlight } from "@/components/sections/pkm-re-spotlight";
 import { RevealOnScroll, StaggerContainer, StaggerItem } from "@/components/motion/animations";
 import { cn } from "@/lib/utils";
 
@@ -13,12 +14,12 @@ const badgeVariants = ["mint", "honey", "coral", "violet"] as const;
 export function ActivitiesSection() {
   const { t } = useLanguage();
   const section = t.home.activities;
-  const items = getActivities(t);
+  const items = getActivities(t).filter((item) => !["act-8", "act-9", "act-10"].includes(item.id));
 
   return (
     <section id="activities" className="border-t border-[#003049]/10 bg-[#fdf0d5] py-16 sm:py-24">
       <div className="container-app mx-auto max-w-7xl">
-        <RevealOnScroll className="mb-12">
+        <RevealOnScroll className="mb-10">
           <SectionHeader
             index={section.index}
             label={section.label}
@@ -26,6 +27,8 @@ export function ActivitiesSection() {
             description={section.description}
           />
         </RevealOnScroll>
+
+        <PkmReSpotlight />
 
         <StaggerContainer className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-12">
           {items.map((item, i) => (
@@ -40,8 +43,8 @@ export function ActivitiesSection() {
               <figure className="group h-full overflow-hidden rounded-lg border border-[#003049]/10 bg-white">
                 <div
                   className={cn(
-                    "relative overflow-hidden",
-                    item.span === "large" ? "aspect-[16/10]" : "aspect-[4/3]"
+                    "relative overflow-hidden bg-[#fdf0d5]",
+                    item.layout === "poster" ? "aspect-[3/4]" : item.span === "large" ? "aspect-[16/10]" : "aspect-[4/3]"
                   )}
                 >
                   <Image
@@ -49,7 +52,10 @@ export function ActivitiesSection() {
                     alt={item.title}
                     fill
                     sizes="(max-width: 1024px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                    className={cn(
+                      "transition-transform duration-300 group-hover:scale-[1.02]",
+                      item.layout === "poster" ? "object-contain p-2" : "object-cover"
+                    )}
                   />
                 </div>
                 <figcaption className="p-4 sm:p-5">

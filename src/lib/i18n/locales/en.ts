@@ -166,9 +166,18 @@ export const en = {
     activities: {
       index: "05",
       label: "Activities",
-      title: "Moments from campus, conferences, and competition",
+      title: "Moments from research, campus, and competition",
       description:
-        "Photos from ICOFTA 2023, NEC Season 2, UAD library service, formal speaking engagements, and university events.",
+        "PKM-RE 2024 student research on sacha inchi fermentation, plus ICOFTA 2023, NEC Season 2, library service, and university events.",
+      pkmRe: {
+        badge: "PKM-RE 2024",
+        title: "Student Creativity Program — Exact Research",
+        subtitle: "Sacha Inchi Bean Fermentation Process",
+        description:
+          "Team research funded under PKM-RE 2024 at Ahmad Dahlan University — documenting fermentation, lab testing, and team activities for the sacha inchi natto project.",
+        socialLabel: "Follow the journey",
+        socialHandle: "@pkmre_atensi",
+      },
     },
     projects: {
       index: "06",
@@ -408,6 +417,27 @@ export const en = {
 
   activities: [
     {
+      id: "act-8",
+      title: "Fermentation Process Recap",
+      caption:
+        "PKM-RE 2024 · Steaming, inoculation, cold storage, and team documentation during sacha inchi natto production.",
+      category: "PKM-RE Research",
+    },
+    {
+      id: "act-9",
+      title: "Lab Testing & Fermentation",
+      caption:
+        "PKM-RE 2024 · Result testing and bean fermentation work in the food technology laboratory at UAD.",
+      category: "PKM-RE Research",
+    },
+    {
+      id: "act-10",
+      title: "PKM-RE Team Member — Gnothi Sea Fauziah",
+      caption:
+        "Food Technology / Class of 2022 · Research team member for PKM-RE 2024 sacha inchi fermentation study.",
+      category: "PKM-RE Research",
+    },
+    {
       id: "act-1",
       title: "Bronze Medal — NEC Season 2",
       caption:
@@ -467,6 +497,7 @@ export const en = {
       "Sacha Inchi Natto Production Process (Plukenetia volubilis L.) — Simple Patent Invention",
     highlights: [
       "Simple Patent Inventor — Sacha Inchi Natto Production Process (2024)",
+      "PKM-RE 2024 — Sacha Inchi Bean Fermentation Research Team Member",
       "Bronze Medal — National Education Competition (NEC) Season 2 (2024)",
       "ICOFTA 2023 Organizing Committee — International Conference on Food Technology and Agriculture",
       "Library Service Team — Perpustakaan UAD",

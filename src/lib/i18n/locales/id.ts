@@ -168,9 +168,18 @@ export const id: Dictionary = {
     activities: {
       index: "05",
       label: "Aktivitas",
-      title: "Momen dari kampus, konferensi, dan kompetisi",
+      title: "Momen penelitian, kampus, dan kompetisi",
       description:
-        "Foto dari ICOFTA 2023, NEC Season 2, layanan Perpustakaan UAD, public speaking, dan acara universitas.",
+        "PKM-RE 2024 penelitian fermentasi sacha inchi, plus ICOFTA 2023, NEC Season 2, layanan perpustakaan, dan acara universitas.",
+      pkmRe: {
+        badge: "PKM-RE 2024",
+        title: "Program Kreativitas Mahasiswa — Riset Eksakta",
+        subtitle: "Proses Fermentasi Kacang Sacha Inchi",
+        description:
+          "Penelitian tim PKM-RE 2024 di Universitas Ahmad Dahlan — dokumentasi fermentasi, pengujian laboratorium, dan kegiatan tim untuk proyek natto sacha inchi.",
+        socialLabel: "Ikuti perjalanan kami",
+        socialHandle: "@pkmre_atensi",
+      },
     },
     projects: {
       index: "06",
@@ -410,6 +419,27 @@ export const id: Dictionary = {
 
   activities: [
     {
+      id: "act-8",
+      title: "Recap Proses Fermentasi",
+      caption:
+        "PKM-RE 2024 · Pengukusan, inokulasi, penyimpanan dingin, dan dokumentasi tim selama produksi natto sacha inchi.",
+      category: "Penelitian PKM-RE",
+    },
+    {
+      id: "act-9",
+      title: "Pengujian Hasil & Fermentasi Lab",
+      caption:
+        "PKM-RE 2024 · Pengujian hasil dan fermentasi kacang di laboratorium teknologi pangan UAD.",
+      category: "Penelitian PKM-RE",
+    },
+    {
+      id: "act-10",
+      title: "Anggota Tim PKM-RE — Gnothi Sea Fauziah",
+      caption:
+        "Teknologi Pangan / Angkatan 2022 · Anggota tim penelitian PKM-RE 2024 studi fermentasi sacha inchi.",
+      category: "Penelitian PKM-RE",
+    },
+    {
       id: "act-1",
       title: "Medali Perunggu — NEC Season 2",
       caption:
@@ -469,6 +499,7 @@ export const id: Dictionary = {
       "Proses Produksi Natto Sacha Inchi (Plukenetia volubilis L.) — Invensi Paten Sederhana",
     highlights: [
       "Inventor Paten Sederhana — Proses Produksi Natto Sacha Inchi (2024)",
+      "Anggota Tim Penelitian PKM-RE 2024 — Fermentasi Kacang Sacha Inchi",
       "Medali Perunggu — National Education Competition (NEC) Season 2 (2024)",
       "Panitia ICOFTA 2023 — International Conference on Food Technology and Agriculture",
       "Tim Layanan Perpustakaan — Perpustakaan UAD",
