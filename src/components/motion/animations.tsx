@@ -57,11 +57,12 @@ export function StaggerItem({
     <motion.div
       className={className}
       variants={{
-        hidden: { opacity: 0, y: 16 },
+        hidden: { opacity: 0, y: 24, scale: 0.97 },
         visible: {
           opacity: 1,
           y: 0,
-          transition: { duration: 0.45, ease: [0.25, 0.1, 0.25, 1] },
+          scale: 1,
+          transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] },
         },
       }}
     >

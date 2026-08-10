@@ -77,7 +77,7 @@ export function HeroSection() {
           className="hero-panel-light flex flex-col justify-center border-t border-[#003049]/10 p-6 sm:p-10 lg:border-l lg:border-t-0 lg:p-12"
         >
           <div className="mx-auto w-full max-w-sm">
-            <div className="relative">
+            <div className="relative animate-float-slow">
               <div
                 className="absolute -right-2 -top-2 h-full w-full rounded-lg bg-[#c1121f]"
                 aria-hidden="true"

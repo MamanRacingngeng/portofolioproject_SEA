@@ -194,6 +194,14 @@
   .animate-float-slow {
     animation: none;
   }
+
+  .pkm-spotlight-bg {
+    animation: none;
+  }
+
+  .animate-badge-glow {
+    animation: none;
+  }
 }
 
 @keyframes float-y-slow {
@@ -208,4 +216,42 @@
 
 .animate-float-slow {
   animation: float-y-slow 7s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes badge-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgb(102 155 188 / 0.35);
+  }
+  50% {
+    box-shadow: 0 0 16px 2px rgb(102 155 188 / 0.45);
+  }
+}
+
+.pkm-spotlight-bg {
+  background: linear-gradient(135deg, #003049 0%, #001a28 45%, #003049 70%, #002438 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 10s ease infinite;
+}
+
+.activities-section-bg {
+  background-color: var(--fiery-ocean-sand);
+  background-image:
+    radial-gradient(circle at 15% 20%, rgb(102 155 188 / 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 85% 75%, rgb(193 18 31 / 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgb(0 48 73 / 0.04) 0%, transparent 60%);
+}
+
+.animate-badge-glow {
+  animation: badge-glow 3s ease-in-out infinite;
 }
