@@ -6,9 +6,10 @@ import { ArrowUpRight, Download } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import { useLanguage } from "@/components/providers/language-provider";
 import { Button } from "@/components/ui/button";
-import { PortraitImage } from "@/components/ui/portrait-image";
 import { HeroLabel } from "@/components/ui/hero-label";
-import { HeroNameDisplay } from "@/components/ui/hero-name-display";
+import { Hero3DName } from "@/components/ui/hero-3d-name";
+import { Hero3DPortrait } from "@/components/ui/hero-3d-portrait";
+import { Hero3DBackground } from "@/components/ui/hero-3d-background";
 import { MarqueeStrip } from "@/components/ui/marquee-strip";
 
 const statColors = [
@@ -17,45 +18,87 @@ const statColors = [
   "bg-[#780000] text-[#fdf0d5]",
 ] as const;
 
+const contentVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: 0.45 + i * 0.08, duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
+  }),
+};
+
 export function HeroSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="pt-[var(--header-height)]">
+    <section className="hero-scene relative overflow-hidden pt-[var(--header-height)]">
       <div className="grid min-h-[calc(100dvh-var(--header-height))] grid-cols-1 lg:grid-cols-2">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="band-mint flex flex-col justify-center px-6 py-12 sm:px-10 lg:px-12 lg:py-16"
-        >
-          <div className="max-w-xl">
-            <HeroLabel>{t.brand.tagline}</HeroLabel>
-            <HeroNameDisplay />
-            <p className="mt-5 text-lg font-medium text-[#669bbc] sm:text-xl">{t.home.hero.subtitle}</p>
-            <p className="mt-4 max-w-lg text-sm leading-relaxed text-[#fdf0d5]/85 sm:text-base">
-              {t.site.summary}
-            </p>
+        <div className="band-mint relative flex flex-col justify-center overflow-hidden px-6 py-12 sm:px-10 lg:px-12 lg:py-16">
+          <Hero3DBackground variant="navy" />
 
-            <ul className="mt-6 flex flex-wrap gap-2">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            className="relative z-10 max-w-xl"
+          >
+            <motion.div custom={0} variants={contentVariants} initial="hidden" animate="visible">
+              <HeroLabel>{t.brand.tagline}</HeroLabel>
+            </motion.div>
+
+            <Hero3DName />
+
+            <motion.p
+              custom={1}
+              variants={contentVariants}
+              initial="hidden"
+              animate="visible"
+              className="mt-5 text-lg font-medium text-[#669bbc] sm:text-xl"
+            >
+              {t.home.hero.subtitle}
+            </motion.p>
+            <motion.p
+              custom={2}
+              variants={contentVariants}
+              initial="hidden"
+              animate="visible"
+              className="mt-4 max-w-lg text-sm leading-relaxed text-[#fdf0d5]/85 sm:text-base"
+            >
+              {t.site.summary}
+            </motion.p>
+
+            <motion.ul
+              custom={3}
+              variants={contentVariants}
+              initial="hidden"
+              animate="visible"
+              className="mt-6 flex flex-wrap gap-2"
+            >
               {t.site.roles.slice(0, 3).map((role) => (
-                <li
+                <motion.li
                   key={role}
-                  className="rounded-md border border-[#669bbc]/50 px-3 py-1.5 text-xs font-medium text-[#fdf0d5]"
+                  whileHover={{ y: -3, scale: 1.03 }}
+                  className="rounded-md border border-[#669bbc]/50 bg-[#003049]/30 px-3 py-1.5 text-xs font-medium text-[#fdf0d5] backdrop-blur-sm"
                 >
                   {role}
-                </li>
+                </motion.li>
               ))}
-            </ul>
+            </motion.ul>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <motion.div
+              custom={4}
+              variants={contentVariants}
+              initial="hidden"
+              animate="visible"
+              className="mt-8 flex flex-wrap gap-3"
+            >
               <a
                 href={siteConfig.cvUrl}
                 download={siteConfig.cvFileName}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Button variant="coral" size="lg">
+                <Button variant="coral" size="lg" className="shadow-accent">
                   <Download className="h-4 w-4" />
                   {t.common.downloadCv}
                 </Button>
@@ -66,51 +109,60 @@ export function HeroSection() {
                   <ArrowUpRight className="h-4 w-4" />
                 </Button>
               </Link>
-            </div>
-          </div>
-        </motion.div>
+            </motion.div>
+          </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.08 }}
-          className="hero-panel-light flex flex-col justify-center border-t border-[#003049]/10 p-6 sm:p-10 lg:border-l lg:border-t-0 lg:p-12"
-        >
-          <div className="mx-auto w-full max-w-sm">
-            <div className="relative animate-float-slow">
-              <div
-                className="absolute -right-2 -top-2 h-full w-full rounded-lg bg-[#c1121f]"
-                aria-hidden="true"
-              />
-              <div className="relative overflow-hidden rounded-lg border-2 border-[#003049] bg-white">
-                <div className="aspect-[4/5]">
-                  <PortraitImage
-                    src="/images/portrait.png"
-                    alt={`${siteConfig.name} - ${t.common.portraitAlt}`}
-                    hint={t.common.tapForColor}
-                    ariaSuffix={t.common.portraitAriaSuffix}
-                    priority
-                  />
-                </div>
-              </div>
-              <div className="absolute -bottom-3 -left-2 border border-[#003049]/15 bg-white px-4 py-3 shadow-sm sm:-left-4">
-                <p className="font-display text-xl font-bold text-[#003049]">{t.home.hero.patentStamp}</p>
-                <p className="text-xs text-muted-foreground">Sacha Inchi Natto</p>
-              </div>
-            </div>
-          </div>
-          <p className="mt-8 text-center text-sm font-medium text-[#003049]/70">
+        <div className="hero-panel-light relative flex flex-col justify-center overflow-hidden border-t border-[#003049]/10 p-6 sm:p-10 lg:border-l lg:border-t-0 lg:p-12">
+          <Hero3DBackground variant="sand" />
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="relative z-10"
+          >
+            <Hero3DPortrait
+              portraitAlt={t.common.portraitAlt}
+              hint={t.common.tapForColor}
+              ariaSuffix={t.common.portraitAriaSuffix}
+              patentStamp={t.home.hero.patentStamp}
+            />
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.55, duration: 0.5 }}
+            className="relative z-10 mt-10 text-center text-sm font-medium text-[#003049]/70"
+          >
             {siteConfig.name} · {t.site.university}
-          </p>
-        </motion.div>
+          </motion.p>
+        </div>
       </div>
 
-      <div className="grid grid-cols-3 border-y border-[#003049]/15">
+      <div className="relative grid grid-cols-3 border-y border-[#003049]/15">
         {t.site.stats.map((stat, i) => (
-          <div key={stat.label} className={`px-4 py-6 text-center sm:px-6 sm:py-8 ${statColors[i]}`}>
-            <p className="font-display text-3xl font-extrabold sm:text-4xl">{stat.value}</p>
+          <motion.div
+            key={stat.label}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1, duration: 0.5 }}
+            whileHover={{ y: -4 }}
+            className={`px-4 py-6 text-center sm:px-6 sm:py-8 ${statColors[i]}`}
+          >
+            <motion.p
+              className="font-display text-3xl font-extrabold sm:text-4xl"
+              initial={{ scale: 0.8 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15 + i * 0.1, type: "spring", stiffness: 200 }}
+            >
+              {stat.value}
+            </motion.p>
             <p className="mt-1 text-[10px] font-bold uppercase tracking-wider opacity-90">{stat.label}</p>
-          </div>
+          </motion.div>
         ))}
       </div>
 

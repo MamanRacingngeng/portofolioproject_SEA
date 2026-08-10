@@ -141,6 +141,44 @@
     border-radius: 0.125rem;
   }
 
+  .hero-perspective {
+    perspective: 1400px;
+    perspective-origin: 50% 50%;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .hero-text-3d {
+    text-shadow:
+      1px 1px 0 rgb(102 155 188 / 0.85),
+      2px 2px 0 rgb(102 155 188 / 0.65),
+      3px 3px 0 rgb(0 48 73 / 0.55),
+      4px 4px 0 rgb(0 48 73 / 0.35),
+      0 12px 28px rgb(0 0 0 / 0.35);
+  }
+
+  .hero-block-3d {
+    box-shadow:
+      4px 4px 0 rgb(0 48 73 / 0.45),
+      0 16px 32px rgb(0 0 0 / 0.28);
+  }
+
+  .hero-3d-grid {
+    transform: rotateX(72deg);
+    transform-origin: center bottom;
+    background-image:
+      linear-gradient(rgb(102 155 188 / 0.45) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(102 155 188 / 0.45) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: linear-gradient(to top, black 15%, transparent 85%);
+  }
+
+  .hero-scene {
+    isolation: isolate;
+  }
+
   @media (min-width: 640px) {
     .name-block-label {
       padding: 0.18rem 0.8rem 0.32rem;
@@ -201,6 +239,10 @@
 
   .animate-badge-glow {
     animation: none;
+  }
+
+  .hero-3d-grid {
+    transform: rotateX(72deg);
   }
 }
 
